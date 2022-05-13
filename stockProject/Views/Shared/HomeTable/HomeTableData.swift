@@ -1,6 +1,6 @@
 import Foundation
 
-struct TableData: Identifiable {
+struct HomeTableData: Identifiable {
     var id: UUID
     let label: String
     let isStock: Bool
