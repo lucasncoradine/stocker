@@ -5,31 +5,23 @@ struct HomeTableView: View {
     
     init(from data: [HomeTableData]) {
         self.data = data
-        
-        UITableView.appearance().tableHeaderView = UIView(frame: CGRect(
-            x: 0,
-            y: 0,
-            width: 0,
-            height: Double.leastNonzeroMagnitude
-        ))
     }
     
-    var body: some View {
-        List {
+    var body: some View {        
+        TableView {
             ForEach(data) { item in
                 HomeTableRow(label: item.label, isStock: item.isStock)
             }
         }
-        .listStyle(.insetGrouped)
     }
 }
 
 struct HomeTableView_Previews: PreviewProvider {
     static var previews: some View {
         HomeTableView(from: [
-            .init(label: "Simple List One"),
-            .init(label: "Simple List Two"),
-            .init(label: "Stock List", isStock: true)
+            .init(id: 1, label: "Simple List One"),
+            .init(id: 2, label: "Simple List Two"),
+            .init(id: 3, label: "Stock List", isStock: true)
         ])
     }
 }

@@ -1,12 +1,12 @@
 import Foundation
 
 struct HomeTableData: Identifiable {
-    var id: UUID
+    var id: Int
     let label: String
     let isStock: Bool
     
-    init(label: String, isStock: Bool = false) {
-        self.id = UUID() //TODO: Associar id real
+    init(id: Int, label: String, isStock: Bool = false) {
+        self.id = id
         self.label = label
         self.isStock = isStock
     }

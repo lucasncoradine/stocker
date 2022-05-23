@@ -30,6 +30,7 @@ class HomeViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     self.lists = response.records.map { record in
                         HomeTableData(
+                            id: record.fields.id,
                             label: record.fields.name,
                             isStock: record.fields.type == .stock
                         )
