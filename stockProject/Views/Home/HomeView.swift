@@ -42,11 +42,9 @@ struct HomeView: View {
                 }
             }
         }
-        .alert(viewModel.errorMessage, isPresented: $viewModel.showError) {
-            Button(action: { viewModel.getLists() }) {
-                Text("Try again")
-            }
-        }
+        .errorAlert(message: viewModel.errorMessage,
+                    visible: $viewModel.showError,
+                    action: viewModel.getLists)
         .onAppear { viewModel.getLists() }
         .refreshable { viewModel.getLists() }
         .searchable(text: $searchText)

@@ -3,10 +3,12 @@ import Foundation
 class APIClient {
     let session: URLSession
     
+    // MARK: - Lifecycle
     init(session: URLSession = URLSession.shared) {
         self.session = URLSession(configuration: .default)
     }
     
+    // MARK: - Authorized Session
     private var authorizedSession: URLSession {
         let sessionConfiguration: URLSessionConfiguration = .default
         sessionConfiguration.httpAdditionalHeaders = [
@@ -17,6 +19,9 @@ class APIClient {
         return URLSession(configuration: sessionConfiguration)
     }
     
+    // MARK: - Methods
+    /// Executes the desired request.
+    /// - parameter request: The request which will be executed.
     func makeRequest<T: Codable>(request: Request<T>) {
         guard let url = request.url else {
             return
@@ -33,7 +38,7 @@ class APIClient {
             
             do {
                 let decoder = JSONDecoder()
-                let result = try decoder.decode(Response<T>.self, from: data)
+                let result = try decoder.decode(T.self, from: data)
                                 
                 request.success?(result)
             } catch let decodingError as DecodingError {
