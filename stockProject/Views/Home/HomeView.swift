@@ -21,7 +21,9 @@ struct HomeView: View {
                 if viewModel.isLoading {
                     ProgressView()
                 } else {
-                    HomeTableView(from: viewModel.lists)
+                    HomeTableView(from: viewModel.lists.filter {list in
+                        searchText.isEmpty == true || list.name.contains(searchText)
+                    })
                 }
             }
             .navigationTitle("Listas")
@@ -46,7 +48,6 @@ struct HomeView: View {
                     visible: $viewModel.showError,
                     action: viewModel.getLists)
         .onAppear { viewModel.getLists() }
-        .refreshable { viewModel.getLists() }
         .searchable(text: $searchText)
     }
 }
