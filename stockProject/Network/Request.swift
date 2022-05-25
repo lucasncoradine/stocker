@@ -40,6 +40,18 @@ class Request<T: Codable> {
         return self
     }
     
+    func cleanQuery() -> Self {
+        guard
+            let url = self.url,
+            var urlComponents = URLComponents(string: url.absoluteString)
+        else { return self }
+        
+        urlComponents.queryItems?.removeAll()
+        
+        self.url = urlComponents.url
+        return self
+    }
+    
     /// Appends a query parameter to the Request URL.
     /// - parameter name: The name of the query parameter.
     /// - parameter value: The value of the query parameter.

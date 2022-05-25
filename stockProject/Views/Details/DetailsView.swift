@@ -53,6 +53,6 @@ struct DetailsView: View {
 
 struct DetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailsView(for: "recFdcyGxdh3RF2K9")
+        DetailsView(for: "recFYl08pRpZu5onK")
     }
 }

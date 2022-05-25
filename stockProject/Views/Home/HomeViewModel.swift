@@ -2,7 +2,7 @@ import Foundation
 
 class HomeViewModel: ObservableObject {
     private let client: APIClient
-    private let request: Request<Response<ListData>>
+    private let request: Request<Response<ListModel>>
     
     @Published var lists: [HomeTableData] = []
     @Published var isLoading: Bool = true
@@ -11,18 +11,16 @@ class HomeViewModel: ObservableObject {
     
     init() {
         self.client = APIClient()
-        self.request = Request<Response<ListData>>(client: client, path: APIConstants.lists)
+        self.request = Request<Response<ListModel>>(client: client, path: APIConstants.lists)
     }
     
     // MARK: - Private Methods
-    private func getListSucceeded(response: Response<ListData>) {
+    private func getListSucceeded(response: Response<ListModel>) {
         DispatchQueue.main.async {
             self.lists = response.records.map { record in
-                HomeTableData(
-                    recordId: record.id,
-                    label: record.fields.name,
-                    isStock: record.fields.type == .stock
-                )
+                HomeTableData(recordId: record.id,
+                              label: record.fields.name,
+                              isStock: record.fields.type == .stock)
             }
             
             self.isLoading = false

@@ -9,17 +9,17 @@ import Foundation
 
 class DetailsViewModel: ObservableObject {
     private let client: APIClient
-    private let request: Request<Record<ListData>>
+    private let request: Request<Record<ListModel>>
     
     @Published var isLoading: Bool = true
-    @Published var list: ListData = .init(name: "", type: .simple)
+    @Published var list: ListData = .init(label: "", type: .simple)
     @Published var errorMessage: String = ""
     @Published var showError: Bool = false
     
     // MARK: - Lifecycle
     init() {
         self.client = APIClient()
-        self.request = Request<Record<ListData>>(client: client, path: "\(APIConstants.lists)")
+        self.request = Request<Record<ListModel>>(client: client, path: "\(APIConstants.lists)")
     }
     
     // MARK: - Private Methods
@@ -31,9 +31,10 @@ class DetailsViewModel: ObservableObject {
         }
     }
     
-    private func getDetailsSucceeded(response: Record<ListData>) {
+    private func getDetailsSucceeded(response: Record<ListModel>) {
         DispatchQueue.main.async {
-            self.list = .init(name: response.fields.name,
+            self.list = .init(recordId: response.id,
+                              label: response.fields.name,
                               type: response.fields.type)
             
             self.isLoading = false

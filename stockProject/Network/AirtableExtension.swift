@@ -8,11 +8,12 @@
 import Foundation
 
 extension Request {
-    func filterByFormula(_ formula: String) -> Self {
-        self.query(name: "filterByFormula", value: formula)
+    private func filterByFormula(_ formula: String) -> Self {
+        return self.query(name: "filterByFormula",
+                   value: formula)
     }
     
-    func filterById(_ id: Int) -> Self {
-        self.filterByFormula("id=\(id)")
+    func filterBy(key: String, value: String) -> Self {
+        self.filterByFormula("\(key)=\"\(value)\"")
     }
 }

@@ -1,11 +1,12 @@
 import Foundation
 
+// MARK: - Response Models
 enum ListType: String, Codable {
     case simple = "Simple List"
     case stock = "Stock"
 }
 
-struct ListData: Codable {
+struct ListModel: Codable {
     let name: String
     let type: ListType
     
@@ -16,5 +17,17 @@ struct ListData: Codable {
     enum CodingKeys: String, CodingKey {
         case type
         case name
+    }
+}
+
+struct ListItem: Codable {
+    let name: String
+    let description: String?
+    let amount: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case description
+        case amount
     }
 }
