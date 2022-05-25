@@ -58,18 +58,18 @@ struct StepperButton: View {
 // MARK: - LabeledStepper
 struct LabeledStepper: View {
     private let startAt: Int
-    private let max: Int?
-    private let min: Int?
     private let style: StepperStyle
-
+    private let max: Int
+    private let min: Int
+    
     @State var isMinusDisabled: Bool = false
     @State var isPlusDisabled: Bool = false
     @State var count: Int = 0
     
     // MARK: - Lifecycle
     init(startAt: Int = 0,
-         max: Int? = nil,
-         min: Int? = nil,
+         max: Int = 99,
+         min: Int = 0,
          style: StepperStyle = .transparent
     ) {
         self.startAt = startAt
@@ -90,18 +90,16 @@ struct LabeledStepper: View {
     }
     
     private func validateButtons() {
-        isPlusDisabled = validadeMax(max)
-        isMinusDisabled = validateMin(min)
+        isPlusDisabled = validadeMax()
+        isMinusDisabled = validateMin()
     }
     
-    private func validadeMax(_ value: Int?) -> Bool {
-        guard let value = value else { return false }
-        return count >= value
+    private func validadeMax() -> Bool {
+        return count >= max
     }
     
-    private func validateMin(_ value: Int?) -> Bool{
-        guard let value = value else { return false }
-        return count <= value
+    private func validateMin() -> Bool {
+        return count <= min
     }
     
     // MARK: - View

@@ -10,13 +10,13 @@ import SwiftUI
 // MARK: - DetailsListRow
 struct DetailsListRow: View {
     let label: String
-    let count: Int
+    let amount: Int
     
     var body: some View {
         HStack {
             Text(label)
             Spacer()
-            LabeledStepper(startAt: count, min: 0)
+            LabeledStepper(startAt: amount, min: 0)
         }
         .listRowSeparator(.hidden)
         .buttonStyle(.plain)
@@ -25,42 +25,41 @@ struct DetailsListRow: View {
 
 // MARK: - DetilsListView
 struct DetailsListView: View {
-    let list: ListData
-    
-    @StateObject var viewModel = DetailsListViewModel()
-    
+    let list: ListModel
+        
     // MARK: - Lifecycle
-    init(list: ListData) {
+    init(list: ListModel) {
         self.list = list
+        
         UITableView.appearance().backgroundColor = .clear
     }
     
     // MARK: - View
     var body: some View {
         VStack {
-            if viewModel.isLoading { ProgressView() }
-            else {
+            if list.items != nil {
                 List {
-                    ForEach(viewModel.items) { item in
+                    ForEach(list.items!) { item in
                         DetailsListRow(label: item.name,
-                                       count: item.amount)
+                                       amount: item.amount)
                     }
                 }
                 .listStyle(.plain)
-                .background(.white)
             }
+            
+            // TODO: Empty List View
         }
         .navigationTitle(list.name)
-        .onAppear { viewModel.getItems(of: list.id) }
-        .errorAlert(message: viewModel.errorMessage,
-                    visible: $viewModel.showError,
-                    action: { viewModel.getItems(of: list.id) })
     }
 }
 
 // MARK: Preview
 struct DetailsListView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailsListView(list: .init(recordId: "recFYl08pRpZu5onK", label: "Sample list", type: .stock))
+        DetailsListView(list: .init(name: "Sample List",
+                                    type: .stock,
+                                    items: [
+                                        .init(name: "Sample item", amount: 2)
+                                    ]))
     }
 }

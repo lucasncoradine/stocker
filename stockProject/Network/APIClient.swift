@@ -1,36 +1,34 @@
 import Foundation
 
 class APIClient {
-    let session: URLSession
-    
-    // MARK: - Lifecycle
-    init(session: URLSession = URLSession.shared) {
-        self.session = URLSession(configuration: .default)
-    }
-    
-    // MARK: - Authorized Session
-    private var authorizedSession: URLSession {
+    // MARK: - Session
+    private var session: URLSession {
         let sessionConfiguration: URLSessionConfiguration = .default
         sessionConfiguration.httpAdditionalHeaders = [
-            "Authorization": "Bearer \(Environment.apiKey)",
             "Content-Type": "application/json"
         ]
         
         return URLSession(configuration: sessionConfiguration)
     }
     
+    private func authorize<T: Codable>(request: Request<T>) -> Request<T> {
+        return request.query(name: "auth", value: Environment.accessToken)
+    }
+    
     // MARK: - Methods
     /// Executes the desired request.
     /// - parameter request: The request which will be executed.
     func makeRequest<T: Codable>(request: Request<T>) {
-        guard let url = request.url else {
+        let authenticatedRequest = request.authenticate(token: Environment.accessToken)
+        
+        guard let url = authenticatedRequest.url else {
             return
         }
         
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = request.method.rawValue
                         
-        let task = authorizedSession.dataTask(with: url) { data, _, error in
+        let task = session.dataTask(with: url) { data, _, error in
             guard let data = data else {
                 request.failure?("No data")
                 return
@@ -51,5 +49,13 @@ class APIClient {
         }
         
         task.resume()
+    }
+}
+
+extension Request {
+    /// Authorizes the request with the informed token
+    /// - parameter token: The authentication token
+    func authenticate(token: String) -> Self {
+        return self.query(name: "auth", value: token)
     }
 }

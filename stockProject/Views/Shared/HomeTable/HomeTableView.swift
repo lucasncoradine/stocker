@@ -1,17 +1,17 @@
 import SwiftUI
 
 struct HomeTableView: View {
-    let data: [HomeTableData]
+    let data: [ListModel]
     
-    init(from data: [HomeTableData]) {
+    init(from data: [ListModel]) {
         self.data = data
     }
     
     var body: some View {        
         TableView {
             ForEach(data) { item in
-                NavigationLink(destination: DetailsView(for: item.id)) {
-                    HomeTableRow(label: item.label, isStock: item.isStock)
+                NavigationLink(destination: DetailsView(list: item)) {
+                    HomeTableRow(label: item.name, isStock: item.isStock)
                 }
             }
         }
@@ -21,9 +21,8 @@ struct HomeTableView: View {
 struct HomeTableView_Previews: PreviewProvider {
     static var previews: some View {
         HomeTableView(from: [
-            .init(label: "Simple List One"),
-            .init(label: "Simple List Two"),
-            .init(label: "Stock List", isStock: true)
+            .init(name: "Sample List One", type: .simple),
+            .init(name: "Sample List Two", type: .stock)
         ])
     }
 }

@@ -77,6 +77,7 @@ class Request<T: Codable> {
         self.method = method
         return self
     }
+   
     
     /// Defines a method to execute if the request succeeded.
     /// - parameter closure: The method to execute.
