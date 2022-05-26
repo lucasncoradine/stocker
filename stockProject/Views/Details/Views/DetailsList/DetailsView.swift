@@ -9,16 +9,14 @@ import SwiftUI
 
 // MARK: - DetailsListRow
 struct DetailsListRow: View {
+    @State var stepperValue: Int = 0
     let label: String
     let amount: Int
     
     var body: some View {
-        HStack {
-            Text(label)
-            Spacer()
-            LabeledStepper(startAt: amount, min: 0)
+        HStack(spacing: 0) {
+            LabeledStepper(label, value: $stepperValue)
         }
-        .listRowSeparator(.hidden)
         .buttonStyle(.plain)
     }
 }
@@ -26,7 +24,7 @@ struct DetailsListRow: View {
 // MARK: - DetilsListView
 struct DetailsView: View {
     let list: ListModel
-        
+    
     // MARK: - Lifecycle
     init(list: ListModel) {
         self.list = list
@@ -44,16 +42,16 @@ struct DetailsView: View {
                             Text("0 itens").foregroundColor(.gray)
                         }
                     }
-                    
+
                     Section(header: Text("Itens")) {
                         ForEach(list.items!) { item in
                             DetailsListRow(label: item.name, amount: item.amount)
-                                // Right Swap - Delete item
+                            // Right Swap - Delete item
                                 .swipeActions(edge: .trailing) {
                                     Button("Remover") { } // TODO: Delete item function
                                         .tint(.red)
                                 }
-                                // Left Swap - Add to Shopping List
+                            // Left Swap - Add to Shopping List
                                 .swipeActions(edge: .leading) {
                                     Button("Comprar") { } // TODO: Add to Shopping List function
                                         .tint(.blue)

@@ -8,25 +8,29 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State var searchText: String = ""
     @StateObject var viewModel = HomeViewModel()
     
     var body: some View {
         NavigationView {
-            ZStack {
-                // View Backgroud Color
-                Color(uiColor: .systemGray6).ignoresSafeArea()
-                
+            VStack {
                 //MARK: - TableView
                 if viewModel.isLoading {
                     ProgressView()
                 } else {
-                    HomeTableView(from: viewModel.lists.filter {list in
-                        searchText.isEmpty == true || list.name.contains(searchText)
-                    })
+                    List {
+                        ForEach(viewModel.lists) { item in
+                            NavigationLink(destination: DetailsView(list: item)) {
+                                HomeTableRow(label: item.name, isStock: item.isStock)
+                            }
+                        }
+                    }
+                    .refreshable { viewModel.getLists() }
                 }
             }
             .navigationTitle("Listas")
+            .errorAlert(message: viewModel.errorMessage,
+                        visible: $viewModel.showError,
+                        action: viewModel.getLists)
             .toolbar {
                 //MARK: - Menu "more options"
                 //TODO: Menu logic (select, filter, ...)
@@ -44,12 +48,8 @@ struct HomeView: View {
                 }
             }
         }
-        .errorAlert(message: viewModel.errorMessage,
-                    visible: $viewModel.showError,
-                    action: viewModel.getLists)
         .onAppear { viewModel.getLists() }
-        .searchable(text: $searchText)
-        .refreshable { viewModel.getLists() }
+        
     }
 }
 
