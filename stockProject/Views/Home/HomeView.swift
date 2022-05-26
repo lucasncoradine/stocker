@@ -49,6 +49,7 @@ struct HomeView: View {
                     action: viewModel.getLists)
         .onAppear { viewModel.getLists() }
         .searchable(text: $searchText)
+        .refreshable { viewModel.getLists() }
     }
 }
 

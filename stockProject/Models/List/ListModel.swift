@@ -1,4 +1,5 @@
 import Foundation
+import FirebaseFirestoreSwift
 
 enum ListType: String, Codable {
     case simple = "simple"
@@ -6,17 +7,15 @@ enum ListType: String, Codable {
 }
 
 struct ListModel: Codable, Identifiable {
-    let id: UUID
+    @DocumentID var id: String? = UUID().uuidString
     let name: String
     let type: ListType
     let items: [ListItemModel]?
     
-    init(id: UUID = UUID(),
-         name: String,
+    init(name: String,
          type: ListType,
          items: [ListItemModel] = []
     ) {
-        self.id = id
         self.name = name
         self.type = type
         self.items = items
@@ -35,12 +34,12 @@ struct ListModel: Codable, Identifiable {
 }
 
 struct ListItemModel: Codable, Identifiable {
-    let id: UUID
+    let id: Int
     let name: String
     let amount: Int
     let description: String?
     
-    init(id: UUID = UUID(),
+    init(id: Int,
          name: String,
          amount: Int,
          description: String? = nil

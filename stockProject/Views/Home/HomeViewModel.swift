@@ -1,8 +1,7 @@
 import Foundation
 
 class HomeViewModel: ObservableObject {
-    private let client: APIClient
-    private let request: Request<[ListModel]>
+    private let client: FirebaseClient
     
     @Published var lists: [ListModel] = []
     @Published var isLoading: Bool = true
@@ -10,8 +9,7 @@ class HomeViewModel: ObservableObject {
     @Published var showError: Bool = false
     
     init() {
-        self.client = APIClient()
-        self.request = Request<[ListModel]>(client: client, path: APIConstants.lists)
+        self.client = FirebaseClient()
     }
     
     // MARK: - Private Methods
@@ -35,9 +33,7 @@ class HomeViewModel: ObservableObject {
         self.isLoading = true
         self.showError = false
         
-        request
-            .failure(getListsFailed)
-            .success(getListSucceeded)
-            .perform()
+        client.getLists(success: getListSucceeded,
+                      failure: getListsFailed)
     }
 }

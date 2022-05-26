@@ -79,9 +79,9 @@ struct DetailsView: View {
 struct DetailsListView_Previews: PreviewProvider {
     static var previews: some View {
         DetailsView(list: .init(name: "Sample List",
-                                    type: .stock,
-                                    items: [
-                                        .init(name: "Sample item", amount: 2)
-                                    ]))
+                                type: .stock,
+                                items: [
+                                    .init(id: 1, name: "Sample item", amount: 2)
+                                ]))
     }
 }
