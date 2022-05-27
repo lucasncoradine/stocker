@@ -68,7 +68,6 @@ struct DetailsView: View {
             Button(action: {}) { // TODO: Add item action
                 Image(systemName: "plus")
             }
-            .padding(.bottom)
         }
     }
 }

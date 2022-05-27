@@ -9,6 +9,12 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 
+
+enum VoidResult {
+    case success
+    case failure(_: Error)
+}
+
 // MARK: - FirebaseCollection
 enum FirebaseCollection: String {
     case lists = "lists"
@@ -29,7 +35,9 @@ class FirebaseClient {
     }
     
     /// Gets all documents from the desired collection
+    /// - parameter type: The type of the documents which will be fetched.
     /// - parameter collection: The collection to get the documents from
+    /// - parameter completion: A closure to handle the result of this request
     /// - returns: The result of the request
     func getDocuments<T: Decodable>(as type: T.Type,
                                     from collection: FirebaseCollection,
@@ -59,8 +67,10 @@ class FirebaseClient {
     }
     
     /// Gets a single document from the desired collection
+    /// - parameter as: The tyoe of the document which will be fetched.
     /// - parameter collection: The collection to get the document from
     /// - parameter id: The ID of the document you want
+    /// - parameter completion: A closure to handle the result of this request
     func getDocument<T: Decodable>(as type: T.Type,
                                    from collection: FirebaseCollection,
                                    with id: String,
@@ -71,6 +81,68 @@ class FirebaseClient {
         }
     }
     
+    /// Adds a document to an specific collection.
+    /// - parameter data: The data of the new document
+    /// - parameter to: The collection which the document will be added to
+    /// - parameter completion: A closure to handle the result of this request.
+    func addDocument<T: Codable>(_ data: T,
+                                 to collection: FirebaseCollection,
+                                 completion: @escaping (_ result: Result<T, Error>) -> Void
+    ) {
+        do {
+            let documentReference = try database.collection(collection.rawValue).addDocument(from: data)
+            documentReference.getDocument(as: T.self) { result in
+                completion(result)
+            }
+        } catch let addingError {
+            completion(.failure(addingError))
+        }
+    }
+    
+    /// Delete a document from the  collection
+    /// - parameter id: The ID of the document to delete
+    /// - parameter collection: The colection which the document will be deleted from
+    /// - parameter completion: A closure to handle the result of this request
+    func deleteDocument(id: String,
+                        from collection: FirebaseCollection,
+                        completion: @escaping (_ result: VoidResult) -> Void
+    ) {
+        database.collection(collection.rawValue).document(id).delete() { error in
+            guard let error = error else {
+                completion(.success)
+                return
+            }
+            
+            completion(.failure(error))
+        }
+    }
+    
+    /// Deletes multiple documents from the collection
+    /// - parameter ids: A set of IDs to delete
+    /// - parameter collection: The collection which the documents will be deleted from
+    /// - parameter completion: A closure to handle the result of this request
+    func deleteDocuments(ids: [String],
+                        from collection: FirebaseCollection,
+                        completion: @escaping (_ result: VoidResult) -> Void
+    ) {
+        let batch = database.batch()
+        
+        ids.forEach { id in
+            let ref: DocumentReference = database.collection(collection.rawValue).document(id)
+            batch.deleteDocument(ref)
+        }
+        
+        batch.commit { error in
+            guard let error = error else {
+                completion(.success)
+                return
+            }
+            
+            completion(.failure(error))
+        }
+    }
+    
+    // MARK: - Helper functions
     /// Handles the error and returns its description
     /// - parameter error: The error to handle
     func handleError(_ error: Error) -> String {
@@ -85,6 +157,34 @@ class FirebaseClient {
             return "\(error.localizedDescription): \(key)"
         default:
             return "Error decoding document: \(error.localizedDescription)"
+        }
+    }
+    
+    /// Handles the result of a Firebase request.
+    /// - parameter result: The result of the request
+    /// - parameter success: A closure to handle if the request succeeded
+    /// - parameter failure  A closure to handle if the request failed
+    func handleResult<T: Decodable>(_ result: Result<T, Error>,
+                                    success: @escaping (_ data: T) -> Void,
+                                    failure: @escaping (_ message: String) -> Void
+    ) {
+        switch result {
+        case .success(let data):
+            success(data)
+        case .failure(let error):
+            failure(self.handleError(error))
+        }
+    }
+    
+    func handleResult(_ result: VoidResult,
+                      success: @escaping (() -> Void) = {},
+                      failure: @escaping (_ message: String) -> Void
+    ) {
+        switch result {
+        case .success:
+            success()
+        case .failure(let error):
+            failure(self.handleError(error))
         }
     }
 }

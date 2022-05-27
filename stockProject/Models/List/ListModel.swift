@@ -1,9 +1,24 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-enum ListType: String, Codable {
+enum ListType: String, Codable, CaseIterable, Identifiable {
     case simple = "simple"
     case stock = "stock"
+    var id: Self { self }
+    
+    var label: String {
+        switch self {
+        case .simple: return "Simples"
+        case .stock: return "Estoque"
+        }
+    }
+    
+    var icon: String {
+        switch self {
+        case .simple: return "ListIcon"
+        case .stock: return "StockIcon"
+        }
+    }
 }
 
 struct ListModel: Codable, Identifiable {

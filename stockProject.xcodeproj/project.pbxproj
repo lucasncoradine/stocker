@@ -28,10 +28,11 @@
 		29267C5E283D80700056704E /* DetailsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29267C5D283D80700056704E /* DetailsData.swift */; };
 		292F7FAE283FECE7004F6FD4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 292F7FAD283FECD6004F6FD4 /* GoogleService-Info.plist */; };
 		292F7FB228401652004F6FD4 /* BindingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292F7FB128401652004F6FD4 /* BindingExtension.swift */; };
-		292F7FBC28402417004F6FD4 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292F7FBA28402417004F6FD4 /* Style.swift */; };
+		292F7FBC28402417004F6FD4 /* StepperStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292F7FBA28402417004F6FD4 /* StepperStyle.swift */; };
 		292F7FBD28402417004F6FD4 /* LabeledStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292F7FBB28402417004F6FD4 /* LabeledStepper.swift */; };
+		292F7FC02841114E004F6FD4 /* ListInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292F7FBF2841114E004F6FD4 /* ListInfoView.swift */; };
 		2954505D283FB79300790C2D /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2954505C283FB79300790C2D /* FirebaseClient.swift */; };
-		29545063283FD35100790C2D /* FBLists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29545062283FD35100790C2D /* FBLists.swift */; };
+		29545063283FD35100790C2D /* ListsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29545062283FD35100790C2D /* ListsClient.swift */; };
 		2955071A281C7B1000DD090A /* DecodingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29550719281C7B1000DD090A /* DecodingError.swift */; };
 		297AA838283C227500806998 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297AA837283C227500806998 /* DetailsViewModel.swift */; };
 		297AA83C283C23F400806998 /* ListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297AA83B283C23F400806998 /* ListModel.swift */; };
@@ -81,10 +82,11 @@
 		29267C5D283D80700056704E /* DetailsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsData.swift; sourceTree = "<group>"; };
 		292F7FAD283FECD6004F6FD4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		292F7FB128401652004F6FD4 /* BindingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingExtension.swift; sourceTree = "<group>"; };
-		292F7FBA28402417004F6FD4 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Style.swift; path = "../../../../../../Downloads/LabeldStepper-main/Sources/LabeledStepper/Style.swift"; sourceTree = "<group>"; };
+		292F7FBA28402417004F6FD4 /* StepperStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StepperStyle.swift; path = "../../../../../../Downloads/LabeldStepper-main/Sources/LabeledStepper/StepperStyle.swift"; sourceTree = "<group>"; };
 		292F7FBB28402417004F6FD4 /* LabeledStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LabeledStepper.swift; path = "../../../../../../Downloads/LabeldStepper-main/Sources/LabeledStepper/LabeledStepper.swift"; sourceTree = "<group>"; };
+		292F7FBF2841114E004F6FD4 /* ListInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInfoView.swift; sourceTree = "<group>"; };
 		2954505C283FB79300790C2D /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
-		29545062283FD35100790C2D /* FBLists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBLists.swift; sourceTree = "<group>"; };
+		29545062283FD35100790C2D /* ListsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsClient.swift; sourceTree = "<group>"; };
 		29550719281C7B1000DD090A /* DecodingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodingError.swift; sourceTree = "<group>"; };
 		297AA837283C227500806998 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		297AA83B283C23F400806998 /* ListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModel.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 		291C15B8281872C300A89846 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				292F7FBE2841112B004F6FD4 /* ListInfo */,
 				291C15C92819756400A89846 /* HomeTable */,
 				291C15D22819D13900A89846 /* NavigationMenu */,
 			);
@@ -237,7 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				2954505C283FB79300790C2D /* FirebaseClient.swift */,
-				29545061283FD34100790C2D /* FBLists */,
+				29545061283FD34100790C2D /* ListsClient */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -270,17 +273,25 @@
 			isa = PBXGroup;
 			children = (
 				292F7FBB28402417004F6FD4 /* LabeledStepper.swift */,
-				292F7FBA28402417004F6FD4 /* Style.swift */,
+				292F7FBA28402417004F6FD4 /* StepperStyle.swift */,
 			);
 			path = LabeledStepper;
 			sourceTree = "<group>";
 		};
-		29545061283FD34100790C2D /* FBLists */ = {
+		292F7FBE2841112B004F6FD4 /* ListInfo */ = {
 			isa = PBXGroup;
 			children = (
-				29545062283FD35100790C2D /* FBLists.swift */,
+				292F7FBF2841114E004F6FD4 /* ListInfoView.swift */,
 			);
-			path = FBLists;
+			path = ListInfo;
+			sourceTree = "<group>";
+		};
+		29545061283FD34100790C2D /* ListsClient */ = {
+			isa = PBXGroup;
+			children = (
+				29545062283FD35100790C2D /* ListsClient.swift */,
+			);
+			path = ListsClient;
 			sourceTree = "<group>";
 		};
 		297AA834283C214500806998 /* Details */ = {
@@ -494,10 +505,10 @@
 				2981E5DE2819D97F0015FF5D /* Environment.swift in Sources */,
 				29267C54283D2BB60056704E /* AlertView.swift in Sources */,
 				291C15BB281873DF00A89846 /* HomeView.swift in Sources */,
-				292F7FBC28402417004F6FD4 /* Style.swift in Sources */,
+				292F7FBC28402417004F6FD4 /* StepperStyle.swift in Sources */,
 				291C15D42819D14B00A89846 /* NavigationMenuView.swift in Sources */,
 				2955071A281C7B1000DD090A /* DecodingError.swift in Sources */,
-				29545063283FD35100790C2D /* FBLists.swift in Sources */,
+				29545063283FD35100790C2D /* ListsClient.swift in Sources */,
 				2954505D283FB79300790C2D /* FirebaseClient.swift in Sources */,
 				292F7FB228401652004F6FD4 /* BindingExtension.swift in Sources */,
 				292F7FBD28402417004F6FD4 /* LabeledStepper.swift in Sources */,
@@ -513,6 +524,7 @@
 				291FCB17282EC9C300F2FDC9 /* HomeTableRow.swift in Sources */,
 				29229651283EBF5300C5E888 /* DetailsShoppingListView.swift in Sources */,
 				297AA83C283C23F400806998 /* ListModel.swift in Sources */,
+				292F7FC02841114E004F6FD4 /* ListInfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

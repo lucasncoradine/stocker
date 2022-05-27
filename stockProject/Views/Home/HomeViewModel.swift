@@ -1,30 +1,20 @@
 import Foundation
 
 class HomeViewModel: ObservableObject {
-    private let client: FirebaseClient
+    private let client: ListsClient = .init()
     
     @Published var lists: [ListModel] = []
     @Published var isLoading: Bool = true
     @Published var errorMessage: String = ""
     @Published var showError: Bool = false
-    
-    init() {
-        self.client = FirebaseClient()
-    }
+    @Published var showEdit: Bool = false
     
     // MARK: - Private Methods
-    private func getListSucceeded(response: [ListModel]) {
-        DispatchQueue.main.async {
-            self.lists = response
-            self.isLoading = false
-        }
-    }
-    
-    private func getListsFailed(message: String) {
+    private func requestFailed(message: String) {
         DispatchQueue.main.async {
             self.isLoading = false
-            self.showError = true
             self.errorMessage = message
+            self.showError = true
         }
     }
     
@@ -33,7 +23,30 @@ class HomeViewModel: ObservableObject {
         self.isLoading = true
         self.showError = false
         
-        client.getLists(success: getListSucceeded,
-                      failure: getListsFailed)
+        client.getLists(failure: requestFailed) { data in
+            DispatchQueue.main.async {
+                self.lists = data
+                self.isLoading = false
+            }
+        }
+    }
+    
+    func createList(with data: ListModel) {
+        client.createList(data, failure: requestFailed) { response in
+            DispatchQueue.main.async {
+                self.lists.append(response)
+            }
+        }
+    }
+    
+    func deleteLists(at offsets: IndexSet) {
+        var idsToRemove = offsets.map { index in
+            lists[index].id ?? ""
+        }
+        
+        idsToRemove.removeAll { $0.isEmpty }
+        
+        lists.remove(atOffsets: offsets)
+        client.deleteLists(idsToRemove, failure: requestFailed)
     }
 }
