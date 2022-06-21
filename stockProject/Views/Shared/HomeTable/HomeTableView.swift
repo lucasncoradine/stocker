@@ -11,7 +11,7 @@ struct HomeTableView: View {
         List {
             ForEach(data) { item in
                 NavigationLink(destination: DetailsView(list: item)) {
-                    HomeTableRow(label: item.name, isStock: item.isStock)
+                    HomeTableRow(label: item.name, type: item.type)
                 }
             }
         }

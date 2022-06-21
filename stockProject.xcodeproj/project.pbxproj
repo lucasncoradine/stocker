@@ -27,10 +27,10 @@
 		29267C54283D2BB60056704E /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29267C53283D2BB60056704E /* AlertView.swift */; };
 		29267C5E283D80700056704E /* DetailsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29267C5D283D80700056704E /* DetailsData.swift */; };
 		292F7FAE283FECE7004F6FD4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 292F7FAD283FECD6004F6FD4 /* GoogleService-Info.plist */; };
-		292F7FB228401652004F6FD4 /* BindingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292F7FB128401652004F6FD4 /* BindingExtension.swift */; };
 		292F7FBC28402417004F6FD4 /* StepperStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292F7FBA28402417004F6FD4 /* StepperStyle.swift */; };
 		292F7FBD28402417004F6FD4 /* LabeledStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292F7FBB28402417004F6FD4 /* LabeledStepper.swift */; };
 		292F7FC02841114E004F6FD4 /* ListInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292F7FBF2841114E004F6FD4 /* ListInfoView.swift */; };
+		293011AD28464C0A00F31ED5 /* ListImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293011AC28464C0A00F31ED5 /* ListImage.swift */; };
 		2954505D283FB79300790C2D /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2954505C283FB79300790C2D /* FirebaseClient.swift */; };
 		29545063283FD35100790C2D /* ListsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29545062283FD35100790C2D /* ListsClient.swift */; };
 		2955071A281C7B1000DD090A /* DecodingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29550719281C7B1000DD090A /* DecodingError.swift */; };
@@ -81,10 +81,10 @@
 		29267C53283D2BB60056704E /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		29267C5D283D80700056704E /* DetailsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsData.swift; sourceTree = "<group>"; };
 		292F7FAD283FECD6004F6FD4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		292F7FB128401652004F6FD4 /* BindingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingExtension.swift; sourceTree = "<group>"; };
 		292F7FBA28402417004F6FD4 /* StepperStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StepperStyle.swift; path = "../../../../../../Downloads/LabeldStepper-main/Sources/LabeledStepper/StepperStyle.swift"; sourceTree = "<group>"; };
 		292F7FBB28402417004F6FD4 /* LabeledStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LabeledStepper.swift; path = "../../../../../../Downloads/LabeldStepper-main/Sources/LabeledStepper/LabeledStepper.swift"; sourceTree = "<group>"; };
 		292F7FBF2841114E004F6FD4 /* ListInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInfoView.swift; sourceTree = "<group>"; };
+		293011AC28464C0A00F31ED5 /* ListImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListImage.swift; sourceTree = "<group>"; };
 		2954505C283FB79300790C2D /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
 		29545062283FD35100790C2D /* ListsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsClient.swift; sourceTree = "<group>"; };
 		29550719281C7B1000DD090A /* DecodingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodingError.swift; sourceTree = "<group>"; };
@@ -212,6 +212,7 @@
 		291C15BD28187BC300A89846 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				293011AB28464BF500F31ED5 /* ListImage */,
 				292F7FB92840240B004F6FD4 /* LabeledStepper */,
 				29267C52283D2BA00056704E /* Alert */,
 			);
@@ -286,6 +287,14 @@
 			path = ListInfo;
 			sourceTree = "<group>";
 		};
+		293011AB28464BF500F31ED5 /* ListImage */ = {
+			isa = PBXGroup;
+			children = (
+				293011AC28464C0A00F31ED5 /* ListImage.swift */,
+			);
+			path = ListImage;
+			sourceTree = "<group>";
+		};
 		29545061283FD34100790C2D /* ListsClient */ = {
 			isa = PBXGroup;
 			children = (
@@ -346,7 +355,6 @@
 			children = (
 				2981E5EF281C450F0015FF5D /* Development */,
 				2981E5DD2819D97F0015FF5D /* Environment.swift */,
-				292F7FB128401652004F6FD4 /* BindingExtension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -510,7 +518,6 @@
 				2955071A281C7B1000DD090A /* DecodingError.swift in Sources */,
 				29545063283FD35100790C2D /* ListsClient.swift in Sources */,
 				2954505D283FB79300790C2D /* FirebaseClient.swift in Sources */,
-				292F7FB228401652004F6FD4 /* BindingExtension.swift in Sources */,
 				292F7FBD28402417004F6FD4 /* LabeledStepper.swift in Sources */,
 				2981E5F1281C45200015FF5D /* CurlExtension.swift in Sources */,
 				291C158F2818722E00A89846 /* ContentView.swift in Sources */,
@@ -522,6 +529,7 @@
 				2981E5E8281AC4890015FF5D /* HomeViewModel.swift in Sources */,
 				291C158D2818722E00A89846 /* stockProjectApp.swift in Sources */,
 				291FCB17282EC9C300F2FDC9 /* HomeTableRow.swift in Sources */,
+				293011AD28464C0A00F31ED5 /* ListImage.swift in Sources */,
 				29229651283EBF5300C5E888 /* DetailsShoppingListView.swift in Sources */,
 				297AA83C283C23F400806998 /* ListModel.swift in Sources */,
 				292F7FC02841114E004F6FD4 /* ListInfoView.swift in Sources */,

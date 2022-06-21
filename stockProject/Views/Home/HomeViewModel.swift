@@ -6,6 +6,7 @@ class HomeViewModel: ObservableObject {
     @Published var lists: [ListModel] = []
     @Published var isLoading: Bool = true
     @Published var errorMessage: String = ""
+    @Published var listOpenForEdit: ListModel? = nil
     @Published var showError: Bool = false
     @Published var showEdit: Bool = false
     
@@ -25,28 +26,52 @@ class HomeViewModel: ObservableObject {
         
         client.getLists(failure: requestFailed) { data in
             DispatchQueue.main.async {
-                self.lists = data
+                self.lists = data.sorted { $0.name < $1.name }
                 self.isLoading = false
             }
         }
     }
     
-    func createList(with data: ListModel) {
-        client.createList(data, failure: requestFailed) { response in
-            DispatchQueue.main.async {
-                self.lists.append(response)
+    func saveList(with data: ListModel) {
+        guard listOpenForEdit != nil,
+              let id = listOpenForEdit?.id
+        else {
+            client.createList(data, failure: requestFailed) { response in
+                DispatchQueue.main.async {
+                    self.lists.append(response)
+                }
             }
+            return
         }
+        
+        let index = lists.firstIndex(where: { $0.id == id })
+        
+        guard let index = index else { return }
+        lists[index] = data
+        client.updateList(id, with: data, failure: requestFailed)
     }
     
     func deleteLists(at offsets: IndexSet) {
-        var idsToRemove = offsets.map { index in
-            lists[index].id ?? ""
+        let idsToRemove = offsets.map { index in
+            lists[index].id!
         }
-        
-        idsToRemove.removeAll { $0.isEmpty }
         
         lists.remove(atOffsets: offsets)
         client.deleteLists(idsToRemove, failure: requestFailed)
+    }
+    
+    func deleteList(_ item: ListModel) {
+        guard let index = lists.firstIndex(where: { $0.id == item.id }) else { return }
+        deleteLists(at: IndexSet(integer: index))
+    }
+    
+    func openEdit(id: String? = nil) {
+        self.listOpenForEdit = nil
+        
+        if let id = id {
+            self.listOpenForEdit = lists.first { $0.id == id }
+        }
+        
+        showEdit.toggle()
     }
 }

@@ -1,5 +1,6 @@
 import Foundation
 import FirebaseFirestoreSwift
+import SwiftUI
 
 enum ListType: String, Codable, CaseIterable, Identifiable {
     case simple = "simple"
@@ -15,8 +16,15 @@ enum ListType: String, Codable, CaseIterable, Identifiable {
     
     var icon: String {
         switch self {
-        case .simple: return "ListIcon"
-        case .stock: return "StockIcon"
+        case .simple: return "list.bullet"
+        case .stock: return "archivebox.fill"
+        }
+    }
+    
+    var color: Color {
+        switch self {
+        case .simple: return Color(uiColor: .systemBlue)
+        case .stock: return Color(uiColor: .systemGreen)
         }
     }
 }

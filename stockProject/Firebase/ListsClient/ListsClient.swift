@@ -33,10 +33,30 @@ class ListsClient {
         }
     }
     
-    /// Deletes a List from the database
+    /// Update a list in database
+    /// - parameter data: The new data of the document
+    func updateList(_ id: String,
+                    with data: ListModel,
+                    failure: @escaping FailureClosure
+    ) {
+        client.updateDocument(documentId: id, with: data, from: .lists) { result in
+            self.client.handleResult(result, failure: failure)
+        }
+    }
+    
+    /// Deletes a set of Lists from the database
     /// - parameter id: The ID of the list to delete
     func deleteLists(_ ids: [String], failure: @escaping FailureClosure) {
         client.deleteDocuments(ids: ids, from: .lists) { result in
+            self.client.handleResult(result, failure: failure)
+        }
+    }
+    
+    /// Deletes a List form the database
+    /// - parameter id: The ID of the list to delete
+    /// - parameter failure: An closure to handle the failure of the request
+    func deleteList(_ id: String, failure: @escaping FailureClosure) {
+        client.deleteDocument(id: id, from: .lists) { result in
             self.client.handleResult(result, failure: failure)
         }
     }

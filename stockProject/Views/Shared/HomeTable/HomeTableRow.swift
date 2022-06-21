@@ -9,34 +9,12 @@ import SwiftUI
 
 struct HomeTableRow: View {
     let label: String
-    let isStock: Bool
-    
-    var backgroundColor: UIColor {
-        isStock ? .systemGreen : .systemBlue
-    }
-    
-    var listImage: String {
-        isStock ? "archivebox" : "list.bullet"
-    }
-    
-    // MARK: - Lifecycle
-    init(label: String, isStock: Bool) {
-        self.label = label
-        self.isStock = isStock
-    }
+    let type: ListType
     
     // MARK: - Views
     var body: some View {
-        HStack(spacing: 14) {
-            ZStack {
-                Circle().frame(width: 28, height: 28)
-                    .foregroundColor(Color(uiColor: backgroundColor))
-                
-                Image(systemName: listImage)
-                    .foregroundColor(.white)
-                    .font(.system(size: 14, weight: .bold))
-            }
-            
+        HStack(spacing: 16) {
+            ListImage(listType: type, size: 28)
             Text(label)
         }
     }
@@ -44,7 +22,7 @@ struct HomeTableRow: View {
 
 struct HomeTableRow_Previews: PreviewProvider {
     static var previews: some View {
-        HomeTableRow(label: "Row preview", isStock: true)
+        HomeTableRow(label: "Row preview", type: .simple)
             .previewLayout(.sizeThatFits)
             .padding()
     }

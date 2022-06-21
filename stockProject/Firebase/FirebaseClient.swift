@@ -81,7 +81,7 @@ class FirebaseClient {
         }
     }
     
-    /// Adds a document to an specific collection.
+    /// Adds a document to a specific collection.
     /// - parameter data: The data of the new document
     /// - parameter to: The collection which the document will be added to
     /// - parameter completion: A closure to handle the result of this request.
@@ -96,6 +96,24 @@ class FirebaseClient {
             }
         } catch let addingError {
             completion(.failure(addingError))
+        }
+    }
+    
+    /// Uptade a document from a specific collection
+    /// - parameter documentId: The id of the document to update
+    /// - parameter with: The new data of the document
+    /// - parameter from: The collection of the document
+    /// - parameter completion: A closure to handle the result of the request.
+    func updateDocument<T: Codable>(documentId: String,
+                                      with data: T,
+                                      from collection: FirebaseCollection,
+                                      completion: @escaping (_ result: VoidResult) -> Void
+    ) {
+        do {
+            try database.collection(collection.rawValue).document(documentId).setData(from: data)
+            completion(.success)
+        } catch let error {
+            completion(.failure(error))
         }
     }
     

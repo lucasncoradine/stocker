@@ -20,21 +20,34 @@ struct HomeView: View {
                     List {
                         ForEach(viewModel.lists, id: \.id) { item in
                             NavigationLink(destination: DetailsView(list: item)) {
-                                HomeTableRow(label: item.name, isStock: item.isStock)
+                                HomeTableRow(label: item.name, type: item.type)
                             }
-                            // Swipe Right - Delete
-//                            .swipeActions(edge: .trailing) {
-//                                Button(action: { viewModel.deleteList(id: item.id) }) {
-//                                    Image(systemName: "trash")
-//                                }
-//                                .tint(.red)
-//                            }
+                            .transition(.scale)
+                            .contextMenu {
+                                Button {
+                                    viewModel.openEdit(id: item.id)
+                                } label: {
+                                    Label("Edit", systemImage: "square.and.pencil")
+                                }
+                                
+                                Button(role: .destructive) {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                                        withAnimation(.easeOut) {
+                                            viewModel.deleteList(item)
+                                        }
+                                    }
+                                } label: {
+                                    Label("Delte", systemImage: "trash")
+                                }
+                            }
                         }
-                        .onDelete(perform: viewModel.deleteLists )
+                        .onDelete { indexSet in viewModel.deleteLists(at: indexSet) }
                     }
+                    .transition(.slide)
                     .refreshable { viewModel.getLists() }
                 }
             }
+            .background(Color(uiColor: .systemGray6))
             .navigationTitle("Listas")
             .errorAlert(message: viewModel.errorMessage,
                         visible: $viewModel.showError,
@@ -46,7 +59,8 @@ struct HomeView: View {
                 
                 //MARK: - New List Button
                 ToolbarItemGroup(placement: .bottomBar) {
-                    Button(action: { viewModel.showEdit.toggle() }) {
+                    // New list button
+                    Button(action: { viewModel.openEdit() }) {
                         Image(systemName: "plus.circle.fill")
                             .font(.system(size: 18, weight: .medium))
                         
@@ -54,7 +68,8 @@ struct HomeView: View {
                     }
                     .padding(.bottom)
                     .sheet(isPresented: $viewModel.showEdit) {
-                        ListInfoView(onSave: viewModel.createList)
+                        ListInfoView(onSave: viewModel.saveList,
+                                     list: viewModel.listOpenForEdit)
                     }
                     
                     Spacer()

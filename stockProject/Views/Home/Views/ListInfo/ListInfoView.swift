@@ -14,7 +14,7 @@ struct ListInfoView: View {
     private let onSave: OnSaveClosure?
         
     @SwiftUI.Environment(\.dismiss) var dismiss
-    @State var selectedListType: ListType = .simple
+    @State var selectedListType: ListType = .stock
     @State var newListName: String = ""
     
     // MARK: - Lifecycle
@@ -40,16 +40,12 @@ struct ListInfoView: View {
                         Spacer()
                         
                         VStack {
-                            Image(selectedListType.icon)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 76, height: 76)
-                                .clipped()
+                            ListImage(listType: selectedListType, size: 64, appearance: .pretty)
                                 .padding(.bottom)
                             
                             TextField("Nome da lista", text: $newListName)
                                 .clipShape(Rectangle())
-                                .frame(height: 36)
+                                .frame(height: 46)
                                 .background(Color(uiColor: .systemFill))
                                 .cornerRadius(13)
                                 .multilineTextAlignment(.center)
@@ -66,6 +62,7 @@ struct ListInfoView: View {
                             Text(listType.label.capitalized)
                         }
                     }
+                    .disabled(list != nil)
                 }
             }
             .navigationBarTitle(title)

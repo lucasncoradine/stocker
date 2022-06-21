@@ -13,7 +13,7 @@ struct NavigationMenuView: View {
     
     var body: some View {
         Menu {
-            Section {
+            Section {                
                 Button(action: {}) {
                     Label("Selecionar listas", systemImage: "checkmark.circle")
                 }
