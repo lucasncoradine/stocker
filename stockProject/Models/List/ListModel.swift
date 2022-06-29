@@ -31,13 +31,13 @@ enum ListType: String, Codable, CaseIterable, Identifiable {
 
 struct ListModel: Codable, Identifiable {
     @DocumentID var id: String? = UUID().uuidString
-    let name: String
-    let type: ListType
-    let items: [ListItemModel]?
+    var name: String
+    var type: ListType
+    var items: [ListItemModel]?
     
     init(name: String,
          type: ListType,
-         items: [ListItemModel] = []
+         items: [ListItemModel]? = nil
     ) {
         self.name = name
         self.type = type
@@ -57,10 +57,10 @@ struct ListModel: Codable, Identifiable {
 }
 
 struct ListItemModel: Codable, Identifiable {
-    let id: Int
-    let name: String
-    let amount: Int
-    let description: String?
+    var id: Int
+    var name: String
+    var amount: Int
+    var description: String?
     
     init(id: Int,
          name: String,

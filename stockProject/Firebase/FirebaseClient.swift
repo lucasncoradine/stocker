@@ -73,7 +73,7 @@ class FirebaseClient {
     /// - parameter completion: A closure to handle the result of this request
     func getDocument<T: Decodable>(as type: T.Type,
                                    from collection: FirebaseCollection,
-                                   with id: String,
+                                   id: String,
                                    completion: @escaping (_ result: Result<T, Error>) -> Void
     ){
         database.collection(collection.rawValue).document(id).getDocument(as: type) { queryResult in
