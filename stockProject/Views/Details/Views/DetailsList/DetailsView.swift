@@ -39,14 +39,17 @@ struct DetailsView: View {
     @StateObject var viewModel: DetailsViewModel
     
     // MARK: - Lifecycle
-    init(list: ListModel) {
-        _viewModel = StateObject(wrappedValue: DetailsViewModel(list: list))
+    init(list: ListModel,
+         onChange: @escaping (_ newData: ListModel) -> Void = { _ in }
+    ) {
+        _viewModel = StateObject(wrappedValue: DetailsViewModel(list: list,
+                                                                onChange: onChange))
     }
         
     // MARK: - View
     var body: some View {
         VStack {
-            if viewModel.list.items?.isEmpty == true {
+            if viewModel.list.items.isEmpty == true {
                 // TODO: Empty View
                 Text("Empty List")
             } else {
@@ -61,7 +64,7 @@ struct DetailsView: View {
                     }
                     
                     Section(header: Text("Itens")) {
-                        ForEach(viewModel.list.items!) { item in
+                        ForEach(viewModel.list.items) { item in
                             DetailsListRow(label: item.name, amount: item.amount) { newValue in
                                 viewModel.updateItemAmount(id: item.id, with: newValue)
                             }

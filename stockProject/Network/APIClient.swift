@@ -12,14 +12,14 @@ class APIClient {
     }
     
     private func authorize<T: Codable>(request: Request<T>) -> Request<T> {
-        return request.query(name: "auth", value: Environment.accessToken)
+        return request.query(name: "auth", value: EnvironmentVariable.accessToken)
     }
     
     // MARK: - Methods
     /// Executes the desired request.
     /// - parameter request: The request which will be executed.
     func makeRequest<T: Codable>(request: Request<T>) {
-        let authenticatedRequest = request.authenticate(token: Environment.accessToken)
+        let authenticatedRequest = request.authenticate(token: EnvironmentVariable.accessToken)
         
         guard let url = authenticatedRequest.url else {
             return

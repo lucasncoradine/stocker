@@ -9,6 +9,8 @@ import Foundation
 
 class DetailsViewModel: ObservableObject {
     private let client: ListsClient = .init()
+    private let onChangeClosure: (_ newData: ListModel) -> Void
+    private var listHasChanged: Bool = false
     
     @Published var list: ListModel
     @Published var isLoading: Bool = true
@@ -16,8 +18,9 @@ class DetailsViewModel: ObservableObject {
     @Published var showError: Bool = false
     @Published var hasItems: Bool = false
     
-    init(list: ListModel) {
+    init(list: ListModel, onChange: @escaping (_ newData: ListModel) -> Void) {
         self.list = list
+        self.onChangeClosure = onChange
     }
     
     // MARK: - Private Methods
@@ -31,14 +34,20 @@ class DetailsViewModel: ObservableObject {
     
     // MARK: - Methods
     func updateItemAmount(id: Int, with value: Int) {
-        guard let index = list.items?.firstIndex(where: { $0.id == id })
+        guard let index = list.items.firstIndex(where: { $0.id == id })
         else { return }
         
-        list.items?[index].amount = value
+        list.items[index].amount = value
+        listHasChanged = true
     }
     
     func saveList() {
-        guard let id = list.id else { return }
+        guard
+            listHasChanged == true,
+            let id = list.id
+        else { return }
+        
         client.updateList(id, with: list, failure: requestFailed)
+        onChangeClosure(list)
     }
 }

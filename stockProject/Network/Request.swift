@@ -9,7 +9,7 @@ class Request<T: Codable> {
     typealias SuccessClosure = (_ response: T) -> Void
     typealias FailureClosure = (_ error: String) -> Void
     
-    let baseURL: String = Environment.baseUrl
+    let baseURL: String = EnvironmentVariable.baseUrl
     let client: APIClient
     var url: URL?
     var method: RequestMethod = .get

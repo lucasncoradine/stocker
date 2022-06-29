@@ -13,7 +13,7 @@ struct ListInfoView: View {
     private let list: ListModel?
     private let onSave: OnSaveClosure?
         
-    @SwiftUI.Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) var dismiss
     @State var selectedListType: ListType = .stock
     @State var newListName: String = ""
     

@@ -19,7 +19,9 @@ struct HomeView: View {
                 } else {
                     List {
                         ForEach(viewModel.lists, id: \.id) { item in
-                            NavigationLink(destination: DetailsView(list: item)) {
+                            NavigationLink(destination: DetailsView(list: item,
+                                                                    onChange: viewModel.updateListData )
+                            ) {
                                 HomeTableRow(label: item.name, type: item.type)
                             }
                             .transition(.scale)
@@ -47,7 +49,6 @@ struct HomeView: View {
                     .refreshable { viewModel.getLists() }
                 }
             }
-            .background(Color(uiColor: .systemGray6))
             .navigationTitle("Listas")
             .errorAlert(message: viewModel.errorMessage,
                         visible: $viewModel.showError,

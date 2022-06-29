@@ -33,11 +33,11 @@ struct ListModel: Codable, Identifiable {
     @DocumentID var id: String? = UUID().uuidString
     var name: String
     var type: ListType
-    var items: [ListItemModel]?
+    var items: [ListItemModel]
     
     init(name: String,
          type: ListType,
-         items: [ListItemModel]? = nil
+         items: [ListItemModel] = []
     ) {
         self.name = name
         self.type = type

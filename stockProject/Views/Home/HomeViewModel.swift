@@ -74,4 +74,9 @@ class HomeViewModel: ObservableObject {
         
         showEdit.toggle()
     }
+    
+    func updateListData(with newData: ListModel) {
+        guard let index = lists.firstIndex(where: { $0.id == newData.id }) else { return }
+        lists[index] = newData
+    }
 }
