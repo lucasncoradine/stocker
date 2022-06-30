@@ -56,16 +56,16 @@ struct ListModel: Codable, Identifiable {
     }
 }
 
-struct ListItemModel: Codable, Identifiable {
-    var id: Int
+struct ListItemModel: Codable, Identifiable, Equatable {
+    var id: String
     var name: String
     var amount: Int
-    var description: String?
+    var description: String
     
-    init(id: Int,
-         name: String,
-         amount: Int,
-         description: String? = nil
+    init(id: String = UUID().uuidString,
+         name: String = "",
+         amount: Int = 0,
+         description: String = ""
     ) {
         self.id = id
         self.name = name

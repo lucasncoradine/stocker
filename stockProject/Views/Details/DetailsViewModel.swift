@@ -6,18 +6,22 @@
 //
 
 import Foundation
+import SwiftUI
 
 class DetailsViewModel: ObservableObject {
     private let client: ListsClient = .init()
     private let onChangeClosure: (_ newData: ListModel) -> Void
-    private var listHasChanged: Bool = false
-    
+        
     @Published var list: ListModel
     @Published var isLoading: Bool = true
     @Published var errorMessage: String = ""
     @Published var showError: Bool = false
     @Published var hasItems: Bool = false
+    @Published var selectedItem: ListItemModel = .init()
+    @Published var showItemDetails: Bool = false
+    @Published var listHasChanged: Bool = false
     
+    // MARK: - Lifecycle
     init(list: ListModel, onChange: @escaping (_ newData: ListModel) -> Void) {
         self.list = list
         self.onChangeClosure = onChange
@@ -33,12 +37,21 @@ class DetailsViewModel: ObservableObject {
     }
     
     // MARK: - Methods
-    func updateItemAmount(id: Int, with value: Int) {
-        guard let index = list.items.firstIndex(where: { $0.id == id })
-        else { return }
-        
-        list.items[index].amount = value
-        listHasChanged = true
+    func openEdit(of item: ListItemModel? = nil) {
+        selectedItem = item ?? .init()
+        showItemDetails = true
+    }
+    
+    func saveItem(_ item: ListItemModel) {
+        if let index = list.items.firstIndex(where: { $0.id == item.id }) {
+            list.items[index] = item
+        } else {
+            list.items.append(item)
+        }
+    }
+    
+    func deleteItems(at offsets: IndexSet) {        
+        list.items.remove(atOffsets: offsets)
     }
     
     func saveList() {

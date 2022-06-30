@@ -7,51 +7,25 @@
 
 import SwiftUI
 
-// MARK: - DetailsListRow
-struct DetailsListRow: View {
-    @State var stepperValue: Int
-    
-    let label: String
-    let amount: Int
-    let onChange: (_ newValue: Int) -> Void
-        
-    init(label: String, amount: Int, onChange: @escaping (_ newValue: Int) -> Void) {
-        self.label = label
-        self.amount = amount
-        self.onChange = onChange
-        self._stepperValue = State(initialValue: amount)
-    }
-    
-    var body: some View {
-        HStack(spacing: 0) {
-            LabeledStepper(label, value: $stepperValue)
-        }
-        .buttonStyle(.plain)
-        .onChange(of: stepperValue) { newValue in
-            self.onChange(newValue)
-        }
-    }
-}
-
 // MARK: - DetilsListView
 struct DetailsView: View {
-    @State var showEditSheet: Bool = false
     @StateObject var viewModel: DetailsViewModel
     
     // MARK: - Lifecycle
     init(list: ListModel,
-         onChange: @escaping (_ newData: ListModel) -> Void = { _ in }
-    ) {
+         onChange: @escaping (_ newData: ListModel) -> Void = { _ in })
+    {
         _viewModel = StateObject(wrappedValue: DetailsViewModel(list: list,
                                                                 onChange: onChange))
     }
-        
+    
     // MARK: - View
     var body: some View {
         VStack {
             if viewModel.list.items.isEmpty == true {
-                // TODO: Empty View
-                Text("Empty List")
+                Text("No items")
+                    .font(.title2)
+                    .foregroundColor(.gray)
             } else {
                 List {
                     Section {
@@ -65,34 +39,37 @@ struct DetailsView: View {
                     
                     Section(header: Text("Itens")) {
                         ForEach(viewModel.list.items) { item in
-                            DetailsListRow(label: item.name, amount: item.amount) { newValue in
-                                viewModel.updateItemAmount(id: item.id, with: newValue)
-                            }
+                            let index: Int = viewModel.list.items.firstIndex(of: item)!
                             
-                            // Right Swap - Delete item
-                                .swipeActions(edge: .trailing) {
-                                    Button("Remover") { } // TODO: Delete item function
-                                        .tint(.red)
-                                }
-                            // Left Swap - Add to Shopping List
-                                .swipeActions(edge: .leading) {
-                                    Button("Comprar") { } // TODO: Add to Shopping List function
-                                        .tint(.blue)
+                            Stepper(title: item.name,
+                                    description: item.description,
+                                    value: $viewModel.list.items[index].amount)
+                                .buttonStyle(.plain)
+                                .contextMenu {
+                                    Button(action: { viewModel.openEdit(of: viewModel.list.items[index]) }) {
+                                        Label("Edit", systemImage: "square.and.pencil")
+                                    }
+                                    
+                                    Button(action: {}) {
+                                        Label("Add to shopping list", systemImage: "cart.badge.plus")
+                                    }
                                 }
                         }
+                        .onDelete(perform: viewModel.deleteItems)
                     }
                 }
             }
         }
         .navigationTitle(viewModel.list.name)
         .toolbar {
-            Button(action: { showEditSheet.toggle() }) { // TODO: Add item action
+            Button(action: { viewModel.openEdit() }) {
                 Image(systemName: "plus")
             }
-            .sheet(isPresented: $showEditSheet) {
-                Text("Editing")
+            .sheet(isPresented: $viewModel.showItemDetails) {
+                ItemDetailsView(item: viewModel.selectedItem, onSave: viewModel.saveItem)
             }
         }
+        .onChange(of: viewModel.list.items, perform: { _ in viewModel.listHasChanged = true })
         .onDisappear { viewModel.saveList() }
     }
 }
@@ -100,6 +77,6 @@ struct DetailsView: View {
 // MARK: Preview
 struct DetailsListView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailsView(list: .init(name: "", type: .simple, items: [.init(id: 1, name: "Item", amount: 1)]))
+        DetailsView(list: .init(name: "", type: .simple, items: []))
     }
 }

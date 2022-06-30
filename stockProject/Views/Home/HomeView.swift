@@ -20,8 +20,7 @@ struct HomeView: View {
                     List {
                         ForEach(viewModel.lists, id: \.id) { item in
                             NavigationLink(destination: DetailsView(list: item,
-                                                                    onChange: viewModel.updateListData )
-                            ) {
+                                                                    onChange: viewModel.updateListData )) {
                                 HomeTableRow(label: item.name, type: item.type)
                             }
                             .transition(.scale)
@@ -39,7 +38,7 @@ struct HomeView: View {
                                         }
                                     }
                                 } label: {
-                                    Label("Delte", systemImage: "trash")
+                                    Label("Delete", systemImage: "trash")
                                 }
                             }
                         }
