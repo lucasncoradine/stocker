@@ -73,15 +73,6 @@
       }
     },
     {
-      "identity" : "labeldstepper",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/MojtabaHs/LabeldStepper.git",
-      "state" : {
-        "branch" : "main",
-        "revision" : "121ce0ea9505c6d934093b9c5a613a290032952c"
-      }
-    },
-    {
       "identity" : "leveldb",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/leveldb.git",

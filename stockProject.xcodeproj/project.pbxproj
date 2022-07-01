@@ -14,34 +14,14 @@
 		291C159E2818723000A89846 /* stockProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291C159D2818723000A89846 /* stockProjectTests.swift */; };
 		291C15A82818723000A89846 /* stockProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291C15A72818723000A89846 /* stockProjectUITests.swift */; };
 		291C15AA2818723000A89846 /* stockProjectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291C15A92818723000A89846 /* stockProjectUITestsLaunchTests.swift */; };
-		291C15BB281873DF00A89846 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291C15BA281873DF00A89846 /* HomeView.swift */; };
-		291C15CB2819757100A89846 /* HomeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291C15CA2819757100A89846 /* HomeTableView.swift */; };
-		291C15D42819D14B00A89846 /* NavigationMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291C15D32819D14B00A89846 /* NavigationMenuView.swift */; };
-		291FCB17282EC9C300F2FDC9 /* HomeTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291FCB16282EC9C300F2FDC9 /* HomeTableRow.swift */; };
-		29229651283EBF5300C5E888 /* DetailsShoppingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29229650283EBF5300C5E888 /* DetailsShoppingListView.swift */; };
 		2922965D283FA2AC00C5E888 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2922965C283FA2AC00C5E888 /* FirebaseAuth */; };
 		2922965F283FA2AC00C5E888 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 2922965E283FA2AC00C5E888 /* FirebaseFirestore */; };
 		29229661283FA2AC00C5E888 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 29229660283FA2AC00C5E888 /* FirebaseFirestoreSwift */; };
 		29229663283FA2AC00C5E888 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 29229662283FA2AC00C5E888 /* FirebaseMessaging */; };
-		29267C4E283D288B0056704E /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29267C4D283D288B0056704E /* DetailsView.swift */; };
-		29267C54283D2BB60056704E /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29267C53283D2BB60056704E /* AlertView.swift */; };
 		292F7FAE283FECE7004F6FD4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 292F7FAD283FECD6004F6FD4 /* GoogleService-Info.plist */; };
-		292F7FC02841114E004F6FD4 /* ListInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292F7FBF2841114E004F6FD4 /* ListInfoView.swift */; };
-		293011AD28464C0A00F31ED5 /* ListImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293011AC28464C0A00F31ED5 /* ListImage.swift */; };
-		29314046286DD43F002CD907 /* LabeledStepper in Frameworks */ = {isa = PBXBuildFile; productRef = 29314045286DD43F002CD907 /* LabeledStepper */; };
-		29314049286DD47A002CD907 /* Stepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29314048286DD47A002CD907 /* Stepper.swift */; };
 		2954505D283FB79300790C2D /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2954505C283FB79300790C2D /* FirebaseClient.swift */; };
 		29545063283FD35100790C2D /* ListsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29545062283FD35100790C2D /* ListsClient.swift */; };
-		2955071A281C7B1000DD090A /* DecodingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29550719281C7B1000DD090A /* DecodingError.swift */; };
-		297AA838283C227500806998 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297AA837283C227500806998 /* DetailsViewModel.swift */; };
-		297AA83C283C23F400806998 /* ListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297AA83B283C23F400806998 /* ListModel.swift */; };
-		2981E5DB2819D94C0015FF5D /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2981E5DA2819D94C0015FF5D /* Request.swift */; };
 		2981E5DE2819D97F0015FF5D /* EnvironmentVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2981E5DD2819D97F0015FF5D /* EnvironmentVariable.swift */; };
-		2981E5E32819E0E40015FF5D /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2981E5E22819E0E40015FF5D /* APIConstants.swift */; };
-		2981E5E8281AC4890015FF5D /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2981E5E7281AC4890015FF5D /* HomeViewModel.swift */; };
-		2981E5EE281AD0F50015FF5D /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2981E5ED281AD0F50015FF5D /* APIClient.swift */; };
-		2981E5F1281C45200015FF5D /* CurlExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2981E5F0281C45200015FF5D /* CurlExtension.swift */; };
-		29BE828C286DFE870068A5FC /* ItemDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BE828B286DFE870068A5FC /* ItemDetailsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,29 +52,10 @@
 		291C15A32818723000A89846 /* stockProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = stockProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		291C15A72818723000A89846 /* stockProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stockProjectUITests.swift; sourceTree = "<group>"; };
 		291C15A92818723000A89846 /* stockProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stockProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		291C15BA281873DF00A89846 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		291C15CA2819757100A89846 /* HomeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableView.swift; sourceTree = "<group>"; };
-		291C15D32819D14B00A89846 /* NavigationMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationMenuView.swift; sourceTree = "<group>"; };
-		291FCB16282EC9C300F2FDC9 /* HomeTableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableRow.swift; sourceTree = "<group>"; };
-		29229650283EBF5300C5E888 /* DetailsShoppingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsShoppingListView.swift; sourceTree = "<group>"; };
-		29267C4D283D288B0056704E /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailsView.swift; path = Views/DetailsList/DetailsView.swift; sourceTree = "<group>"; };
-		29267C53283D2BB60056704E /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		292F7FAD283FECD6004F6FD4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		292F7FBF2841114E004F6FD4 /* ListInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInfoView.swift; sourceTree = "<group>"; };
-		293011AC28464C0A00F31ED5 /* ListImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListImage.swift; sourceTree = "<group>"; };
-		29314048286DD47A002CD907 /* Stepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stepper.swift; sourceTree = "<group>"; };
 		2954505C283FB79300790C2D /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
 		29545062283FD35100790C2D /* ListsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsClient.swift; sourceTree = "<group>"; };
-		29550719281C7B1000DD090A /* DecodingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodingError.swift; sourceTree = "<group>"; };
-		297AA837283C227500806998 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
-		297AA83B283C23F400806998 /* ListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModel.swift; sourceTree = "<group>"; };
-		2981E5DA2819D94C0015FF5D /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		2981E5DD2819D97F0015FF5D /* EnvironmentVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentVariable.swift; sourceTree = "<group>"; };
-		2981E5E22819E0E40015FF5D /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
-		2981E5E7281AC4890015FF5D /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		2981E5ED281AD0F50015FF5D /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
-		2981E5F0281C45200015FF5D /* CurlExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurlExtension.swift; sourceTree = "<group>"; };
-		29BE828B286DFE870068A5FC /* ItemDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +64,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				29229663283FA2AC00C5E888 /* FirebaseMessaging in Frameworks */,
-				29314046286DD43F002CD907 /* LabeledStepper in Frameworks */,
 				2922965D283FA2AC00C5E888 /* FirebaseAuth in Frameworks */,
 				2922965F283FA2AC00C5E888 /* FirebaseFirestore in Frameworks */,
 				29229661283FA2AC00C5E888 /* FirebaseFirestoreSwift in Frameworks */,
@@ -151,9 +111,6 @@
 			isa = PBXGroup;
 			children = (
 				29229664283FA34000C5E888 /* Firebase */,
-				297AA839283C23D800806998 /* Models */,
-				2981E5D82819D9300015FF5D /* Views */,
-				2981E5D92819D9380015FF5D /* Network */,
 				2981E5DC2819D9670015FF5D /* Utils */,
 				291C158C2818722E00A89846 /* stockProjectApp.swift */,
 				291C158E2818722E00A89846 /* ContentView.swift */,
@@ -189,54 +146,6 @@
 			path = stockProjectUITests;
 			sourceTree = "<group>";
 		};
-		291C15B7281872BC00A89846 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				291C15BA281873DF00A89846 /* HomeView.swift */,
-				2981E5E7281AC4890015FF5D /* HomeViewModel.swift */,
-				291C15B8281872C300A89846 /* Views */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
-		291C15B8281872C300A89846 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				292F7FBE2841112B004F6FD4 /* ListInfo */,
-				291C15C92819756400A89846 /* HomeTable */,
-				291C15D22819D13900A89846 /* NavigationMenu */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		291C15BD28187BC300A89846 /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				29314047286DD451002CD907 /* Stepper */,
-				293011AB28464BF500F31ED5 /* ListImage */,
-				29267C52283D2BA00056704E /* Alert */,
-			);
-			path = Shared;
-			sourceTree = "<group>";
-		};
-		291C15C92819756400A89846 /* HomeTable */ = {
-			isa = PBXGroup;
-			children = (
-				291C15CA2819757100A89846 /* HomeTableView.swift */,
-				291FCB16282EC9C300F2FDC9 /* HomeTableRow.swift */,
-			);
-			name = HomeTable;
-			path = ../../Shared/HomeTable;
-			sourceTree = "<group>";
-		};
-		291C15D22819D13900A89846 /* NavigationMenu */ = {
-			isa = PBXGroup;
-			children = (
-				291C15D32819D14B00A89846 /* NavigationMenuView.swift */,
-			);
-			path = NavigationMenu;
-			sourceTree = "<group>";
-		};
 		29229664283FA34000C5E888 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,55 +153,6 @@
 				29545061283FD34100790C2D /* ListsClient */,
 			);
 			path = Firebase;
-			sourceTree = "<group>";
-		};
-		29267C49283D28360056704E /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				29BE828A286DFE7C0068A5FC /* ItemDetails */,
-				29267C4C283D28560056704E /* DetailsShoppingList */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		29267C4C283D28560056704E /* DetailsShoppingList */ = {
-			isa = PBXGroup;
-			children = (
-				29229650283EBF5300C5E888 /* DetailsShoppingListView.swift */,
-			);
-			path = DetailsShoppingList;
-			sourceTree = "<group>";
-		};
-		29267C52283D2BA00056704E /* Alert */ = {
-			isa = PBXGroup;
-			children = (
-				29267C53283D2BB60056704E /* AlertView.swift */,
-			);
-			path = Alert;
-			sourceTree = "<group>";
-		};
-		292F7FBE2841112B004F6FD4 /* ListInfo */ = {
-			isa = PBXGroup;
-			children = (
-				292F7FBF2841114E004F6FD4 /* ListInfoView.swift */,
-			);
-			path = ListInfo;
-			sourceTree = "<group>";
-		};
-		293011AB28464BF500F31ED5 /* ListImage */ = {
-			isa = PBXGroup;
-			children = (
-				293011AC28464C0A00F31ED5 /* ListImage.swift */,
-			);
-			path = ListImage;
-			sourceTree = "<group>";
-		};
-		29314047286DD451002CD907 /* Stepper */ = {
-			isa = PBXGroup;
-			children = (
-				29314048286DD47A002CD907 /* Stepper.swift */,
-			);
-			path = Stepper;
 			sourceTree = "<group>";
 		};
 		29545061283FD34100790C2D /* ListsClient */ = {
@@ -303,76 +163,12 @@
 			path = ListsClient;
 			sourceTree = "<group>";
 		};
-		297AA834283C214500806998 /* Details */ = {
-			isa = PBXGroup;
-			children = (
-				29267C4D283D288B0056704E /* DetailsView.swift */,
-				297AA837283C227500806998 /* DetailsViewModel.swift */,
-				29267C49283D28360056704E /* Views */,
-			);
-			path = Details;
-			sourceTree = "<group>";
-		};
-		297AA839283C23D800806998 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				297AA83A283C23DF00806998 /* List */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		297AA83A283C23DF00806998 /* List */ = {
-			isa = PBXGroup;
-			children = (
-				297AA83B283C23F400806998 /* ListModel.swift */,
-			);
-			path = List;
-			sourceTree = "<group>";
-		};
-		2981E5D82819D9300015FF5D /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				297AA834283C214500806998 /* Details */,
-				291C15B7281872BC00A89846 /* Home */,
-				291C15BD28187BC300A89846 /* Shared */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		2981E5D92819D9380015FF5D /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				2981E5DA2819D94C0015FF5D /* Request.swift */,
-				2981E5ED281AD0F50015FF5D /* APIClient.swift */,
-				2981E5E22819E0E40015FF5D /* APIConstants.swift */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
 		2981E5DC2819D9670015FF5D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				2981E5EF281C450F0015FF5D /* Development */,
 				2981E5DD2819D97F0015FF5D /* EnvironmentVariable.swift */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		2981E5EF281C450F0015FF5D /* Development */ = {
-			isa = PBXGroup;
-			children = (
-				2981E5F0281C45200015FF5D /* CurlExtension.swift */,
-				29550719281C7B1000DD090A /* DecodingError.swift */,
-			);
-			path = Development;
-			sourceTree = "<group>";
-		};
-		29BE828A286DFE7C0068A5FC /* ItemDetails */ = {
-			isa = PBXGroup;
-			children = (
-				29BE828B286DFE870068A5FC /* ItemDetailsView.swift */,
-			);
-			path = ItemDetails;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -396,7 +192,6 @@
 				2922965E283FA2AC00C5E888 /* FirebaseFirestore */,
 				29229660283FA2AC00C5E888 /* FirebaseFirestoreSwift */,
 				29229662283FA2AC00C5E888 /* FirebaseMessaging */,
-				29314045286DD43F002CD907 /* LabeledStepper */,
 			);
 			productName = stockProject;
 			productReference = 291C15892818722E00A89846 /* stockProject.app */;
@@ -472,7 +267,6 @@
 			mainGroup = 291C15802818722E00A89846;
 			packageReferences = (
 				2922965B283FA2AC00C5E888 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				29314044286DD43E002CD907 /* XCRemoteSwiftPackageReference "LabeldStepper" */,
 			);
 			productRefGroup = 291C158A2818722E00A89846 /* Products */;
 			projectDirPath = "";
@@ -517,30 +311,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				291C15CB2819757100A89846 /* HomeTableView.swift in Sources */,
-				297AA838283C227500806998 /* DetailsViewModel.swift in Sources */,
 				2981E5DE2819D97F0015FF5D /* EnvironmentVariable.swift in Sources */,
-				29267C54283D2BB60056704E /* AlertView.swift in Sources */,
-				291C15BB281873DF00A89846 /* HomeView.swift in Sources */,
-				291C15D42819D14B00A89846 /* NavigationMenuView.swift in Sources */,
-				2955071A281C7B1000DD090A /* DecodingError.swift in Sources */,
 				29545063283FD35100790C2D /* ListsClient.swift in Sources */,
 				2954505D283FB79300790C2D /* FirebaseClient.swift in Sources */,
-				2981E5F1281C45200015FF5D /* CurlExtension.swift in Sources */,
 				291C158F2818722E00A89846 /* ContentView.swift in Sources */,
-				2981E5DB2819D94C0015FF5D /* Request.swift in Sources */,
-				2981E5E32819E0E40015FF5D /* APIConstants.swift in Sources */,
-				29267C4E283D288B0056704E /* DetailsView.swift in Sources */,
-				2981E5EE281AD0F50015FF5D /* APIClient.swift in Sources */,
-				2981E5E8281AC4890015FF5D /* HomeViewModel.swift in Sources */,
 				291C158D2818722E00A89846 /* stockProjectApp.swift in Sources */,
-				291FCB17282EC9C300F2FDC9 /* HomeTableRow.swift in Sources */,
-				293011AD28464C0A00F31ED5 /* ListImage.swift in Sources */,
-				29229651283EBF5300C5E888 /* DetailsShoppingListView.swift in Sources */,
-				297AA83C283C23F400806998 /* ListModel.swift in Sources */,
-				29BE828C286DFE870068A5FC /* ItemDetailsView.swift in Sources */,
-				29314049286DD47A002CD907 /* Stepper.swift in Sources */,
-				292F7FC02841114E004F6FD4 /* ListInfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -877,14 +652,6 @@
 				kind = branch;
 			};
 		};
-		29314044286DD43E002CD907 /* XCRemoteSwiftPackageReference "LabeldStepper" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/MojtabaHs/LabeldStepper.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -907,11 +674,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2922965B283FA2AC00C5E888 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
-		};
-		29314045286DD43F002CD907 /* LabeledStepper */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 29314044286DD43E002CD907 /* XCRemoteSwiftPackageReference "LabeldStepper" */;
-			productName = LabeledStepper;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
