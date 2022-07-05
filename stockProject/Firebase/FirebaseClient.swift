@@ -8,7 +8,7 @@
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
-
+import FirebaseAuth
 
 enum VoidResult {
     case success
@@ -16,8 +16,24 @@ enum VoidResult {
 }
 
 // MARK: - FirebaseCollection
-enum FirebaseCollection: String {
-    case lists = "lists"
+enum FirebaseCollection {
+    case users
+    case lists(userId: String)
+    case items(userId: String, listId: String)
+    case shoppingList(userId: String, listId: String)
+    
+    var path: String {
+        switch self {
+        case .users:
+            return "users"
+        case .lists(let userId):
+            return "users/\(userId)/lists"
+        case .items(let userId, let listId):
+            return "users/\(userId)/lists/\(listId)/items"
+        case .shoppingList(let userId, let listId):
+            return "users/\(userId)/lists/\(listId)/shoppingList"
+        }
+    }
 }
 
 // MARK: - FirebaseError
@@ -27,13 +43,18 @@ enum FirebaseError: Error {
 
 // MARK: FirebaseClient
 class FirebaseClient {
+    let userId: String
     private let database: Firestore
     
     // MARK: Lifecycle
-    init() {
+    init(with userId: String = "") {
         self.database = Firestore.firestore()
+        self.userId = userId
     }
     
+    
+    // MARK: - Methods
+        
     /// Gets all documents from the desired collection
     /// - parameter type: The type of the documents which will be fetched.
     /// - parameter collection: The collection to get the documents from
@@ -43,7 +64,7 @@ class FirebaseClient {
                                     from collection: FirebaseCollection,
                                     completion: @escaping (_ result: Result<[T], Error>) -> Void
     ) {
-        database.collection(collection.rawValue).getDocuments { (querySnapshot, error) in
+        database.collection(collection.path).getDocuments { (querySnapshot, error) in
             if let error = error {
                 completion(.failure(error))
                 return
@@ -76,7 +97,7 @@ class FirebaseClient {
                                    id: String,
                                    completion: @escaping (_ result: Result<T, Error>) -> Void
     ){
-        database.collection(collection.rawValue).document(id).getDocument(as: type) { queryResult in
+        database.collection(collection.path).document(id).getDocument(as: type) { queryResult in
             completion(queryResult)
         }
     }
@@ -90,7 +111,7 @@ class FirebaseClient {
                                  completion: @escaping (_ result: Result<T, Error>) -> Void
     ) {
         do {
-            let documentReference = try database.collection(collection.rawValue).addDocument(from: data)
+            let documentReference = try database.collection(collection.path).addDocument(from: data)
             documentReference.getDocument(as: T.self) { result in
                 completion(result)
             }
@@ -110,7 +131,7 @@ class FirebaseClient {
                                       completion: @escaping (_ result: VoidResult) -> Void
     ) {
         do {
-            try database.collection(collection.rawValue).document(documentId).setData(from: data)
+            try database.collection(collection.path).document(documentId).setData(from: data)
             completion(.success)
         } catch let error {
             completion(.failure(error))
@@ -125,7 +146,7 @@ class FirebaseClient {
                         from collection: FirebaseCollection,
                         completion: @escaping (_ result: VoidResult) -> Void
     ) {
-        database.collection(collection.rawValue).document(id).delete() { error in
+        database.collection(collection.path).document(id).delete() { error in
             guard let error = error else {
                 completion(.success)
                 return
@@ -146,7 +167,7 @@ class FirebaseClient {
         let batch = database.batch()
         
         ids.forEach { id in
-            let ref: DocumentReference = database.collection(collection.rawValue).document(id)
+            let ref: DocumentReference = database.collection(collection.path).document(id)
             batch.deleteDocument(ref)
         }
         
@@ -158,6 +179,43 @@ class FirebaseClient {
             
             completion(.failure(error))
         }
+    }
+    
+    /// Listen and returns all changes at the informed collection
+    /// - parameter collection: Collection to listen to
+    /// - parameter type: The type of the documents which will be fetched.
+    /// - parameter completion: A closure to handle the result of this request
+    func listenToChanges<T: Decodable>(at collection: FirebaseCollection,
+                                       as type: T.Type,
+                                       completion: @escaping (_ result: Result<[T], Error>) -> Void
+    ) -> ListenerRegistration {
+        return database.collection(collection.path).addSnapshotListener { (querySnapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let documents = querySnapshot?.documents else {
+                completion(.failure(FirebaseError.noDocuments))
+                return
+            }
+            
+            do {
+                let result = try documents.compactMap { queryDocumentSnapshot -> T? in
+                    try queryDocumentSnapshot.data(as: type)
+                }
+                
+                completion(.success(result))
+            } catch let mappingError {
+                completion(.failure(mappingError))
+            }
+        }
+    }
+    
+    /// Stops the listener
+    /// - parameter listener: The listener to remove
+    func removeListener(_ listener: ListenerRegistration) {
+        listener.remove()
     }
     
     // MARK: - Helper functions

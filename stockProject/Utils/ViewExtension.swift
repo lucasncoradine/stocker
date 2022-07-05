@@ -2,17 +2,31 @@
 //  ViewExtension.swift
 //  stockProject
 //
-//  Created by Lucas Negreiros Coradine on 26/05/22.
+//  Created by Lucas Negreiros Coradine on 01/07/22.
 //
 
 import SwiftUI
 
 extension View {
-    @ViewBuilder func isHidden(_ hidden: Bool) -> some View {
-        if hidden {
-            self.hidden()
+    /// Shows a ProgressView if the condition is satisfied
+    @ViewBuilder func showLoading(_ condition: Bool) -> some View {
+        if condition == true {
+            ProgressView()
+        } else {
+            self
         }
-        
-        self
+    }
+    
+    /// Shows an error alert
+    func errorAlert(visible: Binding<Bool>,
+                    message: String,
+                    action: @escaping () -> Void,
+                    buttonText: String = "Try again"
+    ) -> some View {
+        return self.alert(message, isPresented: visible) {
+            Button(action: action) {
+                Text(buttonText)
+            }
+        }
     }
 }

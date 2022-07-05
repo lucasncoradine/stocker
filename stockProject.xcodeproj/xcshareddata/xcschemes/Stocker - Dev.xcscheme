@@ -50,23 +50,6 @@
             ReferencedContainer = "container:stockProject.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "access_token"
-            value = "VVZHhXJKWgrFAUAuecawkFtQQLxPf5YYuLVwAWJw"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "api_key"
-            value = "AIzaSyC9I-_ALtpL_ospBaAZ11JmEx5VuZMTsiI"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "base_url"
-            value = "https://stocker-d4d57-default-rtdb.firebaseio.com"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

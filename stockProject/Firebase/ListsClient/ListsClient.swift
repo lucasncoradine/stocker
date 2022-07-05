@@ -12,52 +12,70 @@ typealias FailureClosure = (_ message: String) -> Void
 
 class ListsClient {
     private let client: FirebaseClient = .init()
+    private var listeners: [ListenerRegistration] = []
+    private var userId: String?
     
-    /// Gets all the Lists in database
-    func getLists(failure: @escaping FailureClosure,
-                  success: @escaping (_ data: [ListModel]) -> Void
+    
+    // MARK: - Lifecycle
+    init(userId: String? = nil) {
+        self.userId = userId
+    }
+    
+    deinit {
+        stopListeners()
+    }
+    
+    // MARK: - Methods
+    func setUserId(_ id: String) {
+        self.userId = id
+    }
+    
+    func getUsers(failure: @escaping FailureClosure,
+                  success: @escaping (_ data: [UserModel]) -> Void
     ) {
-        client.getDocuments(as: ListModel.self, from: .lists) { result in
+        client.getDocuments(as: UserModel.self, from: .users) { result in
             self.client.handleResult(result, success: success, failure: failure)
         }
     }
     
-    /// Create a new List  in database
-    /// - parameter data: The data of the new list
-    func createList(_ data: ListModel,
+    func fetchLists(of userId: String,
                     failure: @escaping FailureClosure,
-                    success: @escaping (_ response: ListModel) -> Void
+                    success: @escaping (_ data: [ListModel]) -> Void
     ) {
-        client.addDocument(data, to: .lists) { result in
+        let listener = client.listenToChanges(at: .lists(userId: userId), as: ListModel.self) { result in
             self.client.handleResult(result, success: success, failure: failure)
         }
+        
+        self.listeners.append(listener)
     }
     
-    /// Update a list in database
-    /// - parameter data: The new data of the document
-    func updateList(_ id: String,
-                    with data: ListModel,
+    func fetchItems(of listId: String,
+                    failure: @escaping FailureClosure,
+                    success: @escaping (_ data: [ItemModel]) -> Void
+    ) {
+        guard let userId = userId else { return }
+        
+        let listener = client.listenToChanges(at: .items(userId: userId, listId: listId), as: ItemModel.self) { result in
+            self.client.handleResult(result, success: success, failure: failure)
+        }
+        
+        self.listeners.append(listener)
+    }
+    
+    func deleteList(id: String,
                     failure: @escaping FailureClosure
     ) {
-        client.updateDocument(documentId: id, with: data, from: .lists) { result in
+        guard let userId = userId else { return }
+        
+        
+        client.deleteDocument(id: id, from: .lists(userId: userId)) { result in
             self.client.handleResult(result, failure: failure)
         }
     }
     
-    /// Deletes a set of Lists from the database
-    /// - parameter id: The ID of the list to delete
-    func deleteLists(_ ids: [String], failure: @escaping FailureClosure) {
-        client.deleteDocuments(ids: ids, from: .lists) { result in
-            self.client.handleResult(result, failure: failure)
-        }
-    }
-    
-    /// Deletes a List form the database
-    /// - parameter id: The ID of the list to delete
-    /// - parameter failure: An closure to handle the failure of the request
-    func deleteList(_ id: String, failure: @escaping FailureClosure) {
-        client.deleteDocument(id: id, from: .lists) { result in
-            self.client.handleResult(result, failure: failure)
+    func stopListeners() {
+        listeners.forEach { listener in
+            listener.remove()
         }
     }
 }
