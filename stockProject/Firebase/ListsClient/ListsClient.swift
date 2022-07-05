@@ -10,26 +10,30 @@ import Firebase
 
 typealias FailureClosure = (_ message: String) -> Void
 
+enum FailureMessage: String {
+    case unauthenticated = "Usuário não autenticado"
+}
+
 class ListsClient {
     private let client: FirebaseClient = .init()
     private var listeners: [ListenerRegistration] = []
-    private var userId: String?
-    
     
     // MARK: - Lifecycle
-    init(userId: String? = nil) {
-        self.userId = userId
-    }
-    
     deinit {
         stopListeners()
     }
     
-    // MARK: - Methods
-    func setUserId(_ id: String) {
-        self.userId = id
+    // MARK: - Private methods
+    private func authenticatedUser(_ failure: FailureClosure) -> String? {
+        guard let id = FirebaseClient.shared.userId else {
+            failure(FailureMessage.unauthenticated.rawValue)
+            return nil
+        }
+        
+        return id
     }
     
+    // MARK: - Methods
     func getUsers(failure: @escaping FailureClosure,
                   success: @escaping (_ data: [UserModel]) -> Void
     ) {
@@ -53,7 +57,7 @@ class ListsClient {
                     failure: @escaping FailureClosure,
                     success: @escaping (_ data: [ItemModel]) -> Void
     ) {
-        guard let userId = userId else { return }
+        guard let userId = authenticatedUser(failure) else { return }
         
         let listener = client.listenToChanges(at: .items(userId: userId, listId: listId), as: ItemModel.self) { result in
             self.client.handleResult(result, success: success, failure: failure)
@@ -62,12 +66,44 @@ class ListsClient {
         self.listeners.append(listener)
     }
     
+    /// Saves the list in database
+    /// Creates a new object if the lists doesn't exists
+    func saveList(with data: ListModel,
+                  failure: @escaping FailureClosure
+    ) {
+        guard
+            let id = data.id,
+            let userId = authenticatedUser(failure)
+        else { return }
+        
+        client.documentExists(documentId: id, at: .lists(userId: userId), failure: failure) { exists in
+            if exists {
+                self.client.updateDocument(documentId: id, with: data, from: .lists(userId: userId)) { result in
+                    self.client.handleResult(result, failure: failure)
+                }
+            } else {
+                self.client.addDocument(data, to: .lists(userId: userId)) { result in
+                    self.client.handleResult(result, success: { _ in }, failure: failure)
+                }
+            }
+        }
+    }
+    
+    func createList(with data: ListModel,
+                    success: @escaping (_ data: ListModel) -> Void,
+                    failure: @escaping FailureClosure) {
+        guard let userId = authenticatedUser(failure) else { return }
+        
+        client.addDocument(data, to: .lists(userId: userId)) { result in
+            self.client.handleResult(result, success: success, failure: failure)
+        }
+    }
+    
     func deleteList(id: String,
                     failure: @escaping FailureClosure
     ) {
-        guard let userId = userId else { return }
-        
-        
+        guard let userId = authenticatedUser(failure) else { return }
+
         client.deleteDocument(id: id, from: .lists(userId: userId)) { result in
             self.client.handleResult(result, failure: failure)
         }

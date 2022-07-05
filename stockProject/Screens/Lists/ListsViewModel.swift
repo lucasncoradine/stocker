@@ -14,6 +14,8 @@ class ListsViewModel: ObservableObject {
     @Published var errorMessage: String = ""
     @Published var lists: [ListModel] = []
     @Published var showError: Bool = false
+    @Published var showEditSheet: Bool = false
+    @Published var selectedList: ListModel? = nil
     
     // MARK: - Private Methods
     private func requestFailed(message: String) {
@@ -39,6 +41,11 @@ class ListsViewModel: ObservableObject {
     func reloadList() {
         client.stopListeners()
         fetchLists()
+    }
+    
+    func editList(_ list: ListModel) {
+        showEditSheet = true
+        selectedList = list
     }
     
     func deleteList(id: String?) {

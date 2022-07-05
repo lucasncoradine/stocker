@@ -20,7 +20,7 @@ struct ListItemsView: View {
     var body: some View {
         VStack {
             if viewModel.items.isEmpty {
-                EmptyView(text: "No items")
+                EmptyView(text: "Sem itens")
             } else {
                 List {
                     Section {

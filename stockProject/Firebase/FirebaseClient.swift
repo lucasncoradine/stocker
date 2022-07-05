@@ -6,9 +6,8 @@
 //
 
 import Foundation
-import Firebase
 import FirebaseFirestoreSwift
-import FirebaseAuth
+import FirebaseFirestore
 
 enum VoidResult {
     case success
@@ -41,20 +40,24 @@ enum FirebaseError: Error {
     case noDocuments
 }
 
-// MARK: FirebaseClient
+// MARK: - FirebaseClientShared
+class FirebaseClientShared {
+    var userId: String?
+}
+
+// MARK: - FirebaseClient
 class FirebaseClient {
-    let userId: String
+    static let shared: FirebaseClientShared = .init()
     private let database: Firestore
     
     // MARK: Lifecycle
-    init(with userId: String = "") {
+    init() {
         self.database = Firestore.firestore()
-        self.userId = userId
     }
     
     
     // MARK: - Methods
-        
+    
     /// Gets all documents from the desired collection
     /// - parameter type: The type of the documents which will be fetched.
     /// - parameter collection: The collection to get the documents from
@@ -102,6 +105,24 @@ class FirebaseClient {
         }
     }
     
+    /// Check if document existis in database
+    /// - parameter documentId: The ID of the document you want
+    /// - parameter collection: The collection to get the document from
+    /// - parameter completion: A closure to handle the result of this request
+    func documentExists(documentId: String,
+                        at collection: FirebaseCollection,
+                        failure: @escaping (_ message: String) -> Void,
+                        success: @escaping (_ exists: Bool) -> Void
+    ) {
+        database.collection(collection.path).document(documentId).getDocument { documentSnapshot, error in
+            if let error = error {
+                failure(self.handleError(error))
+            }
+            
+            success(documentSnapshot?.exists ?? false)
+        }
+    }
+    
     /// Adds a document to a specific collection.
     /// - parameter data: The data of the new document
     /// - parameter to: The collection which the document will be added to
@@ -126,9 +147,9 @@ class FirebaseClient {
     /// - parameter from: The collection of the document
     /// - parameter completion: A closure to handle the result of the request.
     func updateDocument<T: Codable>(documentId: String,
-                                      with data: T,
-                                      from collection: FirebaseCollection,
-                                      completion: @escaping (_ result: VoidResult) -> Void
+                                    with data: T,
+                                    from collection: FirebaseCollection,
+                                    completion: @escaping (_ result: VoidResult) -> Void
     ) {
         do {
             try database.collection(collection.path).document(documentId).setData(from: data)
@@ -161,8 +182,8 @@ class FirebaseClient {
     /// - parameter collection: The collection which the documents will be deleted from
     /// - parameter completion: A closure to handle the result of this request
     func deleteDocuments(ids: [String],
-                        from collection: FirebaseCollection,
-                        completion: @escaping (_ result: VoidResult) -> Void
+                         from collection: FirebaseCollection,
+                         completion: @escaping (_ result: VoidResult) -> Void
     ) {
         let batch = database.batch()
         

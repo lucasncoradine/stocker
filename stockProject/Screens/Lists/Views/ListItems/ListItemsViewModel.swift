@@ -8,7 +8,7 @@
 import Foundation
 
 class ListItemsViewModel: ObservableObject {
-    private let client: ListsClient = .init(userId: dev_userId)
+    private let client: ListsClient = .init()
     let listId: String
     
     @Published var items: [ItemModel] = []

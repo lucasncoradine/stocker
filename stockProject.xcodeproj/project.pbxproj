@@ -36,6 +36,8 @@
 		299653F6286F72DC00EA4799 /* ListItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653F5286F72DC00EA4799 /* ListItemsView.swift */; };
 		299653F8286F72E400EA4799 /* ListItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653F7286F72E400EA4799 /* ListItemsViewModel.swift */; };
 		299653FC286F78E700EA4799 /* Stepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653FB286F78E700EA4799 /* Stepper.swift */; };
+		29F43C30287477CF00276EE2 /* EditListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F43C2F287477CF00276EE2 /* EditListViewModel.swift */; };
+		29F43C32287477E100276EE2 /* EditListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F43C31287477E100276EE2 /* EditListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +86,8 @@
 		299653F5286F72DC00EA4799 /* ListItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemsView.swift; sourceTree = "<group>"; };
 		299653F7286F72E400EA4799 /* ListItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemsViewModel.swift; sourceTree = "<group>"; };
 		299653FB286F78E700EA4799 /* Stepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stepper.swift; sourceTree = "<group>"; };
+		29F43C2F287477CF00276EE2 /* EditListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditListViewModel.swift; sourceTree = "<group>"; };
+		29F43C31287477E100276EE2 /* EditListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,6 +266,7 @@
 		299653F3286F72C600EA4799 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				29F43C2E287477BA00276EE2 /* EditList */,
 				299653F4286F72D200EA4799 /* ListItems */,
 			);
 			path = Views;
@@ -291,6 +296,15 @@
 				299653FB286F78E700EA4799 /* Stepper.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		29F43C2E287477BA00276EE2 /* EditList */ = {
+			isa = PBXGroup;
+			children = (
+				29F43C2F287477CF00276EE2 /* EditListViewModel.swift */,
+				29F43C31287477E100276EE2 /* EditListView.swift */,
+			);
+			path = EditList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -443,10 +457,12 @@
 				299653E6286F524300EA4799 /* DevelopmentVariables.swift in Sources */,
 				299653DD286F363400EA4799 /* ShoppingListModel.swift in Sources */,
 				291C158F2818722E00A89846 /* ContentView.swift in Sources */,
+				29F43C32287477E100276EE2 /* EditListView.swift in Sources */,
 				299653D7286F32C400EA4799 /* ListModel.swift in Sources */,
 				299653E0286F422100EA4799 /* ListsView.swift in Sources */,
 				299653D5286F2E7700EA4799 /* UserModel.swift in Sources */,
 				291C158D2818722E00A89846 /* stockProjectApp.swift in Sources */,
+				29F43C30287477CF00276EE2 /* EditListViewModel.swift in Sources */,
 				299653EE286F6C3000EA4799 /* ListIcon.swift in Sources */,
 				299653EB286F6C0000EA4799 /* ListRow.swift in Sources */,
 				299653F6286F72DC00EA4799 /* ListItemsView.swift in Sources */,
