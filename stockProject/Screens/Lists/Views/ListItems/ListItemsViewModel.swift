@@ -14,6 +14,8 @@ class ListItemsViewModel: ObservableObject {
     @Published var items: [ItemModel] = []
     @Published var isLoading: Bool = true
     @Published var errorMessage: String = ""
+    @Published var selectedItem: ItemModel? = nil
+    @Published var openEdit: Bool = false
     
     // MARK: Lifecycle
     init(listId: String) {
@@ -37,5 +39,20 @@ class ListItemsViewModel: ObservableObject {
                 self.isLoading = false
             }
         }
+    }
+    
+    func editItem(_ item: ItemModel) {
+        selectedItem = item
+        openEdit = true
+    }
+    
+    func createItem() {
+        selectedItem = nil
+        openEdit = true
+    }
+    
+    func deleteItem(id: String?) {
+        guard let id = id else { return }
+        client.deleteItem(id: id, listId: listId, failure: requestFailed)
     }
 }

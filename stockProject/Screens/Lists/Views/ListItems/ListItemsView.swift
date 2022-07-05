@@ -31,21 +31,48 @@ struct ListItemsView: View {
                     
                     Section {
                         ForEach(viewModel.items) { item in
-                            Stepper(label: item.name, amount: item.amount)
+                            Stepper(label: item.name, amount: item.amount, description: item.description)
                                 .buttonStyle(.plain)
+                                .contextMenu {
+                                    Button(action: { viewModel.editItem(item) }) {
+                                        Label("Editar", systemImage: "square.and.pencil")
+                                    }
+                                    
+                                    Button(role: .destructive, action: { viewModel.deleteItem(id: item.id) }) {
+                                        Label("Remover", systemImage: "trash")
+                                    }
+                                }
+                                .swipeActions {
+                                    Button(role: .destructive, action: { viewModel.deleteItem(id: item.id) } ) {
+                                        Label("Remover", systemImage: "trash")
+                                    }
+                                }
                         }
                     }
                 }
+                .listStyle(.insetGrouped)
             }
         }
         .showLoading(viewModel.isLoading)
         .navigationTitle(navigationTitle)
+        .sheet(isPresented: $viewModel.openEdit) {
+            EditItemView(listId: viewModel.listId, item: viewModel.selectedItem)
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: viewModel.createItem) {
+                    Image(systemName: "plus")
+                }
+            }
+        }
         .onAppear(perform: viewModel.fetchItems)
     }
 }
 
 struct ListItemsView_Previews: PreviewProvider {
     static var previews: some View {
-        ListItemsView(listId: "Zxs0zOEwrxJE709jEEPI", listName: "Estoque")
+        NavigationView {
+            ListItemsView(listId: "SF6jqiRauIkLSTurDy15", listName: "Estoque")
+        }
     }
 }

@@ -76,13 +76,41 @@ class ListsClient {
             let userId = authenticatedUser(failure)
         else { return }
         
-        client.documentExists(documentId: id, at: .lists(userId: userId), failure: failure) { exists in
+        let collectionPath: FirebaseCollection = .lists(userId: userId)
+        
+        client.documentExists(documentId: id, at: collectionPath, failure: failure) { exists in
             if exists {
-                self.client.updateDocument(documentId: id, with: data, from: .lists(userId: userId)) { result in
+                self.client.updateDocument(documentId: id, with: data, from: collectionPath) { result in
                     self.client.handleResult(result, failure: failure)
                 }
             } else {
-                self.client.addDocument(data, to: .lists(userId: userId)) { result in
+                self.client.addDocument(data, to: collectionPath) { result in
+                    self.client.handleResult(result, success: { _ in }, failure: failure)
+                }
+            }
+        }
+    }
+    
+    /// Saves the item in database
+    /// Creates a new object if the item doesn't exists
+    func saveItem(with data: ItemModel,
+                  listId: String,
+                  failure: @escaping FailureClosure
+    ) {
+        guard
+            let id = data.id,
+            let userId = authenticatedUser(failure)
+        else { return }
+        
+        let collectionPath: FirebaseCollection = .items(userId: userId, listId: listId)
+        
+        client.documentExists(documentId: id, at: collectionPath, failure: failure) { exists in
+            if exists {
+                self.client.updateDocument(documentId: id, with: data, from: collectionPath) { result in
+                    self.client.handleResult(result, failure: failure)
+                }
+            } else {
+                self.client.addDocument(data, to: collectionPath) { result in
                     self.client.handleResult(result, success: { _ in }, failure: failure)
                 }
             }
@@ -105,6 +133,17 @@ class ListsClient {
         guard let userId = authenticatedUser(failure) else { return }
 
         client.deleteDocument(id: id, from: .lists(userId: userId)) { result in
+            self.client.handleResult(result, failure: failure)
+        }
+    }
+    
+    func deleteItem(id: String,
+                    listId: String,
+                    failure: @escaping FailureClosure
+    ) {
+        guard let userId = authenticatedUser(failure) else { return }
+
+        client.deleteDocument(id: id, from: .items(userId: userId, listId: listId)) { result in
             self.client.handleResult(result, failure: failure)
         }
     }

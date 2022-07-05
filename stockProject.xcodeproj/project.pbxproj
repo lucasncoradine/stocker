@@ -36,6 +36,9 @@
 		299653F6286F72DC00EA4799 /* ListItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653F5286F72DC00EA4799 /* ListItemsView.swift */; };
 		299653F8286F72E400EA4799 /* ListItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653F7286F72E400EA4799 /* ListItemsViewModel.swift */; };
 		299653FC286F78E700EA4799 /* Stepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653FB286F78E700EA4799 /* Stepper.swift */; };
+		29F0EB4B2874B1AB00CA857D /* EditItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F0EB4A2874B1AB00CA857D /* EditItemView.swift */; };
+		29F0EB4D2874B1B400CA857D /* EditItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F0EB4C2874B1B400CA857D /* EditItemViewModel.swift */; };
+		29F0EB502874B69600CA857D /* TextfieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F0EB4F2874B69600CA857D /* TextfieldExtension.swift */; };
 		29F43C30287477CF00276EE2 /* EditListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F43C2F287477CF00276EE2 /* EditListViewModel.swift */; };
 		29F43C32287477E100276EE2 /* EditListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F43C31287477E100276EE2 /* EditListView.swift */; };
 /* End PBXBuildFile section */
@@ -86,6 +89,9 @@
 		299653F5286F72DC00EA4799 /* ListItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemsView.swift; sourceTree = "<group>"; };
 		299653F7286F72E400EA4799 /* ListItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemsViewModel.swift; sourceTree = "<group>"; };
 		299653FB286F78E700EA4799 /* Stepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stepper.swift; sourceTree = "<group>"; };
+		29F0EB4A2874B1AB00CA857D /* EditItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemView.swift; sourceTree = "<group>"; };
+		29F0EB4C2874B1B400CA857D /* EditItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemViewModel.swift; sourceTree = "<group>"; };
+		29F0EB4F2874B69600CA857D /* TextfieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextfieldExtension.swift; sourceTree = "<group>"; };
 		29F43C2F287477CF00276EE2 /* EditListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditListViewModel.swift; sourceTree = "<group>"; };
 		29F43C31287477E100276EE2 /* EditListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -197,6 +203,15 @@
 			path = ListsClient;
 			sourceTree = "<group>";
 		};
+		298AC6DF2874B0EE005A435D /* EditItem */ = {
+			isa = PBXGroup;
+			children = (
+				29F0EB4A2874B1AB00CA857D /* EditItemView.swift */,
+				29F0EB4C2874B1B400CA857D /* EditItemViewModel.swift */,
+			);
+			path = EditItem;
+			sourceTree = "<group>";
+		};
 		299653D0286F2E0200EA4799 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +249,7 @@
 			children = (
 				299653E4286F42F100EA4799 /* Development */,
 				299653E7286F612800EA4799 /* ViewExtension.swift */,
+				29F0EB4F2874B69600CA857D /* TextfieldExtension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -266,6 +282,7 @@
 		299653F3286F72C600EA4799 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				298AC6DF2874B0EE005A435D /* EditItem */,
 				29F43C2E287477BA00276EE2 /* EditList */,
 				299653F4286F72D200EA4799 /* ListItems */,
 			);
@@ -447,6 +464,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29F0EB4D2874B1B400CA857D /* EditItemViewModel.swift in Sources */,
 				29545063283FD35100790C2D /* ListsClient.swift in Sources */,
 				299653E2286F422900EA4799 /* ListsViewModel.swift in Sources */,
 				299653D9286F332F00EA4799 /* ItemModel.swift in Sources */,
@@ -463,7 +481,9 @@
 				299653D5286F2E7700EA4799 /* UserModel.swift in Sources */,
 				291C158D2818722E00A89846 /* stockProjectApp.swift in Sources */,
 				29F43C30287477CF00276EE2 /* EditListViewModel.swift in Sources */,
+				29F0EB502874B69600CA857D /* TextfieldExtension.swift in Sources */,
 				299653EE286F6C3000EA4799 /* ListIcon.swift in Sources */,
+				29F0EB4B2874B1AB00CA857D /* EditItemView.swift in Sources */,
 				299653EB286F6C0000EA4799 /* ListRow.swift in Sources */,
 				299653F6286F72DC00EA4799 /* ListItemsView.swift in Sources */,
 				299653FC286F78E700EA4799 /* Stepper.swift in Sources */,

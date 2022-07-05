@@ -41,7 +41,7 @@ struct ListsView: View {
             }
             .toolbar {
                 ToolbarItemGroup(placement: .bottomBar) {
-                    Button(action: { viewModel.showEditSheet.toggle() }) {
+                    Button(action: viewModel.createList) {
                         Image(systemName: "plus.circle.fill")
                         Text("Nova lista")
                     }

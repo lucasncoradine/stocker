@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct EditListView: View {
+    private let navigationTitle: String
+    
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel: EditListViewModel
     
     // MARK: - Lifecycle
     init(list: ListModel? = nil) {
         self._viewModel = StateObject(wrappedValue: EditListViewModel(with: list ?? ListModel(name: "")))
+        self.navigationTitle = list?.name ?? "Nova lista"
     }
     
     // MARK: - View
@@ -32,17 +35,12 @@ struct EditListView: View {
                                 .background(Color(.systemGray5))
                                 .cornerRadius(13)
                                 .multilineTextAlignment(.center)
-                            
-                            if viewModel.showNameFieldError {
-                                Text("Nome da lista é obrigatório")
-                                    .foregroundColor(.red)
-                                    .font(.caption)
-                            }
+                                .fieldError(viewModel.showNameFieldError, message: "Nome da lista é obrigatório")
                         }
                     }
                 }
             }
-            .navigationTitle(viewModel.list.name.isEmpty ? "Nova lista" : viewModel.list.name)
+            .navigationTitle(navigationTitle)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {

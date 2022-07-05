@@ -44,8 +44,13 @@ class ListsViewModel: ObservableObject {
     }
     
     func editList(_ list: ListModel) {
-        showEditSheet = true
         selectedList = list
+        showEditSheet = true
+    }
+    
+    func createList() {
+        selectedList = nil
+        showEditSheet = true
     }
     
     func deleteList(id: String?) {
