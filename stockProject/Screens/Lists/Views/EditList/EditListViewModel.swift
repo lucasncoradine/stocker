@@ -8,7 +8,7 @@
 import Foundation
 
 class EditListViewModel: ObservableObject {
-    private let client: ListsClient = .init()
+    private let client: APIClient<ListModel> = .init(collection: .lists)
     
     @Published var list: ListModel
     @Published var errorMessage: String = ""
@@ -30,13 +30,15 @@ class EditListViewModel: ObservableObject {
     
     // MARK: - Methods
     func saveList(_ completion: () -> Void) {
-        guard list.name.isEmpty == false
+        guard
+            list.name.isEmpty == false,
+            let id = list.id
         else {
             showNameFieldError = true
             return
         }
         
-        client.saveList(with: list, failure: requestFailed)
+        client.save(id: id, with: list, failure: requestFailed)
         completion()
     }
 }

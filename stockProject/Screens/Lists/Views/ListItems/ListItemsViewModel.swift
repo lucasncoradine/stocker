@@ -8,7 +8,7 @@
 import Foundation
 
 class ListItemsViewModel: ObservableObject {
-    private let client: ListsClient = .init()
+    private let client: APIClient<ItemModel>
     let listId: String
     
     @Published var items: [ItemModel] = []
@@ -19,6 +19,7 @@ class ListItemsViewModel: ObservableObject {
     
     // MARK: Lifecycle
     init(listId: String) {
+        client = APIClient(collection: .items(listId: listId))
         self.listId = listId
     }
     
@@ -33,11 +34,9 @@ class ListItemsViewModel: ObservableObject {
     
     // MARK: - Methods
     func fetchItems() {
-        client.fetchItems(of: listId, failure: requestFailed) { data in
-            DispatchQueue.main.async {
-                self.items = data
-                self.isLoading = false
-            }
+        client.fetch(failure: requestFailed) { data in
+            self.items = data
+            self.isLoading = false
         }
     }
     
@@ -53,6 +52,6 @@ class ListItemsViewModel: ObservableObject {
     
     func deleteItem(id: String?) {
         guard let id = id else { return }
-        client.deleteItem(id: id, listId: listId, failure: requestFailed)
+        client.delete(id: id, failure: requestFailed)
     }
 }

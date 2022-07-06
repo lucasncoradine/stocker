@@ -17,19 +17,21 @@ enum VoidResult {
 // MARK: - FirebaseCollection
 enum FirebaseCollection {
     case users
-    case lists(userId: String)
-    case items(userId: String, listId: String)
-    case shoppingList(userId: String, listId: String)
+    case lists
+    case items(listId: String)
+    case shoppingList(listId: String)
     
     var path: String {
+        let userId = FirebaseClient.shared.userId
+        
         switch self {
         case .users:
             return "users"
-        case .lists(let userId):
+        case .lists:
             return "users/\(userId)/lists"
-        case .items(let userId, let listId):
+        case .items(let listId):
             return "users/\(userId)/lists/\(listId)/items"
-        case .shoppingList(let userId, let listId):
+        case .shoppingList(let listId):
             return "users/\(userId)/lists/\(listId)/shoppingList"
         }
     }
@@ -42,7 +44,7 @@ enum FirebaseError: Error {
 
 // MARK: - FirebaseClientShared
 class FirebaseClientShared {
-    var userId: String?
+    var userId: String = dev_userId
 }
 
 // MARK: - FirebaseClient
@@ -54,9 +56,10 @@ class FirebaseClient {
     init() {
         self.database = Firestore.firestore()
     }
-    
-    
+        
     // MARK: - Methods
+    
+    // TODO: Authentication
     
     /// Gets all documents from the desired collection
     /// - parameter type: The type of the documents which will be fetched.

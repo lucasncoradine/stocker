@@ -8,7 +8,7 @@
 import Foundation
 
 class EditItemViewModel: ObservableObject {
-    private let client: ListsClient = .init()
+    private let client: APIClient<ItemModel>
     private let listId: String
     
     @Published var item: ItemModel
@@ -26,19 +26,22 @@ class EditItemViewModel: ObservableObject {
     
     // MARK: - Lifecycle
     init(from listId: String, with model: ItemModel) {
+        self.client = .init(collection: .items(listId: listId))
         self.listId = listId
         self.item = model
     }
     
     // MARK: - Methods
     func saveItem(_ completion: () -> Void) {
-        guard item.name.isEmpty == false
+        guard
+            item.name.isEmpty == false,
+            let id = item.id
         else {
             showFieldRequired = true
             return
         }
         
-        client.saveItem(with: item, listId: listId, failure: requestFailed)
+        client.save(id: id, with: item, failure: requestFailed)
         completion()
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 class ListsViewModel: ObservableObject {
-    private let client: ListsClient = .init()
+    private let client: APIClient<ListModel> = .init(collection: .lists)
     
     @Published var isLoading: Bool = true
     @Published var errorMessage: String = ""
@@ -30,7 +30,7 @@ class ListsViewModel: ObservableObject {
     func fetchLists() {
         isLoading = true
         
-        client.fetchLists(of: dev_userId, failure: requestFailed) { data in
+        client.fetch(failure: requestFailed) { data in
             DispatchQueue.main.async {
                 self.lists = data
                 self.isLoading = false
@@ -55,6 +55,6 @@ class ListsViewModel: ObservableObject {
     
     func deleteList(id: String?) {
         guard let id = id else { return }
-        client.deleteList(id: id, failure: requestFailed)
+        client.delete(id: id, failure: requestFailed)
     }
 }
