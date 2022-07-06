@@ -15,9 +15,9 @@ struct Stepper: View {
     let minValue: Int
     let onChangeClosure: (_ value: Int) -> Void
     
-    @State var counter: Int
-    @State var decreaseDisabled: Bool = false
-    @State var increaseDisabled: Bool = false
+    @State private var counter: Int
+    @State private var decreaseDisabled: Bool = false
+    @State private var increaseDisabled: Bool = false
     @FocusState private var counterFieldFocused: Bool
     
     // MARK: - Lifecycle
@@ -26,7 +26,8 @@ struct Stepper: View {
          description: String = "",
          minValue: Int = 0,
          maxValue: Int = 99,
-         onChange: @escaping (_ value: Int) -> Void = { _ in }
+         counterFocused: FocusState<Bool> = .init(),
+         onChange: @escaping (_ value: Int) -> Void = { _ in }         
     ) {
         self.label = label
         self.amount = amount
@@ -34,6 +35,7 @@ struct Stepper: View {
         self._counter = State(initialValue: amount)
         self.minValue = minValue
         self.maxValue = maxValue
+        self._counterFieldFocused = counterFocused
         self.onChangeClosure = onChange
     }
     
@@ -102,14 +104,7 @@ struct Stepper: View {
                     .multilineTextAlignment(.center)
                     .focused($counterFieldFocused)
                     .keyboardType(.numberPad)
-                    .toolbar {
-                        ToolbarItem(placement: .keyboard) {
-                            Button("Done") {
-                                counterFieldFocused = false
-                            }
-                            .foregroundColor(.blue)
-                        }
-                    }
+                    .submitLabel(.done)
                 
                 Divider().fixedSize()
                 

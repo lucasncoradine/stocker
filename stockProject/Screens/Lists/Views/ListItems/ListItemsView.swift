@@ -10,6 +10,7 @@ import SwiftUI
 struct ListItemsView: View {
     private let navigationTitle: String
     @StateObject var viewModel: ListItemsViewModel
+    @FocusState var counterFocused: Bool
     
     // MARK: Lifecycle
     init(listId: String, listName: String) {
@@ -31,13 +32,23 @@ struct ListItemsView: View {
                     
                     Section {
                         ForEach(viewModel.items) { item in
-                            Stepper(label: item.name, amount: item.amount, description: item.description)
+                            Stepper(label: item.name,
+                                    amount: item.amount,
+                                    description: item.description,
+                                    counterFocused: _counterFocused
+                            ) { value in
+                                viewModel.changeAmount(item: item, newValue: value)
+                            }
                             .buttonStyle(.plain)
                             .contextMenu {
+                                Button(action: {}) {
+                                    Label("Adicionar à compras", systemImage: "cart.badge.plus")
+                                }
+                                
                                 Button(action: { viewModel.editItem(item) }) {
                                     Label("Editar", systemImage: "square.and.pencil")
                                 }
-
+                                
                                 Button(role: .destructive, action: { viewModel.deleteItem(id: item.id) }) {
                                     Label("Remover", systemImage: "trash")
                                 }
@@ -62,6 +73,14 @@ struct ListItemsView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: viewModel.createItem) {
                     Image(systemName: "plus")
+                }
+            }
+            
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                
+                Button("Done") {
+                    counterFocused = false
                 }
             }
         }
