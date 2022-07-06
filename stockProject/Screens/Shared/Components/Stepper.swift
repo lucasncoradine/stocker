@@ -13,8 +13,7 @@ struct Stepper: View {
     let amount: Int
     let maxValue: Int
     let minValue: Int
-    let onIncreaseClosure: () -> Void
-    let onDecreaseClosure: () -> Void
+    let onChangeClosure: (_ value: Int) -> Void
     
     @State var counter: Int
     @State var decreaseDisabled: Bool = false
@@ -27,8 +26,7 @@ struct Stepper: View {
          description: String = "",
          minValue: Int = 0,
          maxValue: Int = 99,
-         onDecrease: @escaping () -> Void = {},
-         onIncrease: @escaping () -> Void = {}
+         onChange: @escaping (_ value: Int) -> Void = { _ in }
     ) {
         self.label = label
         self.amount = amount
@@ -36,8 +34,7 @@ struct Stepper: View {
         self._counter = State(initialValue: amount)
         self.minValue = minValue
         self.maxValue = maxValue
-        self.onDecreaseClosure = onDecrease
-        self.onIncreaseClosure = onIncrease
+        self.onChangeClosure = onChange
     }
     
     private var formatter: NumberFormatter {
@@ -52,20 +49,23 @@ struct Stepper: View {
     private func increase() {
         if counter < maxValue {
             counter += 1
-            onIncreaseClosure()
         }
     }
     
     private func decrease() {
         if counter > minValue {
             counter -= 1
-            onDecreaseClosure()
         }
     }
     
-    private func onCounterChange() {
+    private func validateCounter() {
         decreaseDisabled = counter <= minValue
         increaseDisabled = counter >= maxValue
+    }
+    
+    private func onCounterChange(_ value: Int) {
+        onChangeClosure(value)
+        validateCounter()
     }
     
     // MARK: - View
@@ -93,26 +93,24 @@ struct Stepper: View {
                         .padding(.leading, 8)
                 }
                 .disabled(decreaseDisabled)
-                                
+                
                 Divider().fixedSize()
                 
                 // Count
                 TextField("", value: $counter, formatter: self.formatter)
                     .frame(width: 30)
                     .multilineTextAlignment(.center)
-                    .keyboardType(.numberPad)
                     .focused($counterFieldFocused)
+                    .keyboardType(.numberPad)
                     .toolbar {
-                        ToolbarItemGroup(placement: .keyboard) {
-                            Spacer()
-                            
+                        ToolbarItem(placement: .keyboard) {
                             Button("Done") {
                                 counterFieldFocused = false
                             }
                             .foregroundColor(.blue)
                         }
                     }
-                                
+                
                 Divider().fixedSize()
                 
                 // Increase button
@@ -125,11 +123,11 @@ struct Stepper: View {
             }
             .background(Color(.systemGray6))
             .clipShape(RoundedRectangle(cornerRadius: 7))
-            .onChange(of: counter) { _ in
-                onCounterChange()
+            .onChange(of: counter) { value in
+                onCounterChange(value)
             }
         }
-        .onAppear(perform: onCounterChange)
+        .onAppear(perform: validateCounter)
     }
 }
 

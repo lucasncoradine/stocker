@@ -7,6 +7,23 @@
 
 import Foundation
 
+enum AmountChangeType {
+    case increment
+    case decrement
+    case custom(value: Int)
+    
+    var value: Int {
+        switch self {
+        case .increment:
+            return 1
+        case .decrement:
+            return -1
+        case .custom(let value):
+            return value
+        }
+    }
+}
+
 class ListItemsViewModel: ObservableObject {
     private let client: APIClient<ItemModel>
     let listId: String
@@ -48,6 +65,15 @@ class ListItemsViewModel: ObservableObject {
     func createItem() {
         selectedItem = nil
         openEdit = true
+    }
+    
+    func changeAmount(item: ItemModel, newValue: Int) {
+        guard let id = item.id else { return }
+        
+        client.updateValue(id: id,
+                           field: ItemModel.CodingKeys.amount.stringValue,
+                           value: newValue,
+                           failure: requestFailed)
     }
     
     func deleteItem(id: String?) {

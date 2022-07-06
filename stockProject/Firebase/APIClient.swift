@@ -69,6 +69,12 @@ class APIClient<T: Codable> {
         }
     }
     
+    func updateValue(id: String, field: String, value: Any, failure: @escaping FailureClosure) {
+        client.updateFieldValue(of: id, at: collection, field: field, with: value) { result in
+            self.client.handleResult(result, failure: failure)
+        }
+    }
+    
     func stopListeners() {
         listeners.forEach { listener in
             listener.remove()

@@ -32,21 +32,21 @@ struct ListItemsView: View {
                     Section {
                         ForEach(viewModel.items) { item in
                             Stepper(label: item.name, amount: item.amount, description: item.description)
-                                .buttonStyle(.plain)
-                                .contextMenu {
-                                    Button(action: { viewModel.editItem(item) }) {
-                                        Label("Editar", systemImage: "square.and.pencil")
-                                    }
-                                    
-                                    Button(role: .destructive, action: { viewModel.deleteItem(id: item.id) }) {
-                                        Label("Remover", systemImage: "trash")
-                                    }
+                            .buttonStyle(.plain)
+                            .contextMenu {
+                                Button(action: { viewModel.editItem(item) }) {
+                                    Label("Editar", systemImage: "square.and.pencil")
                                 }
-                                .swipeActions {
-                                    Button(role: .destructive, action: { viewModel.deleteItem(id: item.id) } ) {
-                                        Label("Remover", systemImage: "trash")
-                                    }
+
+                                Button(role: .destructive, action: { viewModel.deleteItem(id: item.id) }) {
+                                    Label("Remover", systemImage: "trash")
                                 }
+                            }
+                            .swipeActions {
+                                Button(role: .destructive, action: { viewModel.deleteItem(id: item.id) } ) {
+                                    Label("Remover", systemImage: "trash")
+                                }
+                            }
                         }
                     }
                 }

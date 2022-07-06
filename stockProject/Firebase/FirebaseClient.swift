@@ -242,6 +242,28 @@ class FirebaseClient {
         listener.remove()
     }
     
+    /// Updates the field’s current value by the given value.
+    /// - parameter of documentId: The ID of the document to update
+    /// - parameter at collection: The collection of the document
+    /// - parameter field: The Field to update
+    /// - parameter with value: The new value of the field
+    /// - parameter completion: A closure to handle the result of the request
+    func updateFieldValue(of documentId: String,
+                          at collection: FirebaseCollection,
+                          field: String,
+                          with value: Any,
+                          completion: @escaping (_ result: VoidResult) -> Void) {
+        database.collection(collection.path).document(documentId).updateData([field: value]) { error in
+            guard let error = error
+            else {
+                completion(.success)
+                return
+            }
+            
+            completion(.failure(error))
+        }
+    }
+    
     // MARK: - Helper functions
     /// Handles the error and returns its description
     /// - parameter error: The error to handle
