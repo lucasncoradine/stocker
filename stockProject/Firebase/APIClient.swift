@@ -25,10 +25,11 @@ class APIClient<T: Codable> {
     }
     
     // MARK: - Methods
-    func fetch(failure: @escaping FailureClosure,
+    func fetch(query: FirebaseQueryType? = nil,
+               failure: @escaping FailureClosure,
                success: @escaping (_ data: [T]) -> Void
     ) {
-        let listener = client.listenToChanges(at: collection, as: T.self) { result in
+        let listener = client.listenToChanges(at: collection, as: T.self, query: query) { result in
             self.client.handleResult(result, success: success, failure: failure)
         }
         
@@ -37,14 +38,15 @@ class APIClient<T: Codable> {
     
     func save(id: String,
               with data: T,
-              failure: @escaping FailureClosure
+              failure: @escaping FailureClosure,
+              canCreateNew: Bool = true
     ) {
         client.documentExists(documentId: id, at: collection, failure: failure) { exists in
             if exists {
                 self.client.updateDocument(documentId: id, with: data, from: self.collection) { result in
                     self.client.handleResult(result, failure: failure)
                 }
-            } else {
+            } else if canCreateNew {
                 self.client.addDocument(data, to: self.collection) { result in
                     self.client.handleResult(result, success: { _ in }, failure: failure)
                 }

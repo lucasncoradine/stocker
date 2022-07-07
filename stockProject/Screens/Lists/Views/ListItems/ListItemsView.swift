@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ListItemsView: View {
     private let navigationTitle: String
+    
     @StateObject var viewModel: ListItemsViewModel
     @FocusState var counterFocused: Bool
     
@@ -25,7 +26,7 @@ struct ListItemsView: View {
             } else {
                 List {
                     Section {
-                        NavigationLink(destination: {}) {
+                        NavigationLink(destination: ShoppingListView(listId: viewModel.listId)) {
                             Text("Lista de compras")
                         }
                     }
@@ -37,11 +38,11 @@ struct ListItemsView: View {
                                     description: item.description,
                                     counterFocused: _counterFocused
                             ) { value in
-                                viewModel.changeAmount(item: item, newValue: value)
+                                viewModel.changeAmount(itemId: item.id, newValue: value)
                             }
                             .buttonStyle(.plain)
                             .contextMenu {
-                                Button(action: {}) {
+                                Button(action: { viewModel.addToShoppingList(itemId: item.id) }) {
                                     Label("Adicionar à compras", systemImage: "cart.badge.plus")
                                 }
                                 

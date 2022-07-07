@@ -56,7 +56,7 @@ class FirebaseClient {
     init() {
         self.database = Firestore.firestore()
     }
-        
+    
     // MARK: - Methods
     
     // TODO: Authentication
@@ -68,9 +68,10 @@ class FirebaseClient {
     /// - returns: The result of the request
     func getDocuments<T: Decodable>(as type: T.Type,
                                     from collection: FirebaseCollection,
+                                    query: FirebaseQueryType? = nil,
                                     completion: @escaping (_ result: Result<[T], Error>) -> Void
     ) {
-        database.collection(collection.path).getDocuments { (querySnapshot, error) in
+        database.collection(collection.path).makeQuery(query).getDocuments { (querySnapshot, error) in
             if let error = error {
                 completion(.failure(error))
                 return
@@ -211,9 +212,10 @@ class FirebaseClient {
     /// - parameter completion: A closure to handle the result of this request
     func listenToChanges<T: Decodable>(at collection: FirebaseCollection,
                                        as type: T.Type,
+                                       query: FirebaseQueryType? = nil,
                                        completion: @escaping (_ result: Result<[T], Error>) -> Void
     ) -> ListenerRegistration {
-        return database.collection(collection.path).addSnapshotListener { (querySnapshot, error) in
+        return database.collection(collection.path).makeQuery(query).addSnapshotListener { (querySnapshot, error) in
             if let error = error {
                 completion(.failure(error))
                 return
@@ -308,5 +310,25 @@ class FirebaseClient {
         case .failure(let error):
             failure(self.handleError(error))
         }
+    }
+}
+
+
+// MARK: - CollectionReference Extension
+
+enum FirebaseQueryType {
+    case isEqual(field: String, to: Any)
+}
+
+extension CollectionReference {
+    func makeQuery(_ type: FirebaseQueryType? = nil) -> Query {
+        if let type = type {
+            switch type {
+            case .isEqual(let field, let value):
+                return self.whereField(field, isEqualTo: value)
+            }
+        }
+        
+        return self
     }
 }

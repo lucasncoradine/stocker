@@ -67,12 +67,21 @@ class ListItemsViewModel: ObservableObject {
         openEdit = true
     }
     
-    func changeAmount(item: ItemModel, newValue: Int) {
-        guard let id = item.id else { return }
+    func changeAmount(itemId: String?, newValue: Int) {
+        guard let id = itemId else { return }
         
         client.updateValue(id: id,
                            field: ItemModel.CodingKeys.amount.stringValue,
                            value: newValue,
+                           failure: requestFailed)
+    }
+    
+    func addToShoppingList(itemId: String?) {
+        guard let id = itemId else { return }
+        
+        client.updateValue(id: id,
+                           field: ItemModel.CodingKeys.inShoppingList.stringValue,
+                           value: true,
                            failure: requestFailed)
     }
     
