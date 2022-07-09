@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-struct ItemModel: ModelProtocol {
+struct ItemModel: ModelProtocol, Hashable {
     @DocumentID var id: String? = UUID().uuidString
     var name: String
     var description: String

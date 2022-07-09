@@ -21,7 +21,7 @@ struct ListIcon: View {
         ZStack {
             Circle()
                 .fill(.green)
-                .frame(width: circleSize)
+                .frame(width: circleSize, height: circleSize)
             
             Image(systemName: "archivebox.fill")
                 .foregroundColor(.white)
@@ -34,5 +34,6 @@ struct ListIcon_Previews: PreviewProvider {
     static var previews: some View {
         ListIcon()
             .previewLayout(.sizeThatFits)
+            .padding()
     }
 }

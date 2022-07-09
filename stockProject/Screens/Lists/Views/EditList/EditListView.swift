@@ -22,11 +22,11 @@ struct EditListView: View {
     // MARK: - View
     var body: some View {
         NavigationView {
-            List {
+            Form {
                 Section {
                     VStack(alignment: .center) {
-                        ListIcon()
-                            .padding([.bottom, .top], 20)
+                        ListIcon(size: 64)
+                            .padding(.bottom, 10)
                         
                         VStack {
                             TextField("Nome da lista", text: $viewModel.list.name)
@@ -38,6 +38,7 @@ struct EditListView: View {
                                 .fieldError(viewModel.showNameFieldError, message: "Nome da lista é obrigatório")
                         }
                     }
+                    .padding()
                 }
             }
             .navigationTitle(navigationTitle)
@@ -52,11 +53,11 @@ struct EditListView: View {
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
+                    Button {
                         viewModel.saveList {
                             dismiss()
                         }
-                    }) {
+                    } label: {
                         Text("Salvar").bold()
                     }
                 }

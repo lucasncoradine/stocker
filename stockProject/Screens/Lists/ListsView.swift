@@ -39,6 +39,11 @@ struct ListsView: View {
                     }
                 }
             }
+            .showLoading(viewModel.isLoading)
+            .errorAlert(visible: $viewModel.showError,
+                        message: viewModel.errorMessage,
+                        action: viewModel.reloadList)
+            .navigationTitle("Listas")
             .toolbar {
                 ToolbarItemGroup(placement: .bottomBar) {
                     Button(action: viewModel.createList) {
@@ -53,11 +58,6 @@ struct ListsView: View {
             .sheet(isPresented: $viewModel.showEditSheet, content: {
                 EditListView(list: viewModel.selectedList)
             })
-            .showLoading(viewModel.isLoading)
-            .errorAlert(visible: $viewModel.showError,
-                        message: viewModel.errorMessage,
-                        action: viewModel.reloadList)
-            .navigationTitle("Listas")
             .onAppear(perform: viewModel.fetchLists)
         }
     }

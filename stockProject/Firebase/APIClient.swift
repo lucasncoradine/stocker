@@ -71,9 +71,25 @@ class APIClient<T: Codable> {
         }
     }
     
+    func delete(ids: [String],
+                failure: @escaping FailureClosure
+    ) {
+        client.deleteDocuments(ids: ids, from: collection) { result in
+            self.client.handleResult(result, failure: failure)
+        }
+    }
+    
     func updateValue(id: String, field: String, value: Any, failure: @escaping FailureClosure) {
         client.updateFieldValue(of: id, at: collection, field: field, with: value) { result in
             self.client.handleResult(result, failure: failure)
+        }
+    }
+    
+    func updateValue(ids: [String], field: String, value: Any, failure: @escaping FailureClosure) {
+        ids.forEach { id in
+            client.updateFieldValue(of: id, at: collection, field: field, with: value) { result in
+                self.client.handleResult(result, failure: failure)
+            }
         }
     }
     

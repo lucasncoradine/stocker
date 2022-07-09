@@ -23,12 +23,12 @@ struct EditItemView: View {
     //MARK: - View
     var body: some View {
         NavigationView {
-            List {
+            Form {
                 Section {
-                    TextField("Name (required)", text: $viewModel.item.name)
-                        .fieldError(viewModel.showFieldRequired, message: "Name is required")
+                    TextField("Nome", text: $viewModel.item.name)
+                        .fieldError(viewModel.showFieldRequired, message: "Nome do item é obrigatório")
                     
-                    TextField("Description", text: $viewModel.item.description)
+                    TextField("Descrição", text: $viewModel.item.description)
                 }
             }
             .navigationTitle(navigationTitle)

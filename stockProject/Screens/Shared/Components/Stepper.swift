@@ -116,11 +116,10 @@ struct Stepper: View {
                 }
                 .disabled(increaseDisabled)
             }
-            .background(Color(.systemGray6))
             .clipShape(RoundedRectangle(cornerRadius: 7))
-            .onChange(of: counter) { value in
-                onCounterChange(value)
-            }
+        }
+        .onChange(of: counter) { value in
+            onCounterChange(value)
         }
         .onAppear(perform: validateCounter)
     }

@@ -29,4 +29,8 @@ extension View {
             }
         }
     }
+    
+    func toast(isShowing: Binding<Bool>, message: String) -> some View {
+        self.modifier(ToastModifier(isShowing: isShowing, message: message))
+    }
 }
