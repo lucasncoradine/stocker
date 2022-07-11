@@ -15,7 +15,7 @@ struct EditItemView: View {
     
     // MARK: - Lifecycle
     init(listId: String, item: ItemModel? = nil) {
-        let itemModel = item ?? ItemModel(name: "", description: "", amount: 0)
+        let itemModel = item ?? ItemModel(name: "", description: "", amount: 1)
         self._viewModel = StateObject(wrappedValue: EditItemViewModel(from: listId, with: itemModel))
         self.navigationTitle = item?.name ?? "Novo item"
     }

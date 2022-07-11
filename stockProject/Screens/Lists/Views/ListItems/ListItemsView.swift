@@ -13,7 +13,7 @@ struct ListItemsView: View {
     @StateObject var viewModel: ListItemsViewModel
     @FocusState var counterFocused: Bool
     
-    // MARK: Lifecycle
+    // MARK: - Lifecycle
     init(listId: String, listName: String) {
         self._viewModel = StateObject(wrappedValue: .init(listId: listId))
         self.listName = listName
@@ -21,7 +21,8 @@ struct ListItemsView: View {
         UITableView.appearance().isScrollEnabled = false
     }
     
-    func navigationTitle() -> String {
+    // MARK: - Private variables and functions
+    private func navigationTitle() -> String {
         let selectedCount: Int = viewModel.selection.count
         
         if selectedCount == 0 {
@@ -32,6 +33,7 @@ struct ListItemsView: View {
         }
     }
     
+    // MARK: - View
     var body: some View {
         VStack(spacing: 0) {
             List {
@@ -48,9 +50,16 @@ struct ListItemsView: View {
                 Section {
                     ForEach(viewModel.items, id: \.id) { item in
                         HStack {
+                            let needToBuy: Bool = item.amount == 0
+                            
                             // MARK: Checkmark icon
                             if viewModel.isEditing {
                                 Checkmark(selected: viewModel.selection.contains(item.id))
+                            }
+                            
+                            if needToBuy {
+                                Image(systemName: "exclamationmark.circle")
+                                    .foregroundColor(needToBuy ? .orange : Color(.label))
                             }
                             
                             Stepper(label: item.name,
@@ -58,8 +67,9 @@ struct ListItemsView: View {
                                     description: item.description,
                                     counterFocused: _counterFocused
                             ) { value in
-                                viewModel.changeAmount(itemId: item.id, newValue: value)
+                                viewModel.changeAmount(itemId: item.id, itemName: item.name, newValue: value)
                             }
+                            .foregroundColor(needToBuy ? .orange : Color(.label))
                             .buttonStyle(.plain)
                             .disabled(viewModel.isEditing)
                         }

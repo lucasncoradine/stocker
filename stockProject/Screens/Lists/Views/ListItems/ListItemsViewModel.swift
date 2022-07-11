@@ -85,7 +85,7 @@ class ListItemsViewModel: ObservableObject {
         openEdit = true
     }
     
-    func changeAmount(itemId: String?, newValue: Int) {
+    func changeAmount(itemId: String?, itemName: String, newValue: Int) {
         guard let id = itemId else { return }
         
         client.updateValue(id: id,
