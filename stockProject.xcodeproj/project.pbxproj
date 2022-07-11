@@ -18,6 +18,9 @@
 		2922965F283FA2AC00C5E888 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 2922965E283FA2AC00C5E888 /* FirebaseFirestore */; };
 		29229661283FA2AC00C5E888 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 29229660283FA2AC00C5E888 /* FirebaseFirestoreSwift */; };
 		29229663283FA2AC00C5E888 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 29229662283FA2AC00C5E888 /* FirebaseMessaging */; };
+		292BBF9F2879D63100C7F4BF /* Checkmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292BBF9E2879D63100C7F4BF /* Checkmark.swift */; };
+		292BBFA12879DF1C00C7F4BF /* CheckmarkLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292BBFA02879DF1C00C7F4BF /* CheckmarkLabel.swift */; };
+		292BBFA32879DF5200C7F4BF /* TextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292BBFA22879DF5200C7F4BF /* TextExtension.swift */; };
 		292F7FAE283FECE7004F6FD4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 292F7FAD283FECD6004F6FD4 /* GoogleService-Info.plist */; };
 		2954505D283FB79300790C2D /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2954505C283FB79300790C2D /* FirebaseClient.swift */; };
 		29545063283FD35100790C2D /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29545062283FD35100790C2D /* APIClient.swift */; };
@@ -25,7 +28,7 @@
 		299653D7286F32C400EA4799 /* ListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653D6286F32C400EA4799 /* ListModel.swift */; };
 		299653D9286F332F00EA4799 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653D8286F332F00EA4799 /* ItemModel.swift */; };
 		299653DB286F343200EA4799 /* ModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653DA286F343200EA4799 /* ModelProtocol.swift */; };
-		299653DD286F363400EA4799 /* ShoppingListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653DC286F363400EA4799 /* ShoppingListModel.swift */; };
+		299653DD286F363400EA4799 /* ShoppingItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653DC286F363400EA4799 /* ShoppingItemModel.swift */; };
 		299653E0286F422100EA4799 /* ListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653DF286F422100EA4799 /* ListsView.swift */; };
 		299653E2286F422900EA4799 /* ListsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653E1286F422900EA4799 /* ListsViewModel.swift */; };
 		299653E6286F524300EA4799 /* DevelopmentVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653E5286F524300EA4799 /* DevelopmentVariables.swift */; };
@@ -76,6 +79,9 @@
 		291C15A32818723000A89846 /* stockProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = stockProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		291C15A72818723000A89846 /* stockProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stockProjectUITests.swift; sourceTree = "<group>"; };
 		291C15A92818723000A89846 /* stockProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stockProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		292BBF9E2879D63100C7F4BF /* Checkmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkmark.swift; sourceTree = "<group>"; };
+		292BBFA02879DF1C00C7F4BF /* CheckmarkLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkLabel.swift; sourceTree = "<group>"; };
+		292BBFA22879DF5200C7F4BF /* TextExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextExtension.swift; sourceTree = "<group>"; };
 		292F7FAD283FECD6004F6FD4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2954505C283FB79300790C2D /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
 		29545062283FD35100790C2D /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
@@ -83,7 +89,7 @@
 		299653D6286F32C400EA4799 /* ListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModel.swift; sourceTree = "<group>"; };
 		299653D8286F332F00EA4799 /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
 		299653DA286F343200EA4799 /* ModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelProtocol.swift; sourceTree = "<group>"; };
-		299653DC286F363400EA4799 /* ShoppingListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListModel.swift; sourceTree = "<group>"; };
+		299653DC286F363400EA4799 /* ShoppingItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingItemModel.swift; sourceTree = "<group>"; };
 		299653DF286F422100EA4799 /* ListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsView.swift; sourceTree = "<group>"; };
 		299653E1286F422900EA4799 /* ListsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsViewModel.swift; sourceTree = "<group>"; };
 		299653E5286F524300EA4799 /* DevelopmentVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevelopmentVariables.swift; sourceTree = "<group>"; };
@@ -221,7 +227,7 @@
 				299653D4286F2E7700EA4799 /* UserModel.swift */,
 				299653D6286F32C400EA4799 /* ListModel.swift */,
 				299653D8286F332F00EA4799 /* ItemModel.swift */,
-				299653DC286F363400EA4799 /* ShoppingListModel.swift */,
+				299653DC286F363400EA4799 /* ShoppingItemModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -316,6 +322,8 @@
 			children = (
 				299653ED286F6C3000EA4799 /* ListIcon.swift */,
 				299653FB286F78E700EA4799 /* Stepper.swift */,
+				292BBF9E2879D63100C7F4BF /* Checkmark.swift */,
+				292BBFA02879DF1C00C7F4BF /* CheckmarkLabel.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -341,6 +349,7 @@
 			children = (
 				299653E7286F612800EA4799 /* ViewExtension.swift */,
 				29F0EB4F2874B69600CA857D /* TextfieldExtension.swift */,
+				292BBFA22879DF5200C7F4BF /* TextExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -515,15 +524,18 @@
 				299653E6286F524300EA4799 /* DevelopmentVariables.swift in Sources */,
 				29F0EB562876266800CA857D /* ShoppingListView.swift in Sources */,
 				29F0EB582876267000CA857D /* ShoppingListViewModel.swift in Sources */,
-				299653DD286F363400EA4799 /* ShoppingListModel.swift in Sources */,
+				299653DD286F363400EA4799 /* ShoppingItemModel.swift in Sources */,
 				291C158F2818722E00A89846 /* ContentView.swift in Sources */,
 				29F43C32287477E100276EE2 /* EditListView.swift in Sources */,
 				299653D7286F32C400EA4799 /* ListModel.swift in Sources */,
+				292BBFA32879DF5200C7F4BF /* TextExtension.swift in Sources */,
 				299653E0286F422100EA4799 /* ListsView.swift in Sources */,
 				299653D5286F2E7700EA4799 /* UserModel.swift in Sources */,
 				291C158D2818722E00A89846 /* stockProjectApp.swift in Sources */,
 				29F43C30287477CF00276EE2 /* EditListViewModel.swift in Sources */,
 				29F0EB502874B69600CA857D /* TextfieldExtension.swift in Sources */,
+				292BBF9F2879D63100C7F4BF /* Checkmark.swift in Sources */,
+				292BBFA12879DF1C00C7F4BF /* CheckmarkLabel.swift in Sources */,
 				299653EE286F6C3000EA4799 /* ListIcon.swift in Sources */,
 				29F0EB4B2874B1AB00CA857D /* EditItemView.swift in Sources */,
 				29C9A1DD28771D0D000FDEF8 /* CustomFunctions.swift in Sources */,

@@ -10,7 +10,7 @@ import SwiftUI
 extension View {
     /// Shows a ProgressView if the condition is satisfied
     @ViewBuilder func showLoading(_ condition: Bool) -> some View {
-        if condition == true {
+        if condition {
             ProgressView()
         } else {
             self
@@ -30,7 +30,22 @@ extension View {
         }
     }
     
+    /// Shows a toast with a custom message
     func toast(isShowing: Binding<Bool>, message: String) -> some View {
         self.modifier(ToastModifier(isShowing: isShowing, message: message))
+    }
+    
+    /// Show the empty view if the condition is satisfied
+    @ViewBuilder func showEmptyView(_ condition: Bool, emptyText: String) -> some View {
+        if condition {
+            EmptyView(text: emptyText)
+        } else {
+            self
+        }
+    }
+    
+    /// Hide the view if the condition is satisfied
+    @ViewBuilder func visible(_ condition: Bool) -> some View {
+        self.opacity(condition ? 1 : 0)
     }
 }

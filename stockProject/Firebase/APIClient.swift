@@ -39,10 +39,11 @@ class APIClient<T: Codable> {
     func save(id: String,
               with data: T,
               failure: @escaping FailureClosure,
-              canCreateNew: Bool = true
+              canCreateNew: Bool = true,
+              forceUpdate: Bool = false
     ) {
         client.documentExists(documentId: id, at: collection, failure: failure) { exists in
-            if exists {
+            if exists || forceUpdate {
                 self.client.updateDocument(documentId: id, with: data, from: self.collection) { result in
                     self.client.handleResult(result, failure: failure)
                 }

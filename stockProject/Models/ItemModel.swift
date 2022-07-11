@@ -13,13 +13,11 @@ struct ItemModel: ModelProtocol, Hashable {
     var name: String
     var description: String
     var amount: Int
-    var inShoppingList: Bool = false
     
     enum CodingKeys: CodingKey {
         case id
         case name
         case description
         case amount
-        case inShoppingList
     }
 }

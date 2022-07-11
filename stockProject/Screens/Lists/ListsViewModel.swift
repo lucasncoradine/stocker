@@ -31,10 +31,10 @@ class ListsViewModel: ObservableObject {
         isLoading = true
         
         client.fetch(failure: requestFailed) { data in
-            DispatchQueue.main.async {
+//            DispatchQueue.main.async {
                 self.lists = data
                 self.isLoading = false
-            }
+//            }
         }
     }
     

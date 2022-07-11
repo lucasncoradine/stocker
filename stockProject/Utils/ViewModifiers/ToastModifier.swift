@@ -8,47 +8,47 @@
 import Foundation
 import SwiftUI
 
-enum ToastShape {
-    case rounded
-    case capsule
-    
-    var cornerRadius: CGFloat {
-        switch self {
-        case .capsule:
-            return 100
-        case .rounded:
-            return 13
-        }
-    }
-}
-
 struct ToastModifier: ViewModifier {
     @Binding var isShowing: Bool
     let message: String
     let duration: TimeInterval = 3
     
+    @State private var work: DispatchWorkItem? = nil
+    
+    private func createWork() -> DispatchWorkItem {
+        work?.cancel()
+        
+        let newWork = DispatchWorkItem {
+            self.isShowing = false
+        }
+        
+        work = newWork
+        
+        return newWork
+    }
+    
     func body(content: Content) -> some View {
         ZStack {
             content
             
-            if isShowing {
-                VStack {
-                    Spacer()
-                    
-                    Text(message)
-                        .font(.footnote)
-                        .padding()
-                        .background(.ultraThinMaterial, in: Capsule())
-                }
-                .onAppear {
-                    doAfter(duration) {
-                        isShowing = false
-                    }
-                }
-                .onTapGesture {
-                    isShowing = false
-                }
+            VStack {
+                Spacer()
+                
+                Text(message)
+                    .font(.footnote)
+                    .padding()
+                    .background(.ultraThinMaterial, in: Capsule())
             }
+            .onChange(of: isShowing, perform: { show in
+                if show {
+                    let work = createWork()
+                    doAfter(duration, work: work)
+                }
+            })
+            .onTapGesture {
+                isShowing = false
+            }
+            .visible(isShowing)
         }
         .animation(.easeOut, value: isShowing)
     }

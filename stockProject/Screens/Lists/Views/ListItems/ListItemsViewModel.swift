@@ -27,6 +27,7 @@ enum AmountChangeType {
 
 class ListItemsViewModel: ObservableObject {
     private let client: APIClient<ItemModel>
+    private let shoppingClient: APIClient<ShoppingItemModel>
     let listId: String
     
     @Published var items: [ItemModel] = []
@@ -42,15 +43,27 @@ class ListItemsViewModel: ObservableObject {
     // MARK: Lifecycle
     init(listId: String) {
         client = APIClient(collection: .items(listId: listId))
+        shoppingClient = APIClient(collection: .shoppingList(listId: listId))
         self.listId = listId
     }
     
     // MARK: - Private Methods
-    func requestFailed(message: String) {
+    private func requestFailed(message: String) {
         DispatchQueue.main.async {
             self.isLoading = false
             self.errorMessage = message
             print(message) // TODO: Remove print
+        }
+    }
+    
+    private func toggleToast() {
+        // Closes current toast if exists
+        if showAddedToast {
+            showAddedToast = false
+        }
+        
+        doAfter(0.2) {
+            self.showAddedToast = true
         }
     }
     
@@ -81,15 +94,16 @@ class ListItemsViewModel: ObservableObject {
                            failure: requestFailed)
     }
     
-    func addToShoppingList(itemId: String?) {
-        guard let id = itemId else { return }
+    func addToShoppingList(itemId: String?, itemName: String, showToast: Bool = true) {
+        guard let itemId = itemId else { return }
         
-        client.updateValue(id: id,
-                           field: ItemModel.CodingKeys.inShoppingList.stringValue,
-                           value: true,
-                           failure: requestFailed)
+        let shoppingItem: ShoppingItemModel = .init(id: itemId, name: itemName)
         
-        showAddedToast.toggle()
+        shoppingClient.save(id: shoppingItem.id!, with: shoppingItem, failure: requestFailed, forceUpdate: true)
+        
+        if showToast {
+            toggleToast()
+        }
     }
     
     func deleteItem(id: String?) {
@@ -105,13 +119,13 @@ class ListItemsViewModel: ObservableObject {
     }
     
     func addSelectedToShoppingList() {
-        let idsToAdd: [String] = selection.asArray()
-        client.updateValue(ids: idsToAdd,
-                           field: ItemModel.CodingKeys.inShoppingList.stringValue,
-                           value: true,
-                           failure: requestFailed)
+        let items: [ItemModel] = self.items.filter { selection.contains($0.id) }
         
-        showAddedToast.toggle()
+        items.forEach { item in
+            addToShoppingList(itemId: item.id, itemName: item.name, showToast: false)
+        }
+        
+        toggleToast()
         toggleSelection()
     }
     
@@ -121,8 +135,16 @@ class ListItemsViewModel: ObservableObject {
         }
     }
     
-    func selectAll() {
-        let ids = items.map { $0.id }
-        selection.toggleMultiple(ids)
+    func toggleAll() {
+        let isAllSelected: Bool = selection.count == items.count
+        
+        if isAllSelected {
+            selection.removeAll()
+        } else {
+            let nonSelectedItems = items.filter { selection.contains($0.id) == false }
+            let ids = nonSelectedItems.map { $0.id }
+            
+            selection.toggleMultiple(ids)
+        }
     }
 }

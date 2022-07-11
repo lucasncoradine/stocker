@@ -8,7 +8,11 @@
 import Foundation
 
 func doAfter(_ interval: TimeInterval, closure: @escaping () -> Void) {
-    Timer.scheduledTimer(withTimeInterval: interval, repeats: false) { _ in
+    DispatchQueue.main.asyncAfter(deadline: .now() + interval) {
         closure()
     }
+}
+
+func doAfter(_ interval: TimeInterval, work: DispatchWorkItem) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + interval, execute: work)
 }

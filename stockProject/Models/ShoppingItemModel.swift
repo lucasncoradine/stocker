@@ -8,8 +8,8 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-struct ShoppingListModel: ModelProtocol {
-    @DocumentID var id: String? = UUID().uuidString
+struct ShoppingItemModel: ModelProtocol {
+    @DocumentID var id: String? = UUID().uuidString // Same ID as Item
     var name: String
     var checked: Bool = false
     

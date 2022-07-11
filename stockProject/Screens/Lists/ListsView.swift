@@ -12,33 +12,28 @@ struct ListsView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                if viewModel.lists.isEmpty {
-                    EmptyView(text: "Sem listas")
-                } else {
-                    List(viewModel.lists) { list in
-                        NavigationLink(destination: ListItemsView(listId: list.id ?? "",
-                                                                  listName: list.name))
-                        {
-                            ListRow(label: list.name)
-                                .contextMenu {
-                                    Button(action: { viewModel.editList(list) }) {
-                                        Label("Editar", systemImage: "square.and.pencil")
-                                    }
-                                    
-                                    Button(role: .destructive, action: { viewModel.deleteList(id: list.id) }) {
-                                        Label("Remover", systemImage: "trash")
-                                    }
-                                }
-                        }
-                        .swipeActions {
-                            Button(role: .destructive, action: { viewModel.deleteList(id: list.id) } ) {
+            List(viewModel.lists) { list in
+                NavigationLink(destination: ListItemsView(listId: list.id ?? "",
+                                                          listName: list.name))
+                {
+                    ListRow(label: list.name)
+                        .contextMenu {
+                            Button(action: { viewModel.editList(list) }) {
+                                Label("Editar", systemImage: "square.and.pencil")
+                            }
+                            
+                            Button(role: .destructive, action: { viewModel.deleteList(id: list.id) }) {
                                 Label("Remover", systemImage: "trash")
                             }
                         }
+                }
+                .swipeActions {
+                    Button(role: .destructive, action: { viewModel.deleteList(id: list.id) } ) {
+                        Label("Remover", systemImage: "trash")
                     }
                 }
             }
+            .showEmptyView(viewModel.lists.isEmpty, emptyText: "Sem listas")
             .showLoading(viewModel.isLoading)
             .errorAlert(visible: $viewModel.showError,
                         message: viewModel.errorMessage,

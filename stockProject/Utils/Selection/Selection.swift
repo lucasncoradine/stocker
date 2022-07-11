@@ -11,8 +11,8 @@ import SwiftUI
 typealias Selection<T: Hashable> = Set<T>
 
 extension Selection {
-    mutating func toggle(_ item: Element, allowDuplicated: Bool = false) {
-        guard allowDuplicated || self.contains(item)
+    mutating func toggle(_ item: Element) {
+        guard self.contains(item)
         else {
             self.insert(item)
             return

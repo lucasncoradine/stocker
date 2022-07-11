@@ -34,96 +34,92 @@ struct ListItemsView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            if viewModel.items.isEmpty {
-                EmptyView(text: "Sem itens")
-            } else {
-                List {
-                    Section {
-                        NavigationLink(destination: ShoppingListView(listId: viewModel.listId)) {
-                            HStack {
-                                Image(systemName: "cart")
-                                Text("Lista de compras")
+            List {
+                Section {
+                    NavigationLink(destination: ShoppingListView(listId: viewModel.listId)) {
+                        HStack {
+                            Image(systemName: "cart")
+                            Text("Lista de compras")
+                        }
+                    }
+                    .disabled(viewModel.isEditing)
+                }
+                
+                Section {
+                    ForEach(viewModel.items, id: \.id) { item in
+                        HStack {
+                            // MARK: Checkmark icon
+                            if viewModel.isEditing {
+                                Checkmark(selected: viewModel.selection.contains(item.id))
+                            }
+                            
+                            Stepper(label: item.name,
+                                    amount: item.amount,
+                                    description: item.description,
+                                    counterFocused: _counterFocused
+                            ) { value in
+                                viewModel.changeAmount(itemId: item.id, newValue: value)
+                            }
+                            .buttonStyle(.plain)
+                            .disabled(viewModel.isEditing)
+                        }
+                        .contextMenu {
+                            Button(action: { viewModel.addToShoppingList(itemId: item.id, itemName: item.name) }) {
+                                Label("Comprar", systemImage: "cart.badge.plus")
+                            }
+                            
+                            Button(action: { viewModel.editItem(item) }) {
+                                Label("Editar", systemImage: "square.and.pencil")
+                            }
+                            
+                            Button(role: .destructive, action: { viewModel.deleteItem(id: item.id) }) {
+                                Label("Remover", systemImage: "trash")
                             }
                         }
-                        .disabled(viewModel.isEditing)
-                    }
-                    
-                    Section {
-                        ForEach(viewModel.items, id: \.id) { item in
-                            HStack {
-                                // MARK: Checkmark icon
-                                if viewModel.isEditing {
-                                    let selected: Bool = viewModel.selection.contains(item.id)
-                                    
-                                    Image(systemName: selected ? "checkmark.circle.fill" : "circle")
-                                        .foregroundColor(selected ? .blue : .gray)
-                                }
-                                
-                                Stepper(label: item.name,
-                                        amount: item.amount,
-                                        description: item.description,
-                                        counterFocused: _counterFocused
-                                ) { value in
-                                    viewModel.changeAmount(itemId: item.id, newValue: value)
-                                }
-                                .disabled(viewModel.isEditing)
-                                .buttonStyle(.plain)
-                                .contextMenu {
-                                    Button(action: { viewModel.addToShoppingList(itemId: item.id) }) {
-                                        Label("Comprar", systemImage: "cart.badge.plus")
-                                    }
-                                    
-                                    Button(action: { viewModel.editItem(item) }) {
-                                        Label("Editar", systemImage: "square.and.pencil")
-                                    }
-                                    
-                                    Button(role: .destructive, action: { viewModel.deleteItem(id: item.id) }) {
-                                        Label("Remover", systemImage: "trash")
-                                    }
-                                }
-                                // MARK: - Right Swipe
-                                .swipeActions {
-                                    Button(role: .destructive, action: { viewModel.deleteItem(id: item.id) } ) {
-                                        Label("Remover", systemImage: "trash")
-                                    }
-                                }
-                                
-                                // MARK: - Left Swipe
-                                .swipeActions(edge: .leading) {
-                                    Button(action: { viewModel.addToShoppingList(itemId: item.id) }) {
-                                        Label("Comprar", systemImage: "cart.badge.plus")
-                                    }
-                                    .tint(.blue)
-                                }
+                        // MARK: - Right Swipe
+                        .swipeActions {
+                            Button(role: .destructive, action: { viewModel.deleteItem(id: item.id) } ) {
+                                Label("Remover", systemImage: "trash")
                             }
-                            .onTapGesture {
-                                if viewModel.isEditing {
-                                    viewModel.selection.toggle(item.id)
-                                }
+                        }
+                        
+                        // MARK: - Left Swipe
+                        .swipeActions(edge: .leading) {
+                            Button(action: { viewModel.addToShoppingList(itemId: item.id, itemName: item.name) }) {
+                                Label("Comprar", systemImage: "cart.badge.plus")
+                            }
+                            .tint(.blue)
+                        }
+                        .onTapGesture {
+                            if viewModel.isEditing {
+                                viewModel.selection.toggle(item.id)
                             }
                         }
                     }
                 }
-                .alert("Tem certeza que deseja remover os itens selecionados?", isPresented: $viewModel.showDeleteConfirmation, actions: {
-                    Button("Não") { viewModel.showDeleteConfirmation = false }
-                    
-                    Button(action: { viewModel.deleteSelectedItems() }) {
-                        Text("Remover")
-                            .bold()
-                            .tint(.red)
-                    }
-                })
-                .listStyle(.insetGrouped)
-                .onChange(of: viewModel.isEditing) { value in
-                    if value == false {
-                        viewModel.selection.removeAll()
-                    }
+            }
+            .alert("Tem certeza que deseja remover os itens selecionados?", isPresented: $viewModel.showDeleteConfirmation, actions: {
+                Button(role: .cancel , action: {}) {
+                    Text("Cancelar")
+                }
+                
+                Button(role: .destructive, action: { viewModel.deleteSelectedItems() }) {
+                    Text("Remover")
+                        .bold()
+                        .tint(.red)
+                }
+            })
+            .listStyle(.insetGrouped)
+            .onChange(of: viewModel.isEditing) { value in
+                if value == false {
+                    viewModel.selection.removeAll()
                 }
             }
         }
         .sheet(isPresented: $viewModel.openEdit) {
             EditItemView(listId: viewModel.listId, item: viewModel.selectedItem)
         }
+        .showEmptyView(viewModel.items.isEmpty, emptyText: "Sem itens")
         .showLoading(viewModel.isLoading)
         .toast(isShowing: $viewModel.showAddedToast, message: "Adicionado à lista de compras")
         .navigationTitle(navigationTitle())
@@ -151,7 +147,7 @@ struct ListItemsView: View {
                 if viewModel.isEditing == true {
                     let disabled: Bool = viewModel.selection.count == 0
                     
-                    Button(action: viewModel.selectAll) {
+                    Button(action: viewModel.toggleAll) {
                         Text("Todos")
                     }
                     
@@ -196,5 +192,6 @@ struct ListItemsView_Previews: PreviewProvider {
         NavigationView {
             ListItemsView(listId: "SF6jqiRauIkLSTurDy15", listName: "Estoque")
         }
+        .previewInterfaceOrientation(.portrait)
     }
 }
