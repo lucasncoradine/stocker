@@ -30,6 +30,18 @@ struct EditItemView: View {
                     
                     TextField("Descrição", text: $viewModel.item.description)
                 }
+                
+                Section {
+                    Toggle(isOn: $viewModel.hasExpirationDate.animation()) {
+                        Label("Vencimento", systemImage: "calendar")
+                            .foregroundColor(Color(.label))
+                    }
+                    
+                    if viewModel.hasExpirationDate {
+                        DatePicker("", selection: $viewModel.expirationDate, displayedComponents: .date)
+                            .datePickerStyle(.graphical)
+                    }
+                }
             }
             .navigationTitle(navigationTitle)
             .navigationBarTitleDisplayMode(.inline)
@@ -59,5 +71,6 @@ struct EditItemView: View {
 struct EditItemView_Previews: PreviewProvider {
     static var previews: some View {
         EditItemView(listId: "")
+            .preferredColorScheme(.light)
     }
 }

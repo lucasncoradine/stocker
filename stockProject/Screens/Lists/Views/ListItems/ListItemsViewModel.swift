@@ -8,23 +8,6 @@
 import Foundation
 import SwiftUI
 
-enum AmountChangeType {
-    case increment
-    case decrement
-    case custom(value: Int)
-    
-    var value: Int {
-        switch self {
-        case .increment:
-            return 1
-        case .decrement:
-            return -1
-        case .custom(let value):
-            return value
-        }
-    }
-}
-
 class ListItemsViewModel: ObservableObject {
     private let client: APIClient<ItemModel>
     private let shoppingClient: APIClient<ShoppingItemModel>
@@ -75,7 +58,11 @@ class ListItemsViewModel: ObservableObject {
         }
     }
     
-    func editItem(_ item: ItemModel) {
+    func editItem(id: String?) {
+        guard let id = id,
+              let item = items.first(where: { $0.id == id })
+        else { return }
+        
         selectedItem = item
         openEdit = true
     }
