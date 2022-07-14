@@ -29,13 +29,14 @@ struct EditListView: View {
                             .padding(.bottom, 10)
                         
                         VStack {
-                            TextField("Nome da lista", text: $viewModel.list.name)
-                                .padding(.horizontal , 15)
-                                .frame(height: 39.0)
-                                .background(Color(.systemFill))
-                                .cornerRadius(13)
-                                .multilineTextAlignment(.center)
-                                .fieldError(viewModel.showNameFieldError, message: "Nome da lista é obrigatório")
+                            CustomTextField(
+                                placeholder: "Nome da lista",
+                                value: $viewModel.list.name,
+                                alignment: .center
+                            )
+                            .fieldError(viewModel.showNameFieldError, message: "Nome da lista é obrigatório")
+                            
+//                            
                         }
                     }
                     .padding()

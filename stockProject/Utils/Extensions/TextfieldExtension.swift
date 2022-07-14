@@ -20,4 +20,13 @@ extension View {
             }
         }
     }
+    
+    @ViewBuilder func customStyle(alignment: TextAlignment = .leading) -> some View {
+        self
+            .padding(.horizontal , 15)
+            .frame(height: 39.0)
+            .background(Color(.systemGray5))
+            .cornerRadius(13)
+            .multilineTextAlignment(alignment)
+    }
 }

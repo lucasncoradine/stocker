@@ -25,6 +25,12 @@
 		292F7FAE283FECE7004F6FD4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 292F7FAD283FECD6004F6FD4 /* GoogleService-Info.plist */; };
 		2954505D283FB79300790C2D /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2954505C283FB79300790C2D /* FirebaseClient.swift */; };
 		29545063283FD35100790C2D /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29545062283FD35100790C2D /* APIClient.swift */; };
+		297BD081287E335100C2A8A7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297BD080287E335100C2A8A7 /* LoginView.swift */; };
+		297BD083287E335900C2A8A7 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297BD082287E335900C2A8A7 /* LoginViewModel.swift */; };
+		297BD085287E351D00C2A8A7 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297BD084287E351D00C2A8A7 /* CustomTextField.swift */; };
+		297BD08D287E444F00C2A8A7 /* ButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297BD08C287E444F00C2A8A7 /* ButtonExtension.swift */; };
+		297BD091287E47AF00C2A8A7 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297BD090287E47AF00C2A8A7 /* SignupView.swift */; };
+		297BD093287E47BC00C2A8A7 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297BD092287E47BC00C2A8A7 /* SignupViewModel.swift */; };
 		299653D5286F2E7700EA4799 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653D4286F2E7700EA4799 /* UserModel.swift */; };
 		299653D7286F32C400EA4799 /* ListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653D6286F32C400EA4799 /* ListModel.swift */; };
 		299653D9286F332F00EA4799 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653D8286F332F00EA4799 /* ItemModel.swift */; };
@@ -87,6 +93,12 @@
 		292F7FAD283FECD6004F6FD4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2954505C283FB79300790C2D /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
 		29545062283FD35100790C2D /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		297BD080287E335100C2A8A7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		297BD082287E335900C2A8A7 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		297BD084287E351D00C2A8A7 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		297BD08C287E444F00C2A8A7 /* ButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExtension.swift; sourceTree = "<group>"; };
+		297BD090287E47AF00C2A8A7 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		297BD092287E47BC00C2A8A7 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		299653D4286F2E7700EA4799 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		299653D6286F32C400EA4799 /* ListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModel.swift; sourceTree = "<group>"; };
 		299653D8286F332F00EA4799 /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
@@ -214,6 +226,33 @@
 			path = Firebase;
 			sourceTree = "<group>";
 		};
+		297BD07F287E334100C2A8A7 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				297BD080287E335100C2A8A7 /* LoginView.swift */,
+				297BD082287E335900C2A8A7 /* LoginViewModel.swift */,
+				297BD08E287E477F00C2A8A7 /* Views */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		297BD08E287E477F00C2A8A7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				297BD08F287E479F00C2A8A7 /* Signup */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		297BD08F287E479F00C2A8A7 /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				297BD090287E47AF00C2A8A7 /* SignupView.swift */,
+				297BD092287E47BC00C2A8A7 /* SignupViewModel.swift */,
+			);
+			path = Signup;
+			sourceTree = "<group>";
+		};
 		298AC6DF2874B0EE005A435D /* EditItem */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,6 +277,7 @@
 		299653D1286F2E0900EA4799 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				297BD07F287E334100C2A8A7 /* Login */,
 				299653DE286F420F00EA4799 /* Lists */,
 				299653EC286F6C1900EA4799 /* Shared */,
 			);
@@ -327,6 +367,7 @@
 				299653FB286F78E700EA4799 /* Stepper.swift */,
 				292BBF9E2879D63100C7F4BF /* Checkmark.swift */,
 				292BBFA02879DF1C00C7F4BF /* CheckmarkLabel.swift */,
+				297BD084287E351D00C2A8A7 /* CustomTextField.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -353,6 +394,7 @@
 				299653E7286F612800EA4799 /* ViewExtension.swift */,
 				29F0EB4F2874B69600CA857D /* TextfieldExtension.swift */,
 				292BBFA22879DF5200C7F4BF /* TextExtension.swift */,
+				297BD08C287E444F00C2A8A7 /* ButtonExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -516,6 +558,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				297BD085287E351D00C2A8A7 /* CustomTextField.swift in Sources */,
 				29F0EB4D2874B1B400CA857D /* EditItemViewModel.swift in Sources */,
 				29C9A1D9287719D5000FDEF8 /* ToastModifier.swift in Sources */,
 				29545063283FD35100790C2D /* APIClient.swift in Sources */,
@@ -524,8 +567,10 @@
 				2954505D283FB79300790C2D /* FirebaseClient.swift in Sources */,
 				299653F2286F725800EA4799 /* EmptyView.swift in Sources */,
 				299653F8286F72E400EA4799 /* ListItemsViewModel.swift in Sources */,
+				297BD08D287E444F00C2A8A7 /* ButtonExtension.swift in Sources */,
 				299653DB286F343200EA4799 /* ModelProtocol.swift in Sources */,
 				299653E6286F524300EA4799 /* DevelopmentVariables.swift in Sources */,
+				297BD083287E335900C2A8A7 /* LoginViewModel.swift in Sources */,
 				29F0EB562876266800CA857D /* ShoppingListView.swift in Sources */,
 				29F0EB582876267000CA857D /* ShoppingListViewModel.swift in Sources */,
 				299653DD286F363400EA4799 /* ShoppingItemModel.swift in Sources */,
@@ -533,6 +578,7 @@
 				29F43C32287477E100276EE2 /* EditListView.swift in Sources */,
 				299653D7286F32C400EA4799 /* ListModel.swift in Sources */,
 				292BBFA32879DF5200C7F4BF /* TextExtension.swift in Sources */,
+				297BD093287E47BC00C2A8A7 /* SignupViewModel.swift in Sources */,
 				299653E0286F422100EA4799 /* ListsView.swift in Sources */,
 				299653D5286F2E7700EA4799 /* UserModel.swift in Sources */,
 				291C158D2818722E00A89846 /* stockProjectApp.swift in Sources */,
@@ -542,10 +588,12 @@
 				292BBFA12879DF1C00C7F4BF /* CheckmarkLabel.swift in Sources */,
 				299653EE286F6C3000EA4799 /* ListIcon.swift in Sources */,
 				29F0EB4B2874B1AB00CA857D /* EditItemView.swift in Sources */,
+				297BD091287E47AF00C2A8A7 /* SignupView.swift in Sources */,
 				29C9A1DD28771D0D000FDEF8 /* CustomFunctions.swift in Sources */,
 				299653EB286F6C0000EA4799 /* ListRow.swift in Sources */,
 				299653F6286F72DC00EA4799 /* ListItemsView.swift in Sources */,
 				299653FC286F78E700EA4799 /* Stepper.swift in Sources */,
+				297BD081287E335100C2A8A7 /* LoginView.swift in Sources */,
 				299653E8286F612800EA4799 /* ViewExtension.swift in Sources */,
 				29C9A1E3287856E8000FDEF8 /* Selection.swift in Sources */,
 			);

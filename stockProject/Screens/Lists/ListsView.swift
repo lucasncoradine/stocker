@@ -53,7 +53,7 @@ struct ListsView: View {
             .sheet(isPresented: $viewModel.showEditSheet, content: {
                 EditListView(list: viewModel.selectedList)
             })
-            .onAppear(perform: viewModel.fetchLists)
+            .onAppear(perform: viewModel.fetchLists)    
         }
     }
 }
@@ -61,5 +61,6 @@ struct ListsView: View {
 struct ListsView_Previews: PreviewProvider {
     static var previews: some View {
         ListsView()
+            .preferredColorScheme(.dark)
     }
 }
