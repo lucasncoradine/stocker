@@ -49,10 +49,9 @@ struct LoginView: View {
                 .padding(.bottom, 40)
                 
                 // Login button
-                Button(action: {}) {
+                CustomButton(action: viewModel.login, showLoading: viewModel.isLoading) {
                     Text("Entrar")
                 }
-                .customStyle()
                 
                 Spacer()
                 
@@ -70,6 +69,7 @@ struct LoginView: View {
             }
             .padding(.top, 60)
             .padding([.horizontal, .bottom])
+            .errorAlert(visible: $viewModel.showError, message: viewModel.errorMessage, buttonText: "Ok")
             .navigationBarHidden(true)
         }
     }

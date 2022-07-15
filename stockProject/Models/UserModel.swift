@@ -7,6 +7,9 @@
 
 import Foundation
 import FirebaseFirestoreSwift
+import FirebaseAuth
+
+typealias FirebaseUser = User
 
 struct UserNameModel: Codable {
     var first: String

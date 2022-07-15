@@ -8,8 +8,6 @@
 import Foundation
 import Firebase
 
-typealias FailureClosure = (_ message: String) -> Void
-
 class APIClient<T: Codable> {
     private let client: FirebaseClient = .init()
     private var listeners: [ListenerRegistration] = []

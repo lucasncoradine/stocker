@@ -39,7 +39,7 @@ struct ListsView: View {
                         message: viewModel.errorMessage,
                         action: viewModel.reloadList)
             .navigationTitle("Listas")
-            .toolbar {
+            .toolbar {                
                 ToolbarItemGroup(placement: .bottomBar) {
                     Button(action: viewModel.createList) {
                         Image(systemName: "plus.circle.fill")

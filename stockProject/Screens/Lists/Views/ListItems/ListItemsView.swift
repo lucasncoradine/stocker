@@ -136,9 +136,6 @@ struct ListItemsView: View {
                 }
             }
         }
-        .sheet(isPresented: $viewModel.openEdit) {
-            EditItemView(listId: viewModel.listId, item: viewModel.selectedItem)
-        }
         .showEmptyView(viewModel.items.isEmpty, emptyText: "Sem itens")
         .showLoading(viewModel.isLoading)
         .toast(isShowing: $viewModel.showAddedToast, message: "Adicionado à lista de compras")
@@ -202,6 +199,9 @@ struct ListItemsView: View {
                     counterFocused = false
                 }
             }
+        }
+        .sheet(isPresented: $viewModel.openEdit) {
+            EditItemView(listId: viewModel.listId, item: viewModel.selectedItem)
         }
         .onAppear(perform: viewModel.fetchItems)
     }

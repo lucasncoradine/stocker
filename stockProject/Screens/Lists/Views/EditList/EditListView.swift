@@ -29,12 +29,9 @@ struct EditListView: View {
                             .padding(.bottom, 10)
                         
                         VStack {
-                            CustomTextField(
-                                placeholder: "Nome da lista",
-                                value: $viewModel.list.name,
-                                alignment: .center
-                            )
-                            .fieldError(viewModel.showNameFieldError, message: "Nome da lista é obrigatório")
+                            TextField("Nome da lista", text: $viewModel.list.name)
+                                .customStyle(alignment: .center)
+                                .fieldError(viewModel.showNameFieldError, message: "Nome da lista é obrigatório")
                             
 //                            
                         }

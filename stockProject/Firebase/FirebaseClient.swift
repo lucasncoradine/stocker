@@ -9,6 +9,8 @@ import Foundation
 import FirebaseFirestoreSwift
 import FirebaseFirestore
 
+typealias FailureClosure = (_ message: String) -> Void
+
 enum VoidResult {
     case success
     case failure(_: Error)
@@ -22,7 +24,7 @@ enum FirebaseCollection {
     case shoppingList(listId: String)
     
     var path: String {
-        let userId = FirebaseClient.shared.userId
+        let userId = AuthManager.shared.user?.uid ?? "nil"
         
         switch self {
         case .users:
@@ -40,16 +42,11 @@ enum FirebaseCollection {
 // MARK: - FirebaseError
 enum FirebaseError: Error {
     case noDocuments
-}
-
-// MARK: - FirebaseClientShared
-class FirebaseClientShared {
-    var userId: String = dev_userId
+    case noUser
 }
 
 // MARK: - FirebaseClient
 class FirebaseClient {
-    static let shared: FirebaseClientShared = .init()
     private let database: Firestore
     
     // MARK: Lifecycle
@@ -58,8 +55,6 @@ class FirebaseClient {
     }
     
     // MARK: - Methods
-    
-    // TODO: Authentication
     
     /// Gets all documents from the desired collection
     /// - parameter type: The type of the documents which will be fetched.
@@ -280,7 +275,7 @@ class FirebaseClient {
         case DecodingError.dataCorrupted(let key):
             return "\(error.localizedDescription): \(key)"
         default:
-            return "Error decoding document: \(error.localizedDescription)"
+            return "\(error.localizedDescription)"
         }
     }
     
@@ -300,6 +295,10 @@ class FirebaseClient {
         }
     }
     
+    /// Handles the result of a Firebase request.
+    /// - parameter result: The result of the request
+    /// - parameter success: A closure to handle if the request succeeded
+    /// - parameter failure  A closure to handle if the request failed
     func handleResult(_ result: VoidResult,
                       success: @escaping (() -> Void) = {},
                       failure: @escaping (_ message: String) -> Void
@@ -307,6 +306,22 @@ class FirebaseClient {
         switch result {
         case .success:
             success()
+        case .failure(let error):
+            failure(self.handleError(error))
+        }
+    }
+    
+    /// Handles the result of a Firebase request.
+    /// - parameter result: The result of the request
+    /// - parameter success: A closure to handle if the request succeeded
+    /// - parameter failure  A closure to handle if the request failed
+    func handleResult(_ result: Result<FirebaseUser, Error>,
+                      success: @escaping (_ user: FirebaseUser) -> Void,
+                      failure: @escaping (_ message: String) -> Void
+    ) {
+        switch result {
+        case .success(let user):
+            success(user)
         case .failure(let error):
             failure(self.handleError(error))
         }

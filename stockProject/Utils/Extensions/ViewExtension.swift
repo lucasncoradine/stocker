@@ -20,8 +20,8 @@ extension View {
     /// Shows an error alert
     func errorAlert(visible: Binding<Bool>,
                     message: String,
-                    action: @escaping () -> Void,
-                    buttonText: String = "Try again"
+                    action: @escaping () -> Void = {},
+                    buttonText: String = "Tentar novamente"
     ) -> some View {
         return self.alert(message, isPresented: visible) {
             Button(action: action) {

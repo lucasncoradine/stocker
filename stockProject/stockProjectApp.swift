@@ -13,7 +13,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
         FirebaseApp.configure()
-        FirebaseClient.shared.userId = dev_userId
         return true
     }
 }

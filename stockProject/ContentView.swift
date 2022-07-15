@@ -7,9 +7,11 @@
 
 import SwiftUI
 
-struct ContentView: View {    
+struct ContentView: View {
+    private let client: AuthManager = .init()
+        
     var body: some View {
-        ListsView()
+        HomeView()
     }
 }
 
