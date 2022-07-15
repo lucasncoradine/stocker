@@ -21,6 +21,18 @@ extension View {
         }
     }
     
+    @ViewBuilder func fieldError(_ message: String) -> some View {
+        VStack(alignment: .leading) {
+            self
+            
+            if !message.isEmpty {
+                Text(message)
+                    .foregroundColor(.red)
+                    .font(.caption)
+            }
+        }
+    }
+    
     @ViewBuilder func customStyle(alignment: TextAlignment = .leading) -> some View {
         self
             .padding(.horizontal , 15)

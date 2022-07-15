@@ -65,4 +65,32 @@ class AuthManager: ObservableObject {
             print(signOutError.localizedDescription)
         }
     }
+    
+    /// Create a new user
+    func signUp(email: String,
+                password: String,
+                name: String?,
+                completion: @escaping (_ result: Result<FirebaseUser, Error>) -> Void
+    ) {
+        auth.createUser(withEmail: email, password: password) { authResult, error in
+            if let error = error {
+                completion(.failure(error))
+            }
+            
+            guard let authResult = authResult else {
+                completion(.failure(FirebaseError.noUser))
+                return
+            }
+            
+            let changeRequest = authResult.user.createProfileChangeRequest()
+            changeRequest.displayName = name
+            changeRequest.commitChanges { error in
+                if let error = error {
+                    completion(.failure(error))
+                }
+            }
+            
+            completion(.success(authResult.user))
+        }
+    }
 }

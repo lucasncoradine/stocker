@@ -11,7 +11,9 @@ class LoginViewModel: ObservableObject {
     private let client: AuthManager = .init()
     
     @Published var email: String = ""
+    @Published var emailValidationMessage: String = ""
     @Published var password: String = ""
+    @Published var passwordValidationMessage: String = ""
     @Published var isLoading: Bool = false
     @Published var errorMessage: String = ""
     @Published var showError: Bool = false
@@ -22,12 +24,27 @@ class LoginViewModel: ObservableObject {
         showError = true
     }
     
+    // MARK: - Private Methods
+    private func validateFields() -> Bool {
+        emailValidationMessage = Validations.validateEmail(self.email).message
+        passwordValidationMessage = Validations.validateRequiredField(fieldName: "Senha", value: self.password).message
+        
+        let validations  = [
+            emailValidationMessage,
+            passwordValidationMessage
+        ]
+        
+        return validations.allSatisfy { $0.isEmpty }
+    }
+    
     // MARK: - Methods
     func login() {
-        isLoading = true
-        
-        client.authenticate(withEmail: self.email, withPassword: self.password) { user in
-            self.isLoading = false
+        if validateFields() {
+            isLoading = true
+            
+            client.authenticate(withEmail: self.email, withPassword: self.password) { user in
+                self.isLoading = false
+            }
         }
     }
 }

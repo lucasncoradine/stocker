@@ -8,39 +8,48 @@
 import SwiftUI
 
 struct SignupView: View {
+    @StateObject var viewModel: SignupViewModel = .init()
+        
     var body: some View {
-        VStack {
+        VStack(spacing: 30) {
             // Fields
             VStack(spacing: 20) {
-                TextField("Nome", text: .constant(""))
+                TextField("Nome", text: $viewModel.name)
                     .textContentType(.name)
-                    .customStyle()
+                    .textFieldStyle(.roundedBorder)
+                    .fieldError(viewModel.nameValidationMessage)
                 
-                TextField("Email", text: .constant(""))
+                TextField("Email", text: $viewModel.email)
                     .textContentType(.emailAddress)
                     .textInputAutocapitalization(.never)
-                    .customStyle()
+                    .textFieldStyle(.roundedBorder)
+                    .fieldError(viewModel.emailValidationMessage)
                 
-                SecureField("Senha", text: .constant(""))
+                SecureField("Senha", text: $viewModel.password)
                     .textContentType(.newPassword)
-                    .customStyle()
+                    .textFieldStyle(.roundedBorder)
+                    .fieldError(viewModel.passwordValidationMessage)
                 
-                SecureField("Confirmar senha", text: .constant(""))
+                SecureField("Confirmar senha", text: $viewModel.confirmPassword)
                     .textContentType(.newPassword)
-                    .customStyle()
+                    .textFieldStyle(.roundedBorder)
+                    .fieldError(viewModel.confirmPasswordValidationMessage)
             }
             
             // Signup Button
-            Button(action: {}) {
+            CustomButton(action: viewModel.createAccout, showLoading: viewModel.isLoading) {
                 Text("Criar conta")
             }
-            .customStyle()
-            .padding(.top, 30)
             
             Spacer()
         }
         .padding()
         .navigationTitle("Nova conta")
+        .alert("Usuário criado com sucesso", isPresented: $viewModel.userCreated) {
+            Button(role: .cancel, action: {}) {
+                Text("OK")
+            }
+        }
     }
 }
 

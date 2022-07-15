@@ -35,6 +35,9 @@
 		298B8AA12880ADCD004295C8 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298B8AA02880ADCD004295C8 /* ProfileView.swift */; };
 		298B8AA428819684004295C8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298B8AA328819684004295C8 /* HomeView.swift */; };
 		298B8AA62881968B004295C8 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298B8AA52881968A004295C8 /* HomeViewModel.swift */; };
+		298B8AA92881B9A9004295C8 /* LoginValidations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298B8AA82881B9A9004295C8 /* LoginValidations.swift */; };
+		298B8AAB2881B9F3004295C8 /* Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298B8AAA2881B9F3004295C8 /* Validations.swift */; };
+		298B8AAD2881CF6F004295C8 /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298B8AAC2881CF6F004295C8 /* ValidationError.swift */; };
 		2993630E28808D2700BCA7F3 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2993630D28808D2700BCA7F3 /* AuthManager.swift */; };
 		299653D5286F2E7700EA4799 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653D4286F2E7700EA4799 /* UserModel.swift */; };
 		299653D7286F32C400EA4799 /* ListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653D6286F32C400EA4799 /* ListModel.swift */; };
@@ -108,6 +111,9 @@
 		298B8AA02880ADCD004295C8 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		298B8AA328819684004295C8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		298B8AA52881968A004295C8 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		298B8AA82881B9A9004295C8 /* LoginValidations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginValidations.swift; sourceTree = "<group>"; };
+		298B8AAA2881B9F3004295C8 /* Validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validations.swift; sourceTree = "<group>"; };
+		298B8AAC2881CF6F004295C8 /* ValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationError.swift; sourceTree = "<group>"; };
 		2993630D28808D2700BCA7F3 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		299653D4286F2E7700EA4799 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		299653D6286F32C400EA4799 /* ListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModel.swift; sourceTree = "<group>"; };
@@ -291,6 +297,16 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		298B8AA72881B98F004295C8 /* Validations */ = {
+			isa = PBXGroup;
+			children = (
+				298B8AAA2881B9F3004295C8 /* Validations.swift */,
+				298B8AAC2881CF6F004295C8 /* ValidationError.swift */,
+				298B8AA82881B9A9004295C8 /* LoginValidations.swift */,
+			);
+			path = Validations;
+			sourceTree = "<group>";
+		};
 		299653D0286F2E0200EA4799 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -329,6 +345,7 @@
 		299653E3286F42DE00EA4799 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				298B8AA72881B98F004295C8 /* Validations */,
 				29C9A1E1287856C3000FDEF8 /* Extensions */,
 				29C9A1E0287856BB000FDEF8 /* Selection */,
 				29C9A1D7287719C3000FDEF8 /* ViewModifiers */,
@@ -589,9 +606,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				298B8AA92881B9A9004295C8 /* LoginValidations.swift in Sources */,
 				297BD085287E351D00C2A8A7 /* CustomButton.swift in Sources */,
 				29F0EB4D2874B1B400CA857D /* EditItemViewModel.swift in Sources */,
+				298B8AAD2881CF6F004295C8 /* ValidationError.swift in Sources */,
 				29C9A1D9287719D5000FDEF8 /* ToastModifier.swift in Sources */,
+				298B8AAB2881B9F3004295C8 /* Validations.swift in Sources */,
 				29545063283FD35100790C2D /* APIClient.swift in Sources */,
 				299653E2286F422900EA4799 /* ListsViewModel.swift in Sources */,
 				299653D9286F332F00EA4799 /* ItemModel.swift in Sources */,

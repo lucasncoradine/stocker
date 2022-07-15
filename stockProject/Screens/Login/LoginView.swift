@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     @StateObject var viewModel: LoginViewModel = .init()
-    
+        
     var body: some View {
         NavigationView {
             VStack {
@@ -29,11 +29,13 @@ struct LoginView: View {
                         .textInputAutocapitalization(.never)
                         .disableAutocorrection(true)
                         .customStyle()
+                        .fieldError(viewModel.emailValidationMessage)
                     
                     VStack {
                         SecureField("Senha", text: $viewModel.password)
                             .textContentType(.password)
                             .customStyle()
+                            .fieldError(viewModel.passwordValidationMessage)
                         
                         HStack {
                             Spacer()
