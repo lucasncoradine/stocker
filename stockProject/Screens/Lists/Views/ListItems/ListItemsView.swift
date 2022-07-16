@@ -17,8 +17,6 @@ struct ListItemsView: View {
     init(listId: String, listName: String) {
         self._viewModel = StateObject(wrappedValue: .init(listId: listId))
         self.listName = listName
-        
-        UITableView.appearance().isScrollEnabled = false
     }
     
     // MARK: - Private variables and functions
@@ -141,20 +139,26 @@ struct ListItemsView: View {
         .toast(isShowing: $viewModel.showAddedToast, message: "Adicionado à lista de compras")
         .navigationTitle(navigationTitle())
         .toolbar {
-            ToolbarItemGroup {
+            ToolbarItemGroup() {
                 if viewModel.isEditing {
                     Button(action: viewModel.toggleSelection) {
                         Text("OK")
                             .bold()
                     }
                 } else {
-                    Menu {
-                        Button(action: viewModel.toggleSelection) {
-                            Text("Selecionar")
-                            Image(systemName: "checkmark.circle")
+                    HStack {
+                        Button(action: viewModel.createItem) {
+                            Label("Novo item", systemImage: "plus")
                         }
-                    } label: {
-                        Image(systemName: "ellipsis.circle")
+                        
+                        Menu {
+                            Button(action: viewModel.toggleSelection) {
+                                Text("Selecionar")
+                                Image(systemName: "checkmark.circle")
+                            }
+                        } label: {
+                            Image(systemName: "ellipsis.circle")
+                        }
                     }
                 }
             }
@@ -181,13 +185,6 @@ struct ListItemsView: View {
                         Text("Remover")
                     }
                     .disabled(disabled)
-                } else {
-                    Button(action: viewModel.createItem) {
-                        Image(systemName: "plus")
-                        Text("Novo item")
-                    }
-                    
-                    Spacer()
                 }
             }
             

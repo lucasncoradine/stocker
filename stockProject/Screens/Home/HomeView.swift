@@ -7,22 +7,25 @@
 
 import SwiftUI
 
+class ApplicationEnvironment: ObservableObject {
+    @Published var hideTabView: Bool = false
+}
+
 struct HomeView: View {
     @StateObject var authClient: AuthManager = .init()
+    @StateObject var environment: ApplicationEnvironment = .init()
     
     var body: some View {
-        VStack {
+        Group {
             if authClient.isUserAuthenticated {
                 TabView {
-                    ListsView()
-                        .tabItem {
-                            Label("Home", systemImage: "house")
-                        }
+                    ListsView().tabItem {
+                        Label("Início", systemImage: "house")
+                    }
                     
-                    ProfileView(user: AuthManager.shared.user)
-                        .tabItem {
-                            Label("Profile", systemImage: "person")
-                        }
+                    ProfileView(user: AuthManager.shared.user).tabItem {
+                        Label("Ajustes", systemImage: "gear")
+                    }
                 }
             } else {
                 LoginView()

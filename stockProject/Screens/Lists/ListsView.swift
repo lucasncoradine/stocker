@@ -40,14 +40,10 @@ struct ListsView: View {
                         action: viewModel.reloadList)
             .navigationTitle("Listas")
             .toolbar {                
-                ToolbarItemGroup(placement: .bottomBar) {
+                ToolbarItemGroup {
                     Button(action: viewModel.createList) {
-                        Image(systemName: "plus.circle.fill")
-                        Text("Nova lista")
+                        Label("Nova lista", systemImage: "plus")
                     }
-                    .font(.system(size: 16, weight: .bold))
-                    
-                    Spacer()
                 }
             }
             .sheet(isPresented: $viewModel.showEditSheet, content: {
