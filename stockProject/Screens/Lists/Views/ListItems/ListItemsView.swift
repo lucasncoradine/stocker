@@ -193,8 +193,9 @@ struct ListItemsView: View {
                 Spacer()
                 
                 Button("Done") {
-                    counterFocused = false
+                    UIApplication.shared.dismissKeyboard()
                 }
+                .foregroundColor(.blue)
             }
         }
         .sheet(isPresented: $viewModel.openEdit) {

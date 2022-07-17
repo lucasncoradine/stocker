@@ -36,6 +36,9 @@ struct EditItemView: View {
                         Label("Vencimento", systemImage: "calendar")
                             .foregroundColor(Color(.label))
                     }
+                    .onTapGesture {
+                        UIApplication.shared.dismissKeyboard()
+                    }
                     
                     if viewModel.hasExpirationDate {
                         DatePicker("", selection: $viewModel.expirationDate, displayedComponents: .date)

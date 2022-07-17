@@ -40,6 +40,7 @@
 		298B8AAD2881CF6F004295C8 /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298B8AAC2881CF6F004295C8 /* ValidationError.swift */; };
 		298B8AB22883029E004295C8 /* UITabBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298B8AB12883029E004295C8 /* UITabBarExtension.swift */; };
 		298B8AB428832C98004295C8 /* BottomToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298B8AB328832C98004295C8 /* BottomToolbar.swift */; };
+		298B8AB628844477004295C8 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298B8AB528844477004295C8 /* UIApplicationExtension.swift */; };
 		2993630E28808D2700BCA7F3 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2993630D28808D2700BCA7F3 /* AuthManager.swift */; };
 		299653D5286F2E7700EA4799 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653D4286F2E7700EA4799 /* UserModel.swift */; };
 		299653D7286F32C400EA4799 /* ListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653D6286F32C400EA4799 /* ListModel.swift */; };
@@ -118,6 +119,7 @@
 		298B8AAC2881CF6F004295C8 /* ValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationError.swift; sourceTree = "<group>"; };
 		298B8AB12883029E004295C8 /* UITabBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarExtension.swift; sourceTree = "<group>"; };
 		298B8AB328832C98004295C8 /* BottomToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomToolbar.swift; sourceTree = "<group>"; };
+		298B8AB528844477004295C8 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		2993630D28808D2700BCA7F3 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		299653D4286F2E7700EA4799 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		299653D6286F32C400EA4799 /* ListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModel.swift; sourceTree = "<group>"; };
@@ -449,6 +451,7 @@
 				292BBFA22879DF5200C7F4BF /* TextExtension.swift */,
 				297BD08C287E444F00C2A8A7 /* ButtonExtension.swift */,
 				298B8AB12883029E004295C8 /* UITabBarExtension.swift */,
+				298B8AB528844477004295C8 /* UIApplicationExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -652,6 +655,7 @@
 				299653EE286F6C3000EA4799 /* ListIcon.swift in Sources */,
 				29F0EB4B2874B1AB00CA857D /* EditItemView.swift in Sources */,
 				297BD091287E47AF00C2A8A7 /* SignupView.swift in Sources */,
+				298B8AB628844477004295C8 /* UIApplicationExtension.swift in Sources */,
 				29C9A1DD28771D0D000FDEF8 /* CustomFunctions.swift in Sources */,
 				299653EB286F6C0000EA4799 /* ListRow.swift in Sources */,
 				299653F6286F72DC00EA4799 /* ListItemsView.swift in Sources */,
