@@ -41,6 +41,7 @@
 		298B8AB22883029E004295C8 /* UITabBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298B8AB12883029E004295C8 /* UITabBarExtension.swift */; };
 		298B8AB428832C98004295C8 /* BottomToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298B8AB328832C98004295C8 /* BottomToolbar.swift */; };
 		298B8AB628844477004295C8 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298B8AB528844477004295C8 /* UIApplicationExtension.swift */; };
+		298B8AB828845008004295C8 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298B8AB728845008004295C8 /* ColorExtension.swift */; };
 		2993630E28808D2700BCA7F3 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2993630D28808D2700BCA7F3 /* AuthManager.swift */; };
 		299653D5286F2E7700EA4799 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653D4286F2E7700EA4799 /* UserModel.swift */; };
 		299653D7286F32C400EA4799 /* ListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653D6286F32C400EA4799 /* ListModel.swift */; };
@@ -120,6 +121,7 @@
 		298B8AB12883029E004295C8 /* UITabBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarExtension.swift; sourceTree = "<group>"; };
 		298B8AB328832C98004295C8 /* BottomToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomToolbar.swift; sourceTree = "<group>"; };
 		298B8AB528844477004295C8 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
+		298B8AB728845008004295C8 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		2993630D28808D2700BCA7F3 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		299653D4286F2E7700EA4799 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		299653D6286F32C400EA4799 /* ListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModel.swift; sourceTree = "<group>"; };
@@ -450,6 +452,7 @@
 				29F0EB4F2874B69600CA857D /* TextfieldExtension.swift */,
 				292BBFA22879DF5200C7F4BF /* TextExtension.swift */,
 				297BD08C287E444F00C2A8A7 /* ButtonExtension.swift */,
+				298B8AB728845008004295C8 /* ColorExtension.swift */,
 				298B8AB12883029E004295C8 /* UITabBarExtension.swift */,
 				298B8AB528844477004295C8 /* UIApplicationExtension.swift */,
 			);
@@ -644,6 +647,7 @@
 				29F43C32287477E100276EE2 /* EditListView.swift in Sources */,
 				299653D7286F32C400EA4799 /* ListModel.swift in Sources */,
 				292BBFA32879DF5200C7F4BF /* TextExtension.swift in Sources */,
+				298B8AB828845008004295C8 /* ColorExtension.swift in Sources */,
 				297BD093287E47BC00C2A8A7 /* SignupViewModel.swift in Sources */,
 				299653E0286F422100EA4799 /* ListsView.swift in Sources */,
 				299653D5286F2E7700EA4799 /* UserModel.swift in Sources */,

@@ -9,8 +9,14 @@ import Foundation
 import FirebaseAuth
 import SwiftUI
 
-struct AuthManagerShared {
-    var user: FirebaseUser? = Auth.auth().currentUser
+class AuthManagerShared: ObservableObject {
+    var user: FirebaseUser? {
+        Auth.auth().currentUser
+    }
+    
+    var isUserAuthenticated: Bool {
+        Auth.auth().currentUser != nil
+    }
 }
 
 class AuthManager: ObservableObject {

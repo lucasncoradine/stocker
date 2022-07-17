@@ -23,6 +23,7 @@ struct SignupView: View {
                     .textContentType(.emailAddress)
                     .textInputAutocapitalization(.never)
                     .textFieldStyle(.roundedBorder)
+                    .keyboardType(.emailAddress)
                     .fieldError(viewModel.emailValidationMessage)
                 
                 SecureField("Senha", text: $viewModel.password)
@@ -37,7 +38,7 @@ struct SignupView: View {
             }
             
             // Signup Button
-            CustomButton(action: viewModel.createAccout, showLoading: viewModel.isLoading) {
+            CustomButton(action: viewModel.createAccout, showLoading: viewModel.isLoading, type: .primaryGradient) {
                 Text("Criar conta")
             }
             
@@ -45,11 +46,6 @@ struct SignupView: View {
         }
         .padding()
         .navigationTitle("Nova conta")
-        .alert("Usuário criado com sucesso", isPresented: $viewModel.userCreated) {
-            Button(role: .cancel, action: {}) {
-                Text("OK")
-            }
-        }
     }
 }
 

@@ -19,7 +19,6 @@ class SignupViewModel: ObservableObject {
     @Published var confirmPassword: String = ""
     @Published var confirmPasswordValidationMessage: String = ""
     @Published var isLoading: Bool = false
-    @Published var userCreated: Bool = false
     
     // MARK: - Private Methods
     private func validateFields() -> Bool {
@@ -46,7 +45,6 @@ class SignupViewModel: ObservableObject {
             
             auth.signUp(email: self.email, password: self.password, name: self.name) { _ in
                 self.isLoading = false
-                self.userCreated = true
             }
         }
     }

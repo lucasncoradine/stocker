@@ -27,7 +27,7 @@ struct LoginView: View {
                     TextField("Email", text: $viewModel.email)
                         .textContentType(.emailAddress)
                         .textInputAutocapitalization(.never)
-                        .disableAutocorrection(true)
+                        .keyboardType(.emailAddress)
                         .customStyle()
                         .fieldError(viewModel.emailValidationMessage)
                     
@@ -51,7 +51,7 @@ struct LoginView: View {
                 .padding(.bottom, 40)
                 
                 // Login button
-                CustomButton(action: viewModel.login, showLoading: viewModel.isLoading) {
+                CustomButton(action: viewModel.login, showLoading: viewModel.isLoading, type: .primaryGradient) {
                     Text("Entrar")
                 }
                 
