@@ -9,5 +9,7 @@ import Foundation
 import SwiftUI
 
 extension Button {
-    
+    @ViewBuilder func fullwidth() -> some View {
+        self.frame(maxWidth: .infinity)
+    }
 }

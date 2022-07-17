@@ -7,13 +7,8 @@
 
 import SwiftUI
 
-class ApplicationEnvironment: ObservableObject {
-    @Published var hideTabView: Bool = false
-}
-
 struct HomeView: View {
     @StateObject var authClient: AuthManager = .init()
-    @StateObject var environment: ApplicationEnvironment = .init()
     
     var body: some View {
         Group {

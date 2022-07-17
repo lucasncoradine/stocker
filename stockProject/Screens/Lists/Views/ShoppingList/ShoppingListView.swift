@@ -44,13 +44,10 @@ struct ShoppingListView: View {
         })
         .navigationTitle("Compras")
         .toolbar {
-            ToolbarItemGroup(placement: .bottomBar) {
+            ToolbarItemGroup() {
                 Button(action: { viewModel.showClearConfirmation.toggle() }) {
-                    Image(systemName: "trash")
-                    Text("Limpar lista")
+                    Label("Limpar lista", systemImage: "trash")
                 }
-                
-                Spacer()
             }
         }
         .onAppear(perform: viewModel.fetchItems )

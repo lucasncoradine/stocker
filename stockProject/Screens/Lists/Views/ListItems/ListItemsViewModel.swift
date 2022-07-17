@@ -22,6 +22,7 @@ class ListItemsViewModel: ObservableObject {
     @Published var showAddedToast: Bool = false
     @Published var isEditing: Bool = false
     @Published var showDeleteConfirmation: Bool = false
+    @Published var showBottomToolbar: Bool = false
     
     // MARK: Lifecycle
     init(listId: String) {
@@ -118,7 +119,9 @@ class ListItemsViewModel: ObservableObject {
     
     func toggleSelection() {
         withAnimation {
+            UITabBar.toggleTabBarVisibility()
             isEditing.toggle()
+            showBottomToolbar.toggle()
         }
     }
     

@@ -38,6 +38,8 @@
 		298B8AA92881B9A9004295C8 /* LoginValidations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298B8AA82881B9A9004295C8 /* LoginValidations.swift */; };
 		298B8AAB2881B9F3004295C8 /* Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298B8AAA2881B9F3004295C8 /* Validations.swift */; };
 		298B8AAD2881CF6F004295C8 /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298B8AAC2881CF6F004295C8 /* ValidationError.swift */; };
+		298B8AB22883029E004295C8 /* UITabBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298B8AB12883029E004295C8 /* UITabBarExtension.swift */; };
+		298B8AB428832C98004295C8 /* BottomToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298B8AB328832C98004295C8 /* BottomToolbar.swift */; };
 		2993630E28808D2700BCA7F3 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2993630D28808D2700BCA7F3 /* AuthManager.swift */; };
 		299653D5286F2E7700EA4799 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653D4286F2E7700EA4799 /* UserModel.swift */; };
 		299653D7286F32C400EA4799 /* ListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653D6286F32C400EA4799 /* ListModel.swift */; };
@@ -114,6 +116,8 @@
 		298B8AA82881B9A9004295C8 /* LoginValidations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginValidations.swift; sourceTree = "<group>"; };
 		298B8AAA2881B9F3004295C8 /* Validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validations.swift; sourceTree = "<group>"; };
 		298B8AAC2881CF6F004295C8 /* ValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationError.swift; sourceTree = "<group>"; };
+		298B8AB12883029E004295C8 /* UITabBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarExtension.swift; sourceTree = "<group>"; };
+		298B8AB328832C98004295C8 /* BottomToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomToolbar.swift; sourceTree = "<group>"; };
 		2993630D28808D2700BCA7F3 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		299653D4286F2E7700EA4799 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		299653D6286F32C400EA4799 /* ListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModel.swift; sourceTree = "<group>"; };
@@ -196,6 +200,7 @@
 			children = (
 				299653D0286F2E0200EA4799 /* Models */,
 				29229664283FA34000C5E888 /* Firebase */,
+				299653FA286F78D500EA4799 /* Components */,
 				299653D1286F2E0900EA4799 /* Screens */,
 				299653E3286F42DE00EA4799 /* Utils */,
 				291C158C2818722E00A89846 /* stockProjectApp.swift */,
@@ -374,7 +379,6 @@
 		299653EC286F6C1900EA4799 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				299653FA286F78D500EA4799 /* Components */,
 				299653F9286F78CC00EA4799 /* Views */,
 			);
 			path = Shared;
@@ -416,6 +420,7 @@
 				292BBF9E2879D63100C7F4BF /* Checkmark.swift */,
 				292BBFA02879DF1C00C7F4BF /* CheckmarkLabel.swift */,
 				297BD084287E351D00C2A8A7 /* CustomButton.swift */,
+				298B8AB328832C98004295C8 /* BottomToolbar.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -443,6 +448,7 @@
 				29F0EB4F2874B69600CA857D /* TextfieldExtension.swift */,
 				292BBFA22879DF5200C7F4BF /* TextExtension.swift */,
 				297BD08C287E444F00C2A8A7 /* ButtonExtension.swift */,
+				298B8AB12883029E004295C8 /* UITabBarExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -617,6 +623,7 @@
 				299653D9286F332F00EA4799 /* ItemModel.swift in Sources */,
 				2954505D283FB79300790C2D /* FirebaseClient.swift in Sources */,
 				2993630E28808D2700BCA7F3 /* AuthManager.swift in Sources */,
+				298B8AB22883029E004295C8 /* UITabBarExtension.swift in Sources */,
 				299653F2286F725800EA4799 /* EmptyView.swift in Sources */,
 				299653F8286F72E400EA4799 /* ListItemsViewModel.swift in Sources */,
 				297BD08D287E444F00C2A8A7 /* ButtonExtension.swift in Sources */,
@@ -627,6 +634,7 @@
 				298B8A9F2880ADC4004295C8 /* ProfileViewModel.swift in Sources */,
 				298B8AA62881968B004295C8 /* HomeViewModel.swift in Sources */,
 				29F0EB562876266800CA857D /* ShoppingListView.swift in Sources */,
+				298B8AB428832C98004295C8 /* BottomToolbar.swift in Sources */,
 				29F0EB582876267000CA857D /* ShoppingListViewModel.swift in Sources */,
 				299653DD286F363400EA4799 /* ShoppingItemModel.swift in Sources */,
 				291C158F2818722E00A89846 /* ContentView.swift in Sources */,

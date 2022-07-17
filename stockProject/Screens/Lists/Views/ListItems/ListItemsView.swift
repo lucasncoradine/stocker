@@ -45,7 +45,7 @@ struct ListItemsView: View {
     
     // MARK: - View
     var body: some View {
-        VStack(spacing: 0) {
+        VStack {
             List {
                 Section {
                     NavigationLink(destination: ShoppingListView(listId: viewModel.listId)) {
@@ -138,14 +138,21 @@ struct ListItemsView: View {
         .showLoading(viewModel.isLoading)
         .toast(isShowing: $viewModel.showAddedToast, message: "Adicionado à lista de compras")
         .navigationTitle(navigationTitle())
+        .bottomToolbar(visible: viewModel.showBottomToolbar) {
+            HStack {
+                BottomToolbarItem(action: viewModel.addSelectedToShoppingList) {
+                    Label("Comprar", systemImage: "cart.badge.plus")
+                }
+                
+                BottomToolbarItem(action: { viewModel.showDeleteConfirmation.toggle() }) {
+                    Label("Remover", systemImage: "trash")
+                }
+            }
+        }
+        .navigationBarBackButtonHidden(viewModel.isEditing)
         .toolbar {
             ToolbarItemGroup() {
-                if viewModel.isEditing {
-                    Button(action: viewModel.toggleSelection) {
-                        Text("OK")
-                            .bold()
-                    }
-                } else {
+                if !viewModel.isEditing {
                     HStack {
                         Button(action: viewModel.createItem) {
                             Label("Novo item", systemImage: "plus")
@@ -163,28 +170,21 @@ struct ListItemsView: View {
                 }
             }
             
-            // MARK: - Bottom Toolbar
-            ToolbarItemGroup(placement: .bottomBar) {
-                if viewModel.isEditing == true {
-                    let disabled: Bool = viewModel.selection.count == 0
-                    
+            // MARK: - Editing Toolbar
+            ToolbarItemGroup(placement: .navigationBarLeading) {
+                if viewModel.isEditing {
                     Button(action: viewModel.toggleAll) {
-                        Text("Todos")
+                        Text("Selecionar Tudo")
                     }
-                    
-                    Spacer()
-                    
-                    Button(action: viewModel.addSelectedToShoppingList) {
-                        Text("Comprar")
+                }
+            }
+            
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                if viewModel.isEditing {
+                    Button(action: viewModel.toggleSelection) {
+                        Text("OK")
+                            .bold()
                     }
-                    .disabled(disabled)
-                    
-                    Spacer()
-                    
-                    Button(role: .destructive, action: { viewModel.showDeleteConfirmation.toggle() }) {
-                        Text("Remover")
-                    }
-                    .disabled(disabled)
                 }
             }
             
