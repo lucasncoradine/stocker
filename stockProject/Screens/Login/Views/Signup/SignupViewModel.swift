@@ -7,35 +7,45 @@
 
 import Foundation
 
-class SignupViewModel: ObservableObject {
+enum SignupField: FieldsEnum {
+    case name
+    case email
+    case password
+    case confirmPassword
+    
+    var description: String {
+        switch self {
+        case .name: return Strings.name
+        case .email: return Strings.email
+        case .password: return Strings.password
+        case .confirmPassword: return Strings.confirmPassword
+        }
+    }
+}
+
+class SignupViewModel: FormViewModel {
     private let auth: AuthManager = .init()
     
     @Published var name: String = ""
-    @Published var nameValidationMessage: String = ""
     @Published var email: String = ""
-    @Published var emailValidationMessage: String = ""
     @Published var password: String = ""
-    @Published var passwordValidationMessage: String = ""
     @Published var confirmPassword: String = ""
-    @Published var confirmPasswordValidationMessage: String = ""
     @Published var isLoading: Bool = false
+    @Published var validations: Validations = [:]
     
-    // MARK: - Private Methods
-    private func validateFields() -> Bool {
-        nameValidationMessage = Validations.validateRequiredField(fieldName: "Nome", value: self.name).message
-        emailValidationMessage = Validations.validateEmail(self.email).message
-        passwordValidationMessage = Validations.validateRequiredField(fieldName: "Senha", value: self.password).message
-        confirmPasswordValidationMessage = Validations.validateConfirmPassword(password: self.password,
-                                                                               confirmPassword: self.confirmPassword).message
+    func requestFailed(_ message: String) {
+        // TODO: Error message
+    }
+    
+    func validateFields() -> Bool {
+        validations.requiredField(key: SignupField.name.description, value: self.name)
+        validations.add(key: SignupField.email.description, value: Validate.email(self.email))
+        validations.requiredField(key: SignupField.password.description, value: self.password)
+        validations.add(key: SignupField.confirmPassword.description,
+                        value: Validate.confirmPassword(password: self.password,
+                                                        confirmPassword: self.confirmPassword))
         
-        let validations  = [
-            nameValidationMessage,
-            emailValidationMessage,
-            passwordValidationMessage,
-            confirmPasswordValidationMessage
-        ]
-        
-        return validations.allSatisfy { $0.isEmpty }
+        return validations.noErrors()
     }
     
     // MARK: - Public Methods

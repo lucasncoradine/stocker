@@ -17,7 +17,7 @@ struct EditItemView: View {
     init(listId: String, item: ItemModel? = nil) {
         let itemModel = item ?? ItemModel(name: "", description: "", amount: 1)
         self._viewModel = StateObject(wrappedValue: EditItemViewModel(from: listId, with: itemModel))
-        self.navigationTitle = item?.name ?? "Novo item"
+        self.navigationTitle = item?.name ?? Strings.editItemNavigationTitle
     }
     
     //MARK: - View
@@ -25,15 +25,15 @@ struct EditItemView: View {
         NavigationView {
             Form {
                 Section {
-                    TextField("Nome", text: $viewModel.item.name)
-                        .fieldError(viewModel.showFieldRequired, message: "Nome do item é obrigatório")
+                    TextField(EditItemField.name.description, text: $viewModel.item.name)
+                        .validation(viewModel.validations.valueOf(EditItemField.name.description))
                     
-                    TextField("Descrição", text: $viewModel.item.description)
+                    TextField(EditItemField.description.description, text: $viewModel.item.description)
                 }
                 
                 Section {
                     Toggle(isOn: $viewModel.hasExpirationDate.animation()) {
-                        Label("Vencimento", systemImage: "calendar")
+                        Label(EditItemField.expireDate.description, systemImage: "calendar")
                             .foregroundColor(Color(.label))
                     }
                     .onTapGesture {
@@ -53,7 +53,7 @@ struct EditItemView: View {
                     Button(action: {
                         dismiss()
                     }) {
-                        Text("Cancelar")
+                        Text(Strings.cancel)
                     }
                 }
                 
@@ -63,7 +63,7 @@ struct EditItemView: View {
                             dismiss()
                         }
                     }) {
-                        Text("Salvar").bold()
+                        Text(Strings.save).bold()
                     }
                 }
             }

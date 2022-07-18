@@ -37,7 +37,6 @@
 		298B8AA62881968B004295C8 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298B8AA52881968A004295C8 /* HomeViewModel.swift */; };
 		298B8AA92881B9A9004295C8 /* LoginValidations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298B8AA82881B9A9004295C8 /* LoginValidations.swift */; };
 		298B8AAB2881B9F3004295C8 /* Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298B8AAA2881B9F3004295C8 /* Validations.swift */; };
-		298B8AAD2881CF6F004295C8 /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298B8AAC2881CF6F004295C8 /* ValidationError.swift */; };
 		298B8AB22883029E004295C8 /* UITabBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298B8AB12883029E004295C8 /* UITabBarExtension.swift */; };
 		298B8AB428832C98004295C8 /* BottomToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298B8AB328832C98004295C8 /* BottomToolbar.swift */; };
 		298B8AB628844477004295C8 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298B8AB528844477004295C8 /* UIApplicationExtension.swift */; };
@@ -61,6 +60,9 @@
 		29C9A1D9287719D5000FDEF8 /* ToastModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C9A1D8287719D5000FDEF8 /* ToastModifier.swift */; };
 		29C9A1DD28771D0D000FDEF8 /* CustomFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C9A1DC28771D0D000FDEF8 /* CustomFunctions.swift */; };
 		29C9A1E3287856E8000FDEF8 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C9A1E2287856E8000FDEF8 /* Selection.swift */; };
+		29CD682D2885894C00B8D590 /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CD682C2885894C00B8D590 /* LocalizedStrings.swift */; };
+		29CD68302885ABC500B8D590 /* FormViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CD682F2885ABC500B8D590 /* FormViewModelProtocol.swift */; };
+		29CD68332885BFD300B8D590 /* FieldsEnumProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CD68322885BFD300B8D590 /* FieldsEnumProtocol.swift */; };
 		29F0EB4B2874B1AB00CA857D /* EditItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F0EB4A2874B1AB00CA857D /* EditItemView.swift */; };
 		29F0EB4D2874B1B400CA857D /* EditItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F0EB4C2874B1B400CA857D /* EditItemViewModel.swift */; };
 		29F0EB502874B69600CA857D /* TextfieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F0EB4F2874B69600CA857D /* TextfieldExtension.swift */; };
@@ -117,7 +119,6 @@
 		298B8AA52881968A004295C8 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		298B8AA82881B9A9004295C8 /* LoginValidations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginValidations.swift; sourceTree = "<group>"; };
 		298B8AAA2881B9F3004295C8 /* Validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validations.swift; sourceTree = "<group>"; };
-		298B8AAC2881CF6F004295C8 /* ValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationError.swift; sourceTree = "<group>"; };
 		298B8AB12883029E004295C8 /* UITabBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarExtension.swift; sourceTree = "<group>"; };
 		298B8AB328832C98004295C8 /* BottomToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomToolbar.swift; sourceTree = "<group>"; };
 		298B8AB528844477004295C8 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
@@ -141,6 +142,9 @@
 		29C9A1D8287719D5000FDEF8 /* ToastModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastModifier.swift; sourceTree = "<group>"; };
 		29C9A1DC28771D0D000FDEF8 /* CustomFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFunctions.swift; sourceTree = "<group>"; };
 		29C9A1E2287856E8000FDEF8 /* Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selection.swift; sourceTree = "<group>"; };
+		29CD682C2885894C00B8D590 /* LocalizedStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
+		29CD682F2885ABC500B8D590 /* FormViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewModelProtocol.swift; sourceTree = "<group>"; };
+		29CD68322885BFD300B8D590 /* FieldsEnumProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldsEnumProtocol.swift; sourceTree = "<group>"; };
 		29F0EB4A2874B1AB00CA857D /* EditItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemView.swift; sourceTree = "<group>"; };
 		29F0EB4C2874B1B400CA857D /* EditItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemViewModel.swift; sourceTree = "<group>"; };
 		29F0EB4F2874B69600CA857D /* TextfieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextfieldExtension.swift; sourceTree = "<group>"; };
@@ -202,6 +206,7 @@
 		291C158B2818722E00A89846 /* stockProject */ = {
 			isa = PBXGroup;
 			children = (
+				29CD682E2885ABB400B8D590 /* Protocols */,
 				299653D0286F2E0200EA4799 /* Models */,
 				29229664283FA34000C5E888 /* Firebase */,
 				299653FA286F78D500EA4799 /* Components */,
@@ -310,7 +315,6 @@
 			isa = PBXGroup;
 			children = (
 				298B8AAA2881B9F3004295C8 /* Validations.swift */,
-				298B8AAC2881CF6F004295C8 /* ValidationError.swift */,
 				298B8AA82881B9A9004295C8 /* LoginValidations.swift */,
 			);
 			path = Validations;
@@ -360,6 +364,7 @@
 				29C9A1D7287719C3000FDEF8 /* ViewModifiers */,
 				299653E4286F42F100EA4799 /* Development */,
 				29C9A1DC28771D0D000FDEF8 /* CustomFunctions.swift */,
+				29CD682C2885894C00B8D590 /* LocalizedStrings.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -457,6 +462,15 @@
 				298B8AB528844477004295C8 /* UIApplicationExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		29CD682E2885ABB400B8D590 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				29CD682F2885ABC500B8D590 /* FormViewModelProtocol.swift */,
+				29CD68322885BFD300B8D590 /* FieldsEnumProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		29F0EB542876264F00CA857D /* ShoppingList */ = {
@@ -621,7 +635,7 @@
 				298B8AA92881B9A9004295C8 /* LoginValidations.swift in Sources */,
 				297BD085287E351D00C2A8A7 /* CustomButton.swift in Sources */,
 				29F0EB4D2874B1B400CA857D /* EditItemViewModel.swift in Sources */,
-				298B8AAD2881CF6F004295C8 /* ValidationError.swift in Sources */,
+				29CD68302885ABC500B8D590 /* FormViewModelProtocol.swift in Sources */,
 				29C9A1D9287719D5000FDEF8 /* ToastModifier.swift in Sources */,
 				298B8AAB2881B9F3004295C8 /* Validations.swift in Sources */,
 				29545063283FD35100790C2D /* APIClient.swift in Sources */,
@@ -635,11 +649,13 @@
 				297BD08D287E444F00C2A8A7 /* ButtonExtension.swift in Sources */,
 				299653DB286F343200EA4799 /* ModelProtocol.swift in Sources */,
 				299653E6286F524300EA4799 /* DevelopmentVariables.swift in Sources */,
+				29CD68332885BFD300B8D590 /* FieldsEnumProtocol.swift in Sources */,
 				298B8AA12880ADCD004295C8 /* ProfileView.swift in Sources */,
 				297BD083287E335900C2A8A7 /* LoginViewModel.swift in Sources */,
 				298B8A9F2880ADC4004295C8 /* ProfileViewModel.swift in Sources */,
 				298B8AA62881968B004295C8 /* HomeViewModel.swift in Sources */,
 				29F0EB562876266800CA857D /* ShoppingListView.swift in Sources */,
+				29CD682D2885894C00B8D590 /* LocalizedStrings.swift in Sources */,
 				298B8AB428832C98004295C8 /* BottomToolbar.swift in Sources */,
 				29F0EB582876267000CA857D /* ShoppingListViewModel.swift in Sources */,
 				299653DD286F363400EA4799 /* ShoppingItemModel.swift in Sources */,

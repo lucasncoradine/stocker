@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 extension View {
-    @ViewBuilder func fieldError(_ condition: Bool, message: String) -> some View {
+    @ViewBuilder func fieldError(condition: Bool, message: String) -> some View {
         VStack(alignment: .leading) {
             self
             
@@ -40,5 +40,13 @@ extension View {
             .background(Color(.systemGray5))
             .cornerRadius(13)
             .multilineTextAlignment(alignment)
+    }
+    
+    @ViewBuilder func validation(_ object: ValidationObject?) -> some View {
+        if let object = object, object.isValid == false {
+            self.fieldError(object.message)
+        } else {
+            self
+        }
     }
 }

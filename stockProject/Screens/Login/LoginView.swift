@@ -24,23 +24,23 @@ struct LoginView: View {
                 
                 // Fields
                 VStack(spacing: 20) {
-                    TextField("Email", text: $viewModel.email)
+                    TextField(LoginField.email.description, text: $viewModel.email)
                         .textContentType(.emailAddress)
                         .textInputAutocapitalization(.never)
                         .keyboardType(.emailAddress)
                         .customStyle()
-                        .fieldError(viewModel.emailValidationMessage)
+                        .validation(viewModel.validations.valueOf(LoginField.email.description))
                     
                     VStack {
-                        SecureField("Senha", text: $viewModel.password)
+                        SecureField(LoginField.password.description, text: $viewModel.password)
                             .textContentType(.password)
                             .customStyle()
-                            .fieldError(viewModel.passwordValidationMessage)
-                        
+                            .validation(viewModel.validations.valueOf(LoginField.password.description))
+
                         HStack {
                             Spacer()
-                            
-                            Text("Esqueci minha senha")
+
+                            Text(Strings.forgotPassword)
                                 .font(.footnote)
                                 .bold()
                                 .foregroundColor(.blue)
@@ -52,7 +52,7 @@ struct LoginView: View {
                 
                 // Login button
                 CustomButton(action: viewModel.login, showLoading: viewModel.isLoading, type: .primaryGradient) {
-                    Text("Entrar")
+                    Text(Strings.loginButton)
                 }
                 
                 Spacer()
@@ -61,8 +61,8 @@ struct LoginView: View {
                     Divider()
                     
                     HStack {
-                        Text("Ainda não possui uma conta?")
-                        NavigationLink("Crie uma aqui!", destination: SignupView())
+                        Text(Strings.signupMessage)
+                        NavigationLink(Strings.signupMessageCreate, destination: SignupView())
                             .foregroundColor(.blue)
                     }
                     .padding(.vertical, 10)
@@ -71,7 +71,7 @@ struct LoginView: View {
             }
             .padding(.top, 60)
             .padding([.horizontal, .bottom])
-            .errorAlert(visible: $viewModel.showError, message: viewModel.errorMessage, buttonText: "Ok")
+            .errorAlert(visible: $viewModel.showError, message: viewModel.errorMessage, buttonText: Strings.close)
             .navigationBarHidden(true)
         }
     }

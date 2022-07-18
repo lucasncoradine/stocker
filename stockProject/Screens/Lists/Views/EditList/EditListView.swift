@@ -16,7 +16,7 @@ struct EditListView: View {
     // MARK: - Lifecycle
     init(list: ListModel? = nil) {
         self._viewModel = StateObject(wrappedValue: EditListViewModel(with: list ?? ListModel(name: "")))
-        self.navigationTitle = list?.name ?? "Nova lista"
+        self.navigationTitle = list?.name ?? Strings.editListNavigationTitle
     }
     
     // MARK: - View
@@ -29,9 +29,9 @@ struct EditListView: View {
                             .padding(.bottom, 10)
                         
                         VStack {
-                            TextField("Nome da lista", text: $viewModel.list.name)
+                            TextField(EditListField.listName.description, text: $viewModel.list.name)
                                 .customStyle(alignment: .center)
-                                .fieldError(viewModel.showNameFieldError, message: "Nome da lista é obrigatório")
+                                .validation(viewModel.validations.valueOf(EditListField.listName.description))
                             
 //                            
                         }
@@ -46,7 +46,7 @@ struct EditListView: View {
                     Button(action: {
                         dismiss()
                     }) {
-                        Text("Cancelar")
+                        Text(Strings.cancel)
                     }
                 }
                 
@@ -56,7 +56,7 @@ struct EditListView: View {
                             dismiss()
                         }
                     } label: {
-                        Text("Salvar").bold()
+                        Text(Strings.save).bold()
                     }
                 }
             }

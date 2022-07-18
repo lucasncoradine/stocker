@@ -7,34 +7,39 @@
 
 import Foundation
 
-class LoginViewModel: ObservableObject {
-    private let client: AuthManager = .init()
+enum LoginField: FieldsEnum {
+    case email
+    case password
+    
+    var description: String {
+        switch self {
+        case .email: return Strings.email
+        case .password: return Strings.password
+        }
+    }
+}
+
+class LoginViewModel: FormViewModel {
+    private let authManager: AuthManager = .init()
     
     @Published var email: String = ""
-    @Published var emailValidationMessage: String = ""
     @Published var password: String = ""
-    @Published var passwordValidationMessage: String = ""
     @Published var isLoading: Bool = false
     @Published var errorMessage: String = ""
     @Published var showError: Bool = false
+    @Published var validations: Validations = [:]
     
-    private func requestFailed(_ message: String) {
+    func requestFailed(_ message: String) {
         isLoading = false
         errorMessage = message
         showError = true
     }
     
-    // MARK: - Private Methods
-    private func validateFields() -> Bool {
-        emailValidationMessage = Validations.validateEmail(self.email).message
-        passwordValidationMessage = Validations.validateRequiredField(fieldName: "Senha", value: self.password).message
+    func validateFields() -> Bool {
+        validations.add(key: LoginField.email.description, value: Validate.email(self.email))
+        validations.requiredField(key: LoginField.password.description, value: self.password)
         
-        let validations  = [
-            emailValidationMessage,
-            passwordValidationMessage
-        ]
-        
-        return validations.allSatisfy { $0.isEmpty }
+        return validations.noErrors()
     }
     
     // MARK: - Methods
@@ -42,7 +47,7 @@ class LoginViewModel: ObservableObject {
         if validateFields() {
             isLoading = true
             
-            client.authenticate(withEmail: self.email, withPassword: self.password) { user in
+            authManager.authenticate(withEmail: self.email, withPassword: self.password, failure: requestFailed) { _ in
                 self.isLoading = false
             }
         }

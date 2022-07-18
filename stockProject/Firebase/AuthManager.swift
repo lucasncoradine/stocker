@@ -20,6 +20,7 @@ class AuthManagerShared: ObservableObject {
 }
 
 class AuthManager: ObservableObject {
+    private let client: FirebaseClient = .init()
     private let auth: Auth = Auth.auth()
     private var listener: AuthStateDidChangeListenerHandle? = nil
     static var shared: AuthManagerShared = .init()
@@ -46,20 +47,18 @@ class AuthManager: ObservableObject {
     /// - parameter completion: A closure to handle the result of this request
     func authenticate(withEmail: String,
                       withPassword: String,
-                      completion: @escaping (_ result: Result<FirebaseUser, Error>) -> Void
+                      failure: @escaping (_ message: String) -> Void,
+                      success: @escaping (_ user: FirebaseUser) -> Void
     ) {
         auth.signIn(withEmail: withEmail, password: withPassword) { result, error in
             if let error = error {
-                completion(.failure(error))
+                failure(self.client.handleError(error))
                 return
             }
             
-            guard let result = result else {
-                completion(.failure(FirebaseError.noUser))
-                return
+            if let result = result {
+                success(result.user)
             }
-            
-            completion(.success(result.user))
         }
     }
     

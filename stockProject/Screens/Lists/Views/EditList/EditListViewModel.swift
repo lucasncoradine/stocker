@@ -7,20 +7,36 @@
 
 import Foundation
 
-class EditListViewModel: ObservableObject {
+enum EditListField: FieldsEnum {
+    case listName
+    
+    var description: String {
+        switch self {
+        case .listName: return Strings.editListFieldName
+        }
+    }
+}
+
+class EditListViewModel: FormViewModel {
     private let client: APIClient<ListModel> = .init(collection: .lists)
     
     @Published var list: ListModel
     @Published var errorMessage: String = ""
     @Published var showError: Bool = false
-    @Published var showNameFieldError: Bool = false
+    @Published var validations: Validations = [:]
     
     // MARK: - Private Methods
-    private func requestFailed(message: String) {
+    func requestFailed(_ message: String) {
         DispatchQueue.main.async {
             self.errorMessage = message
             self.showError = true
         }
+    }
+    
+    func validateFields() -> Bool {
+        validations.requiredField(key: EditListField.listName.description, value: self.list.name)
+        
+        return validations.noErrors()
     }
     
     // MARK: - Lifecycle
@@ -31,10 +47,9 @@ class EditListViewModel: ObservableObject {
     // MARK: - Methods
     func saveList(_ completion: () -> Void) {
         guard
-            list.name.isEmpty == false,
+            validateFields(),
             let id = list.id
         else {
-            showNameFieldError = true
             return
         }
         

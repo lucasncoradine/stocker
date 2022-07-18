@@ -14,38 +14,38 @@ struct SignupView: View {
         VStack(spacing: 30) {
             // Fields
             VStack(spacing: 20) {
-                TextField("Nome", text: $viewModel.name)
+                TextField(Strings.name, text: $viewModel.name)
                     .textContentType(.name)
                     .textFieldStyle(.roundedBorder)
-                    .fieldError(viewModel.nameValidationMessage)
+                    .validation(viewModel.validations.valueOf(SignupField.name.description))
                 
-                TextField("Email", text: $viewModel.email)
+                TextField(Strings.email, text: $viewModel.email)
                     .textContentType(.emailAddress)
                     .textInputAutocapitalization(.never)
                     .textFieldStyle(.roundedBorder)
                     .keyboardType(.emailAddress)
-                    .fieldError(viewModel.emailValidationMessage)
+                    .validation(viewModel.validations.valueOf(SignupField.email.description))
                 
-                SecureField("Senha", text: $viewModel.password)
+                SecureField(Strings.password, text: $viewModel.password)
                     .textContentType(.newPassword)
                     .textFieldStyle(.roundedBorder)
-                    .fieldError(viewModel.passwordValidationMessage)
+                    .validation(viewModel.validations.valueOf(SignupField.password.description))
                 
-                SecureField("Confirmar senha", text: $viewModel.confirmPassword)
+                SecureField(Strings.confirmPassword, text: $viewModel.confirmPassword)
                     .textContentType(.newPassword)
                     .textFieldStyle(.roundedBorder)
-                    .fieldError(viewModel.confirmPasswordValidationMessage)
+                    .validation(viewModel.validations.valueOf(SignupField.confirmPassword.description))
             }
             
             // Signup Button
             CustomButton(action: viewModel.createAccout, showLoading: viewModel.isLoading, type: .primaryGradient) {
-                Text("Criar conta")
+                Text(Strings.signupButton)
             }
             
             Spacer()
         }
         .padding()
-        .navigationTitle("Nova conta")
+        .navigationTitle(Strings.signupNavigationTitle)
     }
 }
 

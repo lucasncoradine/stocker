@@ -7,23 +7,40 @@
 
 import Foundation
 
-class EditItemViewModel: ObservableObject {
+enum EditItemField: FieldsEnum {
+    case name
+    case description
+    case expireDate
+    
+    var description: String {
+        switch self {
+        case .name: return Strings.name
+        case .description: return Strings.description
+        case .expireDate: return Strings.expireDate
+        }
+    }
+}
+
+class EditItemViewModel: FormViewModel {
     private let client: APIClient<ItemModel>
     private let listId: String
     
     @Published var item: ItemModel
-    @Published var showFieldRequired: Bool = false
     @Published var errorMessage: String = ""
     @Published var showError: Bool = false
     @Published var hasExpirationDate: Bool
     @Published var expirationDate: Date
+    @Published var validations: Validations = [:]
     
-    // MARK: - Private Methods
-    private func requestFailed(message: String) {
-        DispatchQueue.main.async {
-            self.errorMessage = message
-            self.showError = true
-        }
+    func requestFailed(_ message: String) {
+        self.errorMessage = message
+        self.showError = true
+    }
+    
+    func validateFields() -> Bool {
+        validations.requiredField(key: EditItemField.name.description, value: self.item.name)
+        
+        return validations.noErrors()
     }
     
     // MARK: - Lifecycle
@@ -38,10 +55,9 @@ class EditItemViewModel: ObservableObject {
     // MARK: - Methods
     func saveItem(_ completion: () -> Void) {
         guard
-            item.name.isEmpty == false,
+            validateFields(),
             let id = item.id
         else {
-            showFieldRequired = true
             return
         }
         
