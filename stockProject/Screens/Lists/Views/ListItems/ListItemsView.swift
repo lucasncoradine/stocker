@@ -26,7 +26,7 @@ struct ListItemsView: View {
         if selectedCount == 0 {
             return listName
         } else {
-            let selectedWord: String = selectedCount > 1 ? "Selecionados" : "Selecionado"
+            let selectedWord: String = selectedCount > 1 ? Strings.selectedItemsTextPlural : Strings.selectedItemsText
             return "\(selectedCount) \(selectedWord)"
         }
     }
@@ -51,7 +51,7 @@ struct ListItemsView: View {
                     NavigationLink(destination: ShoppingListView(listId: viewModel.listId)) {
                         HStack {
                             Image(systemName: "cart")
-                            Text("Lista de compras")
+                            Text(Strings.shoppingList)
                         }
                     }
                     .disabled(viewModel.isEditing)
@@ -83,28 +83,28 @@ struct ListItemsView: View {
                         }
                         .contextMenu {
                             Button(action: { viewModel.addToShoppingList(itemId: item.id, itemName: item.name) }) {
-                                Label("Comprar", systemImage: "cart.badge.plus")
+                                Label(Strings.addToShopping, systemImage: "cart.badge.plus")
                             }
                             
                             Button(action: { viewModel.editItem(id: item.id) }) {
-                                Label("Editar", systemImage: "square.and.pencil")
+                                Label(Strings.edit, systemImage: "square.and.pencil")
                             }
                             
                             Button(role: .destructive, action: { viewModel.deleteItem(id: item.id) }) {
-                                Label("Remover", systemImage: "trash")
+                                Label(Strings.remove, systemImage: "trash")
                             }
                         }
                         // MARK: - Right Swipe
                         .swipeActions {
                             Button(role: .destructive, action: { viewModel.deleteItem(id: item.id) } ) {
-                                Label("Remover", systemImage: "trash")
+                                Label(Strings.remove, systemImage: "trash")
                             }
                         }
                         
                         // MARK: - Left Swipe
                         .swipeActions(edge: .leading) {
                             Button(action: { viewModel.addToShoppingList(itemId: item.id, itemName: item.name) }) {
-                                Label("Comprar", systemImage: "cart.badge.plus")
+                                Label(Strings.addToShopping, systemImage: "cart.badge.plus")
                             }
                             .tint(.blue)
                         }
@@ -116,13 +116,13 @@ struct ListItemsView: View {
                     }
                 }
             }
-            .alert("Tem certeza que deseja remover os itens selecionados?", isPresented: $viewModel.showDeleteConfirmation, actions: {
+            .alert(Strings.listItemsRemoveSelectedMessage, isPresented: $viewModel.showDeleteConfirmation, actions: {
                 Button(role: .cancel , action: {}) {
-                    Text("Cancelar")
+                    Text(Strings.cancel)
                 }
                 
                 Button(role: .destructive, action: { viewModel.deleteSelectedItems() }) {
-                    Text("Remover")
+                    Text(Strings.remove)
                         .bold()
                         .tint(.red)
                 }
@@ -134,33 +134,33 @@ struct ListItemsView: View {
                 }
             }
         }
-        .showEmptyView(viewModel.items.isEmpty, emptyText: "Sem itens")
+        .showEmptyView(viewModel.items.isEmpty, emptyText: Strings.listItemsEmpty)
         .showLoading(viewModel.isLoading)
-        .toast(isShowing: $viewModel.showAddedToast, message: "Adicionado à lista de compras")
-        .navigationTitle(navigationTitle())
+        .toast(isShowing: $viewModel.showAddedToast, message: Strings.listItemsAddedToast)
         .bottomToolbar(visible: viewModel.showBottomToolbar) {
             HStack {
                 BottomToolbarItem(action: viewModel.addSelectedToShoppingList) {
-                    Label("Comprar", systemImage: "cart.badge.plus")
+                    Label(Strings.addToShopping, systemImage: "cart.badge.plus")
                 }
                 
                 BottomToolbarItem(action: { viewModel.showDeleteConfirmation.toggle() }) {
-                    Label("Remover", systemImage: "trash")
+                    Label(Strings.remove, systemImage: "trash")
                 }
             }
         }
+        .navigationTitle(navigationTitle())
         .navigationBarBackButtonHidden(viewModel.isEditing)
         .toolbar {
             ToolbarItemGroup() {
                 if !viewModel.isEditing {
                     HStack {
                         Button(action: viewModel.createItem) {
-                            Label("Novo item", systemImage: "plus")
+                            Label(Strings.editItemNavigationTitle, systemImage: "plus")
                         }
                         
                         Menu {
                             Button(action: viewModel.toggleSelection) {
-                                Text("Selecionar")
+                                Text(Strings.select)
                                 Image(systemName: "checkmark.circle")
                             }
                         } label: {
@@ -174,7 +174,7 @@ struct ListItemsView: View {
             ToolbarItemGroup(placement: .navigationBarLeading) {
                 if viewModel.isEditing {
                     Button(action: viewModel.toggleAll) {
-                        Text("Selecionar Tudo")
+                        Text(Strings.selectAll)
                     }
                 }
             }
@@ -182,7 +182,7 @@ struct ListItemsView: View {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 if viewModel.isEditing {
                     Button(action: viewModel.toggleSelection) {
-                        Text("OK")
+                        Text(Strings.ok)
                             .bold()
                     }
                 }
@@ -192,7 +192,7 @@ struct ListItemsView: View {
             ToolbarItemGroup(placement: .keyboard) {
                 Spacer()
                 
-                Button("Done") {
+                Button(Strings.done) {
                     UIApplication.shared.dismissKeyboard()
                 }
                 .foregroundColor(.blue)

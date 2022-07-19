@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum LoginField: FieldsEnum {
+enum LoginField: FormViewModelField {
     case email
     case password
     

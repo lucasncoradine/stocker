@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum EditListField: FieldsEnum {
+enum EditListField: FormViewModelField {
     case listName
     
     var description: String {

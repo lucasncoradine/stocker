@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum EditItemField: FieldsEnum {
+enum EditItemField: FormViewModelField {
     case name
     case description
     case expireDate

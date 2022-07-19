@@ -13,3 +13,7 @@ protocol FormViewModel: ObservableObject {
     func requestFailed(_ message: String)
     func validateFields() -> Bool
 }
+
+protocol FormViewModelField {
+    var description: String { get }
+}

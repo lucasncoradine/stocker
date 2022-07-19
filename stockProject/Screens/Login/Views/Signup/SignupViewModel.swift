@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum SignupField: FieldsEnum {
+enum SignupField: FormViewModelField {
     case name
     case email
     case password

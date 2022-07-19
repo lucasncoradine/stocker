@@ -46,31 +46,28 @@ extension View {
     @ViewBuilder func bottomToolbar<Content: View>(visible: Bool,
                                                    @ViewBuilder _ content: @escaping () -> Content
     ) -> some View {
-        
-        GeometryReader { geometry in
-            ZStack {
-                self
-                
-                Group {
-                    if visible {
-                        VStack(spacing: 0) {
-                            Spacer()
-                            Divider()
-                            
-                            Group {
-                                content().padding([.top, .horizontal])
-                            }
-                            .frame(maxWidth: .infinity,
-                                   maxHeight: geometry.safeAreaInsets.bottom,
-                                   alignment: .top)
-                            .background(.ultraThinMaterial, in: Rectangle())
+        ZStack {
+            self
+            
+            GeometryReader { geometry in
+                if visible {
+                    VStack(spacing: 0) {
+                        Spacer()
+                        Divider()
+                        
+                        Group {
+                            content().padding([.top, .horizontal])
                         }
+                        .frame(maxWidth: .infinity,
+                               maxHeight: geometry.safeAreaInsets.bottom,
+                               alignment: .top)
+                        .background(.ultraThinMaterial, in: Rectangle())
                     }
                 }
-                .transition(.move(edge: .bottom))
-                .edgesIgnoringSafeArea(.bottom)
-                .animation(.easeOut(duration: 0.6), value: visible)
             }
+            .transition(.move(edge: .bottom))
+            .edgesIgnoringSafeArea(.bottom)
+            .animation(.easeOut(duration: 0.6), value: visible)
         }
     }
 }

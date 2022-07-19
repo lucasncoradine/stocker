@@ -32,8 +32,6 @@ struct EditListView: View {
                             TextField(EditListField.listName.description, text: $viewModel.list.name)
                                 .customStyle(alignment: .center)
                                 .validation(viewModel.validations.valueOf(EditListField.listName.description))
-                            
-//                            
                         }
                     }
                     .padding()

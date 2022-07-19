@@ -62,7 +62,6 @@
 		29C9A1E3287856E8000FDEF8 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C9A1E2287856E8000FDEF8 /* Selection.swift */; };
 		29CD682D2885894C00B8D590 /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CD682C2885894C00B8D590 /* LocalizedStrings.swift */; };
 		29CD68302885ABC500B8D590 /* FormViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CD682F2885ABC500B8D590 /* FormViewModelProtocol.swift */; };
-		29CD68332885BFD300B8D590 /* FieldsEnumProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CD68322885BFD300B8D590 /* FieldsEnumProtocol.swift */; };
 		29F0EB4B2874B1AB00CA857D /* EditItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F0EB4A2874B1AB00CA857D /* EditItemView.swift */; };
 		29F0EB4D2874B1B400CA857D /* EditItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F0EB4C2874B1B400CA857D /* EditItemViewModel.swift */; };
 		29F0EB502874B69600CA857D /* TextfieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F0EB4F2874B69600CA857D /* TextfieldExtension.swift */; };
@@ -144,7 +143,6 @@
 		29C9A1E2287856E8000FDEF8 /* Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selection.swift; sourceTree = "<group>"; };
 		29CD682C2885894C00B8D590 /* LocalizedStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
 		29CD682F2885ABC500B8D590 /* FormViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewModelProtocol.swift; sourceTree = "<group>"; };
-		29CD68322885BFD300B8D590 /* FieldsEnumProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldsEnumProtocol.swift; sourceTree = "<group>"; };
 		29F0EB4A2874B1AB00CA857D /* EditItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemView.swift; sourceTree = "<group>"; };
 		29F0EB4C2874B1B400CA857D /* EditItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemViewModel.swift; sourceTree = "<group>"; };
 		29F0EB4F2874B69600CA857D /* TextfieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextfieldExtension.swift; sourceTree = "<group>"; };
@@ -468,7 +466,6 @@
 			isa = PBXGroup;
 			children = (
 				29CD682F2885ABC500B8D590 /* FormViewModelProtocol.swift */,
-				29CD68322885BFD300B8D590 /* FieldsEnumProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -649,7 +646,6 @@
 				297BD08D287E444F00C2A8A7 /* ButtonExtension.swift in Sources */,
 				299653DB286F343200EA4799 /* ModelProtocol.swift in Sources */,
 				299653E6286F524300EA4799 /* DevelopmentVariables.swift in Sources */,
-				29CD68332885BFD300B8D590 /* FieldsEnumProtocol.swift in Sources */,
 				298B8AA12880ADCD004295C8 /* ProfileView.swift in Sources */,
 				297BD083287E335900C2A8A7 /* LoginViewModel.swift in Sources */,
 				298B8A9F2880ADC4004295C8 /* ProfileViewModel.swift in Sources */,
