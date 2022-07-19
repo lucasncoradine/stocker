@@ -65,6 +65,6 @@ struct EditListView: View {
 struct EditListView_Previews: PreviewProvider {
     static var previews: some View {
         EditListView()
-            .preferredColorScheme(.light)
+            .preferredColorScheme(.dark)
     }
 }

@@ -44,7 +44,7 @@ extension View {
         }
     }
     
-    /// Hide the view if the condition is satisfied
+    /// Set the opacity of  the view to `0` if the condition is satisfied
     @ViewBuilder func visible(_ condition: Bool) -> some View {
         self.opacity(condition ? 1 : 0)
     }

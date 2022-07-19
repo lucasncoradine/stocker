@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject var authClient: AuthManager = .init()
+    @StateObject var authClient: AuthManager = AuthManager.shared
     
     var body: some View {
-        Group {
-            if authClient.isUserAuthenticated {
+        ZStack {
+            if authClient.isUserAuthenticated && !authClient.isSigninUp {
                 TabView {
                     ListsView().tabItem {
                         Label("Início", systemImage: "house")

@@ -43,9 +43,10 @@ final class LocalizedStrings {
     
     // MARK: - SignupView
     static let signupButton = "Criar conta"
+    static let signupNextButton = "Próximo"
     static let signupMessage = "Ainda não possui uma conta?"
     static let signupMessageCreate = "Crie uma aqui!"
-    static let signupNavigationTitle = "Nova conta"
+    static let signupNavigationTitle = "Vamos começar!"
     
     // MARK: - EditListView
     static let editListNavigationTitle = "Nova lista"

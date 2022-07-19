@@ -48,5 +48,4 @@ extension Validations {
     func noErrors() -> Bool {
         self.allSatisfy { $0.value.isValid == true }
     }
-    
 }
