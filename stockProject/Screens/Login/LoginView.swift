@@ -25,9 +25,7 @@ struct LoginView: View {
                 // Fields
                 VStack(spacing: 20) {
                     TextField(LoginField.email.description, text: $viewModel.email)
-                        .textContentType(.emailAddress)
-                        .textInputAutocapitalization(.never)
-                        .keyboardType(.emailAddress)
+                        .emailField()
                         .customStyle()
                         .validation(viewModel.validations.valueOf(LoginField.email.description))
                     
@@ -40,11 +38,12 @@ struct LoginView: View {
                         HStack {
                             Spacer()
 
-                            Text(Strings.forgotPassword)
-                                .font(.footnote)
-                                .bold()
-                                .foregroundColor(.blue)
-                                .padding(.horizontal, 10)
+                            Button(action: { viewModel.showRecoverSheet.toggle() }) {
+                                Text(Strings.forgotPassword)
+                                    .font(.footnote)
+                                    .bold()
+                                    .padding(.horizontal, 10)
+                            }
                         }
                     }
                 }
@@ -71,6 +70,9 @@ struct LoginView: View {
             }
             .padding(.top, 60)
             .padding([.horizontal, .bottom])
+            .sheet(isPresented: $viewModel.showRecoverSheet, content: {
+                PasswordRecoverView(with: viewModel.email)
+            })
             .errorAlert(visible: $viewModel.showError, message: viewModel.errorMessage, buttonText: Strings.close)
             .navigationBarHidden(true)
         }

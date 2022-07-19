@@ -25,14 +25,18 @@ class AuthManager: ObservableObject {
     @Published var isSigninUp: Bool = false
     
     init() {
+        auth.languageCode = "pt_br" // TODO: Change to useAppLanguage
+        
         self._isUserAuthenticated = .init(wrappedValue: auth.currentUser != nil)
         
+        // Start to listen the user state
         listener = auth.addStateDidChangeListener { _, user in
             self.isUserAuthenticated = user != nil
         }
     }
     
     deinit {
+        // Removes the listener
         if let listener = listener {
             auth.removeStateDidChangeListener(listener)
         }
@@ -100,6 +104,25 @@ class AuthManager: ObservableObject {
             }
             
             success(authResult.user)
+        }
+    }
+    
+    /// Sends an email with instructions to reset the password
+    /// - parameters:
+    ///  - to email: The email address to send the instructions
+    ///  - failure: A closure to handle failure
+    ///  - success: A closure to handle success
+    func sendPasswordReset(to email: String,
+                           failure: @escaping FailureClosure,
+                           success: @escaping () -> Void
+    ) {
+        auth.sendPasswordReset(withEmail: email) { error in
+            if let error = error {
+                failure(self.client.handleError(error))
+                return
+            }
+            
+            success()
         }
     }
 }

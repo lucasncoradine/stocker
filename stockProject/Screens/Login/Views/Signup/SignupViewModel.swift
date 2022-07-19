@@ -29,12 +29,12 @@ struct SignupStep {
     let title: String
 }
 
-class SignupViewModel: FormViewModel {
+class SignupViewModel: FormViewModelProtocol {
     private let auth: AuthManager = AuthManager.shared
     
     let steps: [SignupStep] = [
-        SignupStep(tag: 0, title: "Vamos começar"),
-        SignupStep(tag: 1, title: "Criar senha")
+        SignupStep(tag: 0, title: Strings.signupStartTitle),
+        SignupStep(tag: 1, title: Strings.signupPasswordTitle)
     ]
     
     @Published var name: String = ""
@@ -46,7 +46,7 @@ class SignupViewModel: FormViewModel {
     @Published var showError: Bool = false
     @Published var validations: Validations = [:]
     @Published var currentStep: Int = 0
-    @Published var navigationTitle: String = "Vamos começar"
+    @Published var navigationTitle: String = Strings.signupStartTitle
     @Published var buttonTitle: String = Strings.signupNextButton
     
     // MARK: - Lifecycle
@@ -56,12 +56,6 @@ class SignupViewModel: FormViewModel {
     
     deinit {
         auth.isSigninUp = false
-    }
-    
-    func requestFailed(_ message: String) {
-        self.isLoading = false
-        self.errorMessage = message
-        self.showError = true
     }
     
     func validateFields() -> Bool {
@@ -86,7 +80,7 @@ class SignupViewModel: FormViewModel {
     func createAccout() {
         isLoading = true
         
-        auth.signUp(email: self.email, password: self.password, name: self.name, failure: requestFailed) { _ in
+        auth.signUp(email: self.email, password: self.password, name: self.name, failure: self.requestFailed) { _ in
             self.isLoading = false
             self.currentStep += 1
         }

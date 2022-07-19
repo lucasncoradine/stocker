@@ -19,7 +19,7 @@ enum LoginField: FormViewModelField {
     }
 }
 
-class LoginViewModel: FormViewModel {
+class LoginViewModel: FormViewModelProtocol {
     private let authManager: AuthManager = .init()
     
     @Published var email: String = ""
@@ -28,12 +28,7 @@ class LoginViewModel: FormViewModel {
     @Published var errorMessage: String = ""
     @Published var showError: Bool = false
     @Published var validations: Validations = [:]
-    
-    func requestFailed(_ message: String) {
-        isLoading = false
-        errorMessage = message
-        showError = true
-    }
+    @Published var showRecoverSheet: Bool = false
     
     func validateFields() -> Bool {
         validations.add(key: LoginField.email.description, value: Validate.email(self.email))
@@ -47,7 +42,7 @@ class LoginViewModel: FormViewModel {
         if validateFields() {
             isLoading = true
             
-            authManager.authenticate(withEmail: self.email, withPassword: self.password, failure: requestFailed) { _ in
+            authManager.authenticate(withEmail: self.email, withPassword: self.password, failure: self.requestFailed) { _ in
                 self.isLoading = false
             }
         }

@@ -62,6 +62,8 @@
 		29C9A1E3287856E8000FDEF8 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C9A1E2287856E8000FDEF8 /* Selection.swift */; };
 		29CD682D2885894C00B8D590 /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CD682C2885894C00B8D590 /* LocalizedStrings.swift */; };
 		29CD68302885ABC500B8D590 /* FormViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CD682F2885ABC500B8D590 /* FormViewModelProtocol.swift */; };
+		29E08A6528874C2F0071016D /* PasswordRecoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E08A6428874C2F0071016D /* PasswordRecoverView.swift */; };
+		29E08A6728874C380071016D /* PasswordRecoverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E08A6628874C380071016D /* PasswordRecoverViewModel.swift */; };
 		29F0EB4B2874B1AB00CA857D /* EditItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F0EB4A2874B1AB00CA857D /* EditItemView.swift */; };
 		29F0EB4D2874B1B400CA857D /* EditItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F0EB4C2874B1B400CA857D /* EditItemViewModel.swift */; };
 		29F0EB502874B69600CA857D /* TextfieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F0EB4F2874B69600CA857D /* TextfieldExtension.swift */; };
@@ -143,6 +145,8 @@
 		29C9A1E2287856E8000FDEF8 /* Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selection.swift; sourceTree = "<group>"; };
 		29CD682C2885894C00B8D590 /* LocalizedStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
 		29CD682F2885ABC500B8D590 /* FormViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewModelProtocol.swift; sourceTree = "<group>"; };
+		29E08A6428874C2F0071016D /* PasswordRecoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoverView.swift; sourceTree = "<group>"; };
+		29E08A6628874C380071016D /* PasswordRecoverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoverViewModel.swift; sourceTree = "<group>"; };
 		29F0EB4A2874B1AB00CA857D /* EditItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemView.swift; sourceTree = "<group>"; };
 		29F0EB4C2874B1B400CA857D /* EditItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemViewModel.swift; sourceTree = "<group>"; };
 		29F0EB4F2874B69600CA857D /* TextfieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextfieldExtension.swift; sourceTree = "<group>"; };
@@ -268,6 +272,7 @@
 		297BD08E287E477F00C2A8A7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				29E08A6328874C210071016D /* PasswordRecover */,
 				297BD08F287E479F00C2A8A7 /* Signup */,
 			);
 			path = Views;
@@ -468,6 +473,15 @@
 				29CD682F2885ABC500B8D590 /* FormViewModelProtocol.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		29E08A6328874C210071016D /* PasswordRecover */ = {
+			isa = PBXGroup;
+			children = (
+				29E08A6428874C2F0071016D /* PasswordRecoverView.swift */,
+				29E08A6628874C380071016D /* PasswordRecoverViewModel.swift */,
+			);
+			path = PasswordRecover;
 			sourceTree = "<group>";
 		};
 		29F0EB542876264F00CA857D /* ShoppingList */ = {
@@ -671,8 +685,10 @@
 				299653EE286F6C3000EA4799 /* ListIcon.swift in Sources */,
 				29F0EB4B2874B1AB00CA857D /* EditItemView.swift in Sources */,
 				297BD091287E47AF00C2A8A7 /* SignupView.swift in Sources */,
+				29E08A6728874C380071016D /* PasswordRecoverViewModel.swift in Sources */,
 				298B8AB628844477004295C8 /* UIApplicationExtension.swift in Sources */,
 				29C9A1DD28771D0D000FDEF8 /* CustomFunctions.swift in Sources */,
+				29E08A6528874C2F0071016D /* PasswordRecoverView.swift in Sources */,
 				299653EB286F6C0000EA4799 /* ListRow.swift in Sources */,
 				299653F6286F72DC00EA4799 /* ListItemsView.swift in Sources */,
 				298B8AA428819684004295C8 /* HomeView.swift in Sources */,

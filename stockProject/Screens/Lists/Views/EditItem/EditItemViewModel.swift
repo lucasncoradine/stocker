@@ -21,7 +21,7 @@ enum EditItemField: FormViewModelField {
     }
 }
 
-class EditItemViewModel: FormViewModel {
+class EditItemViewModel: FormViewModelProtocol {
     private let client: APIClient<ItemModel>
     private let listId: String
     
@@ -31,6 +31,7 @@ class EditItemViewModel: FormViewModel {
     @Published var hasExpirationDate: Bool
     @Published var expirationDate: Date
     @Published var validations: Validations = [:]
+    @Published var isLoading: Bool = false
     
     func requestFailed(_ message: String) {
         self.errorMessage = message

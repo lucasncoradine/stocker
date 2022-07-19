@@ -9,9 +9,15 @@ import SwiftUI
 
 extension View {
     /// Shows a ProgressView if the condition is satisfied
-    @ViewBuilder func showLoading(_ condition: Bool) -> some View {
+    @ViewBuilder func showLoading(_ condition: Bool, inline: Bool = false) -> some View {
         if condition {
-            ProgressView()
+            HStack(spacing: 5) {
+                if inline {
+                    self.opacity(0.5)
+                }
+                
+                ProgressView()
+            }
         } else {
             self
         }

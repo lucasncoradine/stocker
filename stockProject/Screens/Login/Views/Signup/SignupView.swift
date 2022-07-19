@@ -27,9 +27,7 @@ struct SignupView: View {
                             .validation(viewModel.validations.valueOf(SignupField.name.description))
                         
                         TextField(SignupField.email.description, text: $viewModel.email)
-                            .textContentType(.emailAddress)
-                            .keyboardType(.emailAddress)
-                            .autocapitalization(.none)
+                            .emailField()
                             .customStyle()
                             .validation(viewModel.validations.valueOf(SignupField.email.description))
                     }
@@ -52,11 +50,11 @@ struct SignupView: View {
                         VStack(alignment: .center, spacing: 20) {
                             Text("🥳").font(.system(size: 72))
                             
-                            Text("Bem vindo!")
+                            Text(Strings.signupWelcome)
                                 .font(.title)
                                 .bold()
                             
-                            Text("Sua conta foi criada com sucesso!")
+                            Text(Strings.signupSuccessMessage)
                                 .multilineTextAlignment(.center)
                         }
                     }
@@ -69,7 +67,7 @@ struct SignupView: View {
             // Signup Button
             if viewModel.currentStep == viewModel.steps.count {
                 CustomButton(action: viewModel.completeSignup, type: .primaryGradient) {
-                    Text("Acessar o App")
+                    Text(Strings.signupAccessButton)
                 }
             } else {
                 CustomButton(action: viewModel.nextStep, showLoading: viewModel.isLoading, type: .primaryGradient) {
@@ -79,7 +77,7 @@ struct SignupView: View {
             
             if viewModel.currentStep > 0, viewModel.currentStep < viewModel.steps.count {
                 Button(action: viewModel.previousStep) {
-                    Text("Voltar")
+                    Text(Strings.back)
                 }
             }
             
@@ -87,7 +85,7 @@ struct SignupView: View {
         }
         .padding()
         .errorAlert(visible: $viewModel.showError, message: viewModel.errorMessage)
-        .navigationTitle("Vamos começar!")
+        .navigationTitle(viewModel.navigationTitle)
     }
 }
 

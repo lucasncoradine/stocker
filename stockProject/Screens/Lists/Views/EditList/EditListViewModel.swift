@@ -17,13 +17,14 @@ enum EditListField: FormViewModelField {
     }
 }
 
-class EditListViewModel: FormViewModel {
+class EditListViewModel: FormViewModelProtocol {
     private let client: APIClient<ListModel> = .init(collection: .lists)
     
     @Published var list: ListModel
     @Published var errorMessage: String = ""
     @Published var showError: Bool = false
     @Published var validations: Validations = [:]
+    @Published var isLoading: Bool = false
     
     // MARK: - Private Methods
     func requestFailed(_ message: String) {

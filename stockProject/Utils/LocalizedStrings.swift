@@ -21,6 +21,7 @@ final class LocalizedStrings {
     static let addToShopping = "Comprar"
     static let ok = "OK"
     static let done = "Feito"
+    static let back = "Voltar"
     
     // MARK: - Fields
     static let name = "Nome"
@@ -46,7 +47,11 @@ final class LocalizedStrings {
     static let signupNextButton = "Próximo"
     static let signupMessage = "Ainda não possui uma conta?"
     static let signupMessageCreate = "Crie uma aqui!"
-    static let signupNavigationTitle = "Vamos começar!"
+    static let signupWelcome = "Bem vindo!"
+    static let signupStartTitle = "Vamos começar"
+    static let signupPasswordTitle = "Criar senha"
+    static let signupSuccessMessage = "Sua conta foi criada com sucesso!"
+    static let signupAccessButton = "Acessar o App"
     
     // MARK: - EditListView
     static let editListNavigationTitle = "Nova lista"
@@ -61,4 +66,11 @@ final class LocalizedStrings {
     static let listItemsRemoveSelectedMessage = "Tem certeza que deseja remover os itens selecionados"
     static let listItemsEmpty = "Sem itens"
     static let listItemsAddedToast = "Adicionado à lista de compras"
+    
+    // MARK: - PasswordRecoverView
+    static let passwordRecoverLabel = "Informe o email cadastrado"
+    static let passwordRecoverButtonRecover = "Recuperar senha"
+    static let passwordRecoverEmailSent = "Email enviado!"
+    static let passwordRecoverMessage = "Siga as instruções enviadas para o seu email para prosseguir com a recuperação de senha."
+    static let passwordRecoverButtonBack = "Voltar para o login"
 }

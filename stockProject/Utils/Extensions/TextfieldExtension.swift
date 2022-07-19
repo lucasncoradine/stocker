@@ -42,6 +42,13 @@ extension View {
             .multilineTextAlignment(alignment)
     }
     
+    @ViewBuilder func emailField() -> some View {
+        self
+            .textContentType(.emailAddress)
+            .keyboardType(.emailAddress)
+            .textInputAutocapitalization(.never)
+    }
+    
     @ViewBuilder func validation(_ object: ValidationObject?) -> some View {
         if let object = object, object.isValid == false {
             self.fieldError(object.message)
