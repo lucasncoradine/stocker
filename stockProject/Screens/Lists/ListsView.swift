@@ -55,8 +55,7 @@ struct ListsView: View {
             }
             .sheet(isPresented: $viewModel.showShareSheet) {
                 if let selected = viewModel.selectedList, let id = selected.id {
-                    ShareListView(listId: id
-                                  , listName: selected.name)
+                    ShareListView(listId: id, listName: selected.name)
                 }
             }
             .onAppear(perform: viewModel.fetchLists)    
