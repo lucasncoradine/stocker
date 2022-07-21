@@ -85,6 +85,9 @@ struct SignupView: View {
         }
         .padding()
         .errorAlert(visible: $viewModel.showError, message: viewModel.errorMessage)
+        .onDisappear {
+            viewModel.auth.isSigninUp = false
+        }
         .navigationTitle(viewModel.navigationTitle)
     }
 }

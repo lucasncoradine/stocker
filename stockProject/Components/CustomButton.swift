@@ -18,9 +18,7 @@ enum CustomButtonType {
     var fill: LinearGradient {
         switch self {
         case .primaryGradient:
-            return LinearGradient(gradient: Gradient(colors: [.accentBlue, .accentGreen]),
-                           startPoint: .leading,
-                           endPoint: .trailing)
+            return .primaryGradient
         case .normal(let color):
             return LinearGradient(gradient: Gradient(colors: [color, color]),
                            startPoint: .leading,

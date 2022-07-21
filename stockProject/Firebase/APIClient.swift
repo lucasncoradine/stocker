@@ -23,6 +23,15 @@ class APIClient<T: Codable> {
     }
     
     // MARK: - Methods
+    func get(id: String,
+             failure: @escaping FailureClosure,
+             success: @escaping (_ data: T) -> Void
+    ) {
+        client.getDocument(as: T.self, from: collection, id: id) { result in
+            self.client.handleResult(result, success: success, failure: failure)
+        }
+    }
+    
     func fetch(query: FirebaseQueryType? = nil,
                failure: @escaping FailureClosure,
                success: @escaping (_ data: [T]) -> Void

@@ -30,7 +30,7 @@ struct SignupStep {
 }
 
 class SignupViewModel: FormViewModelProtocol {
-    private let auth: AuthManager = AuthManager.shared
+    let auth: AuthManager = AuthManager.shared
     
     let steps: [SignupStep] = [
         SignupStep(tag: 0, title: Strings.signupStartTitle),
@@ -52,10 +52,6 @@ class SignupViewModel: FormViewModelProtocol {
     // MARK: - Lifecycle
     init() {
         self.auth.isSigninUp = true
-    }
-    
-    deinit {
-        auth.isSigninUp = false
     }
     
     func validateFields() -> Bool {

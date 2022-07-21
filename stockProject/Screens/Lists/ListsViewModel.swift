@@ -16,6 +16,7 @@ class ListsViewModel: ObservableObject {
     @Published var showError: Bool = false
     @Published var showEditSheet: Bool = false
     @Published var selectedList: ListModel? = nil
+    @Published var showShareSheet: Bool = false
     
     // MARK: - Private Methods
     private func requestFailed(message: String) {
@@ -46,6 +47,11 @@ class ListsViewModel: ObservableObject {
     func editList(_ list: ListModel) {
         selectedList = list
         showEditSheet = true
+    }
+    
+    func shareList(_ list: ListModel) {
+        selectedList = list
+        showShareSheet = true
     }
     
     func createList() {

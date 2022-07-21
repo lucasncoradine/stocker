@@ -23,6 +23,7 @@ class ListItemsViewModel: ObservableObject {
     @Published var isEditing: Bool = false
     @Published var showDeleteConfirmation: Bool = false
     @Published var showBottomToolbar: Bool = false
+    @Published var openShare: Bool = false
     
     // MARK: Lifecycle
     init(listId: String) {

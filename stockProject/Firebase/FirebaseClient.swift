@@ -99,8 +99,24 @@ class FirebaseClient {
                                    id: String,
                                    completion: @escaping (_ result: Result<T, Error>) -> Void
     ){
-        database.collection(collection.path).document(id).getDocument(as: type) { queryResult in
-            completion(queryResult)
+        database.collection(collection.path).document(id).getDocument { (documentSnapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let document = documentSnapshot else {
+                completion(.failure(FirebaseError.noDocuments))
+                return
+            }
+            
+            do {
+                let result = try document.data(as: type)
+                
+                completion(.success(result))
+            } catch let mappingError {
+                completion(.failure(mappingError))
+            }
         }
     }
     

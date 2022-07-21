@@ -22,6 +22,7 @@ final class LocalizedStrings {
     static let ok = "OK"
     static let done = "Feito"
     static let back = "Voltar"
+    static let share = "Compartilhar"
     
     // MARK: - Fields
     static let name = "Nome"
@@ -37,6 +38,11 @@ final class LocalizedStrings {
     static let invalidEmail = "Email inválido"
     static let passwordsDontMatch = "As senhas não são iguais"
     static let requiredField = "Campo obrigatório"
+    
+    // MARK: - ListsView
+    static let listsEmpty = "Sem listas"
+    static let listsTitle = "Listas"
+    static let listsNew = "Nova lista"
     
     // MARK: - LoginView
     static let forgotPassword = "Esqueci minha senha"

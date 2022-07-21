@@ -7,22 +7,10 @@
 
 import Foundation
 
-protocol FormViewModelProtocol: ObservableObject {
+protocol FormViewModelProtocol: ViewModel {
     var validations: Validations { get set }
-    var isLoading: Bool { get set }
-    var showError: Bool { get set }
-    var errorMessage: String { get set }
     
-    func requestFailed(_ message: String)
     func validateFields() -> Bool
-}
-
-extension FormViewModelProtocol {
-    func requestFailed(_ message: String) {
-        self.isLoading = false
-        self.showError = true
-        self.errorMessage = message
-    }
 }
 
 protocol FormViewModelField {

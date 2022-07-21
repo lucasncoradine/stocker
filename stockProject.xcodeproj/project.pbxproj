@@ -23,6 +23,10 @@
 		292BBFA32879DF5200C7F4BF /* TextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292BBFA22879DF5200C7F4BF /* TextExtension.swift */; };
 		292BBFA5287DB6B600C7F4BF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 292BBFA4287DB6B600C7F4BF /* Launch Screen.storyboard */; };
 		292F7FAE283FECE7004F6FD4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 292F7FAD283FECD6004F6FD4 /* GoogleService-Info.plist */; };
+		2952C4942889C4340031BE48 /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2952C4932889C4340031BE48 /* QRCode.swift */; };
+		2952C4972889C5E10031BE48 /* ShareListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2952C4962889C5E10031BE48 /* ShareListView.swift */; };
+		2952C4992889C5EF0031BE48 /* ShareListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2952C4982889C5EF0031BE48 /* ShareListViewModel.swift */; };
+		2952C49B2889E0990031BE48 /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2952C49A2889E0990031BE48 /* ViewModelProtocol.swift */; };
 		2954505D283FB79300790C2D /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2954505C283FB79300790C2D /* FirebaseClient.swift */; };
 		29545063283FD35100790C2D /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29545062283FD35100790C2D /* APIClient.swift */; };
 		297BD081287E335100C2A8A7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297BD080287E335100C2A8A7 /* LoginView.swift */; };
@@ -106,6 +110,11 @@
 		292BBFA22879DF5200C7F4BF /* TextExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextExtension.swift; sourceTree = "<group>"; };
 		292BBFA4287DB6B600C7F4BF /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		292F7FAD283FECD6004F6FD4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2952C490288990610031BE48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2952C4932889C4340031BE48 /* QRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
+		2952C4962889C5E10031BE48 /* ShareListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareListView.swift; sourceTree = "<group>"; };
+		2952C4982889C5EF0031BE48 /* ShareListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareListViewModel.swift; sourceTree = "<group>"; };
+		2952C49A2889E0990031BE48 /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
 		2954505C283FB79300790C2D /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
 		29545062283FD35100790C2D /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		297BD080287E335100C2A8A7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -208,6 +217,7 @@
 		291C158B2818722E00A89846 /* stockProject */ = {
 			isa = PBXGroup;
 			children = (
+				2952C490288990610031BE48 /* Info.plist */,
 				29CD682E2885ABB400B8D590 /* Protocols */,
 				299653D0286F2E0200EA4799 /* Models */,
 				29229664283FA34000C5E888 /* Firebase */,
@@ -257,6 +267,15 @@
 				2993630D28808D2700BCA7F3 /* AuthManager.swift */,
 			);
 			path = Firebase;
+			sourceTree = "<group>";
+		};
+		2952C4952889C5CB0031BE48 /* ShareList */ = {
+			isa = PBXGroup;
+			children = (
+				2952C4962889C5E10031BE48 /* ShareListView.swift */,
+				2952C4982889C5EF0031BE48 /* ShareListViewModel.swift */,
+			);
+			path = ShareList;
 			sourceTree = "<group>";
 		};
 		297BD07F287E334100C2A8A7 /* Login */ = {
@@ -338,6 +357,7 @@
 		299653D1286F2E0900EA4799 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				2952C4952889C5CB0031BE48 /* ShareList */,
 				298B8AA228819678004295C8 /* Home */,
 				298B8A9D2880ADB9004295C8 /* Profile */,
 				297BD07F287E334100C2A8A7 /* Login */,
@@ -433,6 +453,7 @@
 				292BBFA02879DF1C00C7F4BF /* CheckmarkLabel.swift */,
 				297BD084287E351D00C2A8A7 /* CustomButton.swift */,
 				298B8AB328832C98004295C8 /* BottomToolbar.swift */,
+				2952C4932889C4340031BE48 /* QRCode.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -471,6 +492,7 @@
 			isa = PBXGroup;
 			children = (
 				29CD682F2885ABC500B8D590 /* FormViewModelProtocol.swift */,
+				2952C49A2889E0990031BE48 /* ViewModelProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -643,6 +665,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2952C4972889C5E10031BE48 /* ShareListView.swift in Sources */,
 				298B8AA92881B9A9004295C8 /* LoginValidations.swift in Sources */,
 				297BD085287E351D00C2A8A7 /* CustomButton.swift in Sources */,
 				29F0EB4D2874B1B400CA857D /* EditItemViewModel.swift in Sources */,
@@ -677,11 +700,13 @@
 				297BD093287E47BC00C2A8A7 /* SignupViewModel.swift in Sources */,
 				299653E0286F422100EA4799 /* ListsView.swift in Sources */,
 				299653D5286F2E7700EA4799 /* UserModel.swift in Sources */,
+				2952C4992889C5EF0031BE48 /* ShareListViewModel.swift in Sources */,
 				291C158D2818722E00A89846 /* stockProjectApp.swift in Sources */,
 				29F43C30287477CF00276EE2 /* EditListViewModel.swift in Sources */,
 				29F0EB502874B69600CA857D /* TextfieldExtension.swift in Sources */,
 				292BBF9F2879D63100C7F4BF /* Checkmark.swift in Sources */,
 				292BBFA12879DF1C00C7F4BF /* CheckmarkLabel.swift in Sources */,
+				2952C49B2889E0990031BE48 /* ViewModelProtocol.swift in Sources */,
 				299653EE286F6C3000EA4799 /* ListIcon.swift in Sources */,
 				29F0EB4B2874B1AB00CA857D /* EditItemView.swift in Sources */,
 				297BD091287E47AF00C2A8A7 /* SignupView.swift in Sources */,
@@ -691,6 +716,7 @@
 				29E08A6528874C2F0071016D /* PasswordRecoverView.swift in Sources */,
 				299653EB286F6C0000EA4799 /* ListRow.swift in Sources */,
 				299653F6286F72DC00EA4799 /* ListItemsView.swift in Sources */,
+				2952C4942889C4340031BE48 /* QRCode.swift in Sources */,
 				298B8AA428819684004295C8 /* HomeView.swift in Sources */,
 				299653FC286F78E700EA4799 /* Stepper.swift in Sources */,
 				297BD081287E335100C2A8A7 /* LoginView.swift in Sources */,
@@ -857,6 +883,7 @@
 				DEVELOPMENT_TEAM = 34BX29F83H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = stockProject/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -888,6 +915,7 @@
 				DEVELOPMENT_TEAM = 34BX29F83H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = stockProject/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

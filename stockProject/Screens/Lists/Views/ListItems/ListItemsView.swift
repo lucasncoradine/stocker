@@ -143,7 +143,7 @@ struct ListItemsView: View {
                     Label(Strings.addToShopping, systemImage: "cart.badge.plus")
                 }
                 
-                BottomToolbarItem(action: { viewModel.showDeleteConfirmation.toggle() }) {
+                BottomToolbarItem(action: { viewModel.openShare.toggle() }) {
                     Label(Strings.remove, systemImage: "trash")
                 }
             }
@@ -160,8 +160,11 @@ struct ListItemsView: View {
                         
                         Menu {
                             Button(action: viewModel.toggleSelection) {
-                                Text(Strings.select)
-                                Image(systemName: "checkmark.circle")
+                                Label(Strings.select, systemImage: "checkmark.circle")
+                            }
+                            
+                            Button(action: { viewModel.openShare.toggle() }) {
+                                Label(Strings.share, systemImage: "square.and.arrow.up")
                             }
                         } label: {
                             Image(systemName: "ellipsis.circle")
@@ -200,6 +203,9 @@ struct ListItemsView: View {
         }
         .sheet(isPresented: $viewModel.openEdit) {
             EditItemView(listId: viewModel.listId, item: viewModel.selectedItem)
+        }
+        .sheet(isPresented: $viewModel.openShare) {
+            ShareListView(listId: viewModel.listId, listName: listName)
         }
         .onAppear(perform: viewModel.fetchItems)
     }

@@ -13,42 +13,52 @@ struct ListsView: View {
     var body: some View {
         NavigationView {
             List(viewModel.lists) { list in
-                NavigationLink(destination: ListItemsView(listId: list.id ?? "",
-                                                          listName: list.name))
-                {
+                NavigationLink(
+                    destination: ListItemsView(listId: list.id ?? "", listName: list.name)
+                ) {
                     ListRow(label: list.name)
                         .contextMenu {
                             Button(action: { viewModel.editList(list) }) {
-                                Label("Editar", systemImage: "square.and.pencil")
+                                Label(Strings.edit, systemImage: "square.and.pencil")
+                            }
+                            
+                            Button(action: { viewModel.shareList(list) }) {
+                                Label(Strings.share, systemImage: "square.and.arrow.up")
                             }
                             
                             Button(role: .destructive, action: { viewModel.deleteList(id: list.id) }) {
-                                Label("Remover", systemImage: "trash")
+                                Label(Strings.remove, systemImage: "trash")
                             }
                         }
                 }
                 .swipeActions {
                     Button(role: .destructive, action: { viewModel.deleteList(id: list.id) } ) {
-                        Label("Remover", systemImage: "trash")
+                        Label(Strings.remove, systemImage: "trash")
                     }
                 }
             }
-            .showEmptyView(viewModel.lists.isEmpty, emptyText: "Sem listas")
+            .showEmptyView(viewModel.lists.isEmpty, emptyText: Strings.listsEmpty)
             .showLoading(viewModel.isLoading)
             .errorAlert(visible: $viewModel.showError,
                         message: viewModel.errorMessage,
                         action: viewModel.reloadList)
-            .navigationTitle("Listas")
+            .navigationTitle(Strings.listsTitle)
             .toolbar {                
                 ToolbarItemGroup {
                     Button(action: viewModel.createList) {
-                        Label("Nova lista", systemImage: "plus")
+                        Label(Strings.listsNew, systemImage: "plus")
                     }
                 }
             }
-            .sheet(isPresented: $viewModel.showEditSheet, content: {
+            .sheet(isPresented: $viewModel.showEditSheet) {
                 EditListView(list: viewModel.selectedList)
-            })
+            }
+            .sheet(isPresented: $viewModel.showShareSheet) {
+                if let selected = viewModel.selectedList, let id = selected.id {
+                    ShareListView(listId: id
+                                  , listName: selected.name)
+                }
+            }
             .onAppear(perform: viewModel.fetchLists)    
         }
     }
