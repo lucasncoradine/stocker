@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import CodeScanner
+import UIKit
 
 class ListsViewModel: ObservableObject {
     private let client: APIClient<ListModel> = .init(collection: .lists)
@@ -32,10 +34,8 @@ class ListsViewModel: ObservableObject {
         isLoading = true
         
         client.fetch(failure: requestFailed) { data in
-//            DispatchQueue.main.async {
-                self.lists = data
-                self.isLoading = false
-//            }
+            self.lists = data
+            self.isLoading = false
         }
     }
     
@@ -62,5 +62,11 @@ class ListsViewModel: ObservableObject {
     func deleteList(id: String?) {
         guard let id = id else { return }
         client.delete(id: id, failure: requestFailed)
+    }
+    
+    func handleQrCodeScan(_ result: ScanResult) {
+        guard let url = URL(string: result.string) else { return }
+//        UIApplication.shared.open(url)
+        print(url)
     }
 }

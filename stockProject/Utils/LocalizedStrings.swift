@@ -43,6 +43,8 @@ final class LocalizedStrings {
     static let listsEmpty = "Sem listas"
     static let listsTitle = "Listas"
     static let listsNew = "Nova lista"
+    static let listsSharedSection = "Compartilhadas comigo"
+    static let listMenuScanQrCode = "Acessar lista"
     
     // MARK: - LoginView
     static let forgotPassword = "Esqueci minha senha"

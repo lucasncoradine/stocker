@@ -6,35 +6,46 @@
 //
 
 import SwiftUI
+import CodeScanner
 
 struct ListsView: View {
     @StateObject var viewModel: ListsViewModel = .init()
     
     var body: some View {
         NavigationView {
-            List(viewModel.lists) { list in
-                NavigationLink(
-                    destination: ListItemsView(listId: list.id ?? "", listName: list.name)
-                ) {
-                    ListRow(label: list.name)
-                        .contextMenu {
-                            Button(action: { viewModel.editList(list) }) {
-                                Label(Strings.edit, systemImage: "square.and.pencil")
-                            }
-                            
-                            Button(action: { viewModel.shareList(list) }) {
-                                Label(Strings.share, systemImage: "person.crop.circle.badge.plus")
-                            }
-                            
-                            Button(role: .destructive, action: { viewModel.deleteList(id: list.id) }) {
+            List() {
+                Section {
+                    ForEach(viewModel.lists) { list in
+                        NavigationLink(
+                            destination: ListItemsView(listId: list.id ?? "", listName: list.name)
+                        ) {
+                            ListRow(label: list.name)
+                                .contextMenu {
+                                    Button(action: { viewModel.editList(list) }) {
+                                        Label(Strings.edit, systemImage: "square.and.pencil")
+                                    }
+                                    
+                                    Button(action: { viewModel.shareList(list) }) {
+                                        Label(Strings.share, systemImage: "person.crop.circle.badge.plus")
+                                    }
+                                    
+                                    Button(role: .destructive, action: { viewModel.deleteList(id: list.id) }) {
+                                        Label(Strings.remove, systemImage: "trash")
+                                    }
+                                }
+                        }
+                        .swipeActions {
+                            Button(role: .destructive, action: { viewModel.deleteList(id: list.id) } ) {
                                 Label(Strings.remove, systemImage: "trash")
                             }
                         }
-                }
-                .swipeActions {
-                    Button(role: .destructive, action: { viewModel.deleteList(id: list.id) } ) {
-                        Label(Strings.remove, systemImage: "trash")
                     }
+                }
+                
+                Section {
+                    
+                } header: {
+                    Text(Strings.listsSharedSection)
                 }
             }
             .showEmptyView(viewModel.lists.isEmpty, emptyText: Strings.listsEmpty)
@@ -43,10 +54,18 @@ struct ListsView: View {
                         message: viewModel.errorMessage,
                         action: viewModel.reloadList)
             .navigationTitle(Strings.listsTitle)
-            .toolbar {                
+            .toolbar {
                 ToolbarItemGroup {
-                    Button(action: viewModel.createList) {
-                        Label(Strings.listsNew, systemImage: "plus")
+                    HStack {
+                        Button(action: viewModel.createList) {
+                            Label(Strings.listsNew, systemImage: "plus")
+                        }
+                    }
+                }
+                
+                ToolbarItemGroup(placement: .navigationBarLeading) {
+                    NavigationLink(destination: Scanner(completion: viewModel.handleQrCodeScan)) {
+                        Label(Strings.listMenuScanQrCode, systemImage: "qrcode.viewfinder")
                     }
                 }
             }
@@ -58,7 +77,7 @@ struct ListsView: View {
                     ShareListView(listId: id, listName: selected.name)
                 }
             }
-            .onAppear(perform: viewModel.fetchLists)    
+            .onAppear(perform: viewModel.fetchLists)
         }
     }
 }
@@ -66,6 +85,6 @@ struct ListsView: View {
 struct ListsView_Previews: PreviewProvider {
     static var previews: some View {
         ListsView()
-            .preferredColorScheme(.dark)
+            .preferredColorScheme(.light)
     }
 }
