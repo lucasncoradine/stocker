@@ -27,6 +27,8 @@
 		2952C4972889C5E10031BE48 /* ShareListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2952C4962889C5E10031BE48 /* ShareListView.swift */; };
 		2952C4992889C5EF0031BE48 /* ShareListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2952C4982889C5EF0031BE48 /* ShareListViewModel.swift */; };
 		2952C49B2889E0990031BE48 /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2952C49A2889E0990031BE48 /* ViewModelProtocol.swift */; };
+		2952C4A3288A14600031BE48 /* Deeplink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2952C4A2288A14600031BE48 /* Deeplink.swift */; };
+		2952C4A8288A227B0031BE48 /* DeeplinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2952C4A7288A227B0031BE48 /* DeeplinkManager.swift */; };
 		2954505D283FB79300790C2D /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2954505C283FB79300790C2D /* FirebaseClient.swift */; };
 		29545063283FD35100790C2D /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29545062283FD35100790C2D /* APIClient.swift */; };
 		297BD081287E335100C2A8A7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297BD080287E335100C2A8A7 /* LoginView.swift */; };
@@ -115,6 +117,8 @@
 		2952C4962889C5E10031BE48 /* ShareListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareListView.swift; sourceTree = "<group>"; };
 		2952C4982889C5EF0031BE48 /* ShareListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareListViewModel.swift; sourceTree = "<group>"; };
 		2952C49A2889E0990031BE48 /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
+		2952C4A2288A14600031BE48 /* Deeplink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplink.swift; sourceTree = "<group>"; };
+		2952C4A7288A227B0031BE48 /* DeeplinkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkManager.swift; sourceTree = "<group>"; };
 		2954505C283FB79300790C2D /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
 		29545062283FD35100790C2D /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		297BD080287E335100C2A8A7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -278,6 +282,15 @@
 			path = ShareList;
 			sourceTree = "<group>";
 		};
+		2952C4A4288A22150031BE48 /* Deeplink */ = {
+			isa = PBXGroup;
+			children = (
+				2952C4A2288A14600031BE48 /* Deeplink.swift */,
+				2952C4A7288A227B0031BE48 /* DeeplinkManager.swift */,
+			);
+			path = Deeplink;
+			sourceTree = "<group>";
+		};
 		297BD07F287E334100C2A8A7 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -381,6 +394,7 @@
 		299653E3286F42DE00EA4799 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				2952C4A4288A22150031BE48 /* Deeplink */,
 				298B8AA72881B98F004295C8 /* Validations */,
 				29C9A1E1287856C3000FDEF8 /* Extensions */,
 				29C9A1E0287856BB000FDEF8 /* Selection */,
@@ -676,6 +690,7 @@
 				299653E2286F422900EA4799 /* ListsViewModel.swift in Sources */,
 				299653D9286F332F00EA4799 /* ItemModel.swift in Sources */,
 				2954505D283FB79300790C2D /* FirebaseClient.swift in Sources */,
+				2952C4A3288A14600031BE48 /* Deeplink.swift in Sources */,
 				2993630E28808D2700BCA7F3 /* AuthManager.swift in Sources */,
 				298B8AB22883029E004295C8 /* UITabBarExtension.swift in Sources */,
 				299653F2286F725800EA4799 /* EmptyView.swift in Sources */,
@@ -706,6 +721,7 @@
 				29F0EB502874B69600CA857D /* TextfieldExtension.swift in Sources */,
 				292BBF9F2879D63100C7F4BF /* Checkmark.swift in Sources */,
 				292BBFA12879DF1C00C7F4BF /* CheckmarkLabel.swift in Sources */,
+				2952C4A8288A227B0031BE48 /* DeeplinkManager.swift in Sources */,
 				2952C49B2889E0990031BE48 /* ViewModelProtocol.swift in Sources */,
 				299653EE286F6C3000EA4799 /* ListIcon.swift in Sources */,
 				29F0EB4B2874B1AB00CA857D /* EditItemView.swift in Sources */,

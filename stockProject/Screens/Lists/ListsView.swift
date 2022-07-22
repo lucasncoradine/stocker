@@ -23,7 +23,7 @@ struct ListsView: View {
                             }
                             
                             Button(action: { viewModel.shareList(list) }) {
-                                Label(Strings.share, systemImage: "square.and.arrow.up")
+                                Label(Strings.share, systemImage: "person.crop.circle.badge.plus")
                             }
                             
                             Button(role: .destructive, action: { viewModel.deleteList(id: list.id) }) {

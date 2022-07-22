@@ -34,7 +34,7 @@ struct ShareListView: View {
                 
                 // QRCode
                 VStack(spacing: 13) {
-                    QRCode(value: viewModel.deeplink, radius: 13)
+                    QRCode(value: viewModel.deeplink.urlString, radius: 13)
                         .frame(height: 250)
                 }
             }

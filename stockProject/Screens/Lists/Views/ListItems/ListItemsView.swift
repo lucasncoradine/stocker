@@ -164,7 +164,7 @@ struct ListItemsView: View {
                             }
                             
                             Button(action: { viewModel.openShare.toggle() }) {
-                                Label(Strings.share, systemImage: "square.and.arrow.up")
+                                Label(Strings.share, systemImage: "person.crop.circle.badge.plus")
                             }
                         } label: {
                             Image(systemName: "ellipsis.circle")
