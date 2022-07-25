@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseFirestore
 
 class APIClient<T: Codable> {
     private let client: FirebaseClient = .init()
@@ -98,6 +98,18 @@ class APIClient<T: Codable> {
             client.updateFieldValue(of: id, at: collection, field: field, with: value) { result in
                 self.client.handleResult(result, failure: failure)
             }
+        }
+    }
+    
+    func addValuesToArrayField(id: String, field: String, values: [Any], failure: @escaping FailureClosure) {
+        client.addValuesToArrayField(of: id, at: collection, field: field, with: values) { result in
+            self.client.handleResult(result, failure: failure)
+        }
+    }
+    
+    func removeValuesFromArrayField(id: String, field: String, values: [Any], failure: @escaping FailureClosure) {
+        client.removeValuesFromArrayField(of: id, at: collection, field: field, with: values) { result in
+            self.client.handleResult(result, failure: failure)
         }
     }
     

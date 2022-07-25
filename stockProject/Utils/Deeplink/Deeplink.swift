@@ -8,8 +8,7 @@
 import Foundation
 
 enum DeeplinkPath: String {
-    case home = "home"
-    case shareList = "shareList"
+    case invite = "invite"
 }
 
 struct Deeplink {

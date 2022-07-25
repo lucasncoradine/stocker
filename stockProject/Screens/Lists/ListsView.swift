@@ -14,8 +14,9 @@ struct ListsView: View {
     var body: some View {
         NavigationView {
             List() {
+                // MARK: - Owned Lists
                 Section {
-                    ForEach(viewModel.lists) { list in
+                    ForEach(viewModel.lists.owned) { list in
                         NavigationLink(
                             destination: ListItemsView(listId: list.id ?? "", listName: list.name)
                         ) {
@@ -40,15 +41,36 @@ struct ListsView: View {
                             }
                         }
                     }
+                } header: {
+                    Text(Strings.listsMyLists)
                 }
                 
-                Section {
-                    
-                } header: {
-                    Text(Strings.listsSharedSection)
+                // MARK: - Shared Lists
+                if !viewModel.lists.shared.isEmpty {
+                    Section {
+                        ForEach(viewModel.lists.shared) { list in
+                            if let listId = list.id {
+                                NavigationLink(
+                                    destination: ListItemsView(listId: listId, listName: list.name),
+                                    tag: listId,
+                                    selection: $viewModel.selectedSharedList
+                                ) {
+                                    ListRow(label: list.name)
+                                        .contextMenu {
+                                            // TODO: Quit from shared list
+                                        }
+                                }
+                                .swipeActions {
+                                    // TODO: Quit from shared list
+                                }
+                            }
+                        }
+                    } header: {
+                        Text(Strings.listsSharedSection)
+                    }
                 }
             }
-            .showEmptyView(viewModel.lists.isEmpty, emptyText: Strings.listsEmpty)
+            .showEmptyView(viewModel.listsAreEmpty, emptyText: Strings.listsEmpty)
             .showLoading(viewModel.isLoading)
             .errorAlert(visible: $viewModel.showError,
                         message: viewModel.errorMessage,
@@ -64,7 +86,8 @@ struct ListsView: View {
                 }
                 
                 ToolbarItemGroup(placement: .navigationBarLeading) {
-                    NavigationLink(destination: Scanner(completion: viewModel.handleQrCodeScan)) {
+                    NavigationLink(destination: Scanner(completion: viewModel.handleQrCodeScan,
+                                                        failure: viewModel.requestFailed)) {
                         Label(Strings.listMenuScanQrCode, systemImage: "qrcode.viewfinder")
                     }
                 }

@@ -10,6 +10,7 @@ import SwiftUI
 struct ListItemsView: View {
     private let listName: String
     
+    @Environment(\.dismiss) var dismiss
     @StateObject var viewModel: ListItemsViewModel
     @FocusState var counterFocused: Bool
     

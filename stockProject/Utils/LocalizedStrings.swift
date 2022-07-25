@@ -45,6 +45,7 @@ final class LocalizedStrings {
     static let listsNew = "Nova lista"
     static let listsSharedSection = "Compartilhadas comigo"
     static let listMenuScanQrCode = "Acessar lista"
+    static let listsMyLists = "Minhas listas"
     
     // MARK: - LoginView
     static let forgotPassword = "Esqueci minha senha"
@@ -75,10 +76,21 @@ final class LocalizedStrings {
     static let listItemsEmpty = "Sem itens"
     static let listItemsAddedToast = "Adicionado à lista de compras"
     
+    // MARK: - ShoppingListView
+    static let shoppingListEmpty = "Lista de compras vazia"
+    static let shoppingListTitle = "Compras"
+    static let shoppingListClear = "Limpar lista"
+    static let shoppingListConfirmClearMessage = "Tem certeza que deseja limpar a lista de compras?"
+    static let shoppingListConfirmClearButton = "Limpar"
+    
     // MARK: - PasswordRecoverView
     static let passwordRecoverLabel = "Informe o email cadastrado"
     static let passwordRecoverButtonRecover = "Recuperar senha"
     static let passwordRecoverEmailSent = "Email enviado!"
     static let passwordRecoverMessage = "Siga as instruções enviadas para o seu email para prosseguir com a recuperação de senha."
     static let passwordRecoverButtonBack = "Voltar para o login"
+    
+    // MARK: - Scanner
+    static let scannerText = "Escaneie o QR Code"
+    static let scannerInvalidQrCode = "QR Code inválido"
 }

@@ -10,12 +10,9 @@ import SwiftUI
 struct ShareListView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel: ShareListViewModel
-    
-    private let listName: String
-    
+        
     init(listId: String, listName: String) {
-        self.listName = listName
-        self._viewModel = StateObject(wrappedValue: ShareListViewModel(listId: listId))
+        self._viewModel = StateObject(wrappedValue: ShareListViewModel(listId: listId, listName: listName))
     }
     
     var body: some View {
@@ -25,12 +22,12 @@ struct ShareListView: View {
                 HStack(spacing: 10) {
                     ListIcon(size: 40)
                     
-                    Text(listName)
+                    Text(viewModel.listName)
                         .bold()
                         .font(.title)
                         .multilineTextAlignment(.center)
                 }
-                .padding(.bottom, 60)
+                .padding(.bottom, 10)
                 
                 // QRCode
                 VStack(spacing: 13) {

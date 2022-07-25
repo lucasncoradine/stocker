@@ -8,16 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var deeplinkTarget: DeeplinkTarget = .init(.home)
-    private let client: AuthManager = .init()
-        
     var body: some View {
-        Group {
-            DeeplinkManager.switchTarget(deeplinkTarget)
-        }
-        .onOpenURL { url in
-            self.deeplinkTarget = DeeplinkManager.getTarget(url: url)
-        }
+        HomeView()
     }
 }
 

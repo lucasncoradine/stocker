@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2908E43E288B0EA4001603A3 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 2908E43D288B0EA4001603A3 /* CodeScanner */; };
 		2908E442288B12F9001603A3 /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2908E441288B12F9001603A3 /* Scanner.swift */; };
+		2908E444288F1265001603A3 /* ScanResultExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2908E443288F1265001603A3 /* ScanResultExtension.swift */; };
 		291C158D2818722E00A89846 /* stockProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291C158C2818722E00A89846 /* stockProjectApp.swift */; };
 		291C158F2818722E00A89846 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291C158E2818722E00A89846 /* ContentView.swift */; };
 		291C15912818723000A89846 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 291C15902818723000A89846 /* Assets.xcassets */; };
@@ -30,7 +31,7 @@
 		2952C4992889C5EF0031BE48 /* ShareListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2952C4982889C5EF0031BE48 /* ShareListViewModel.swift */; };
 		2952C49B2889E0990031BE48 /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2952C49A2889E0990031BE48 /* ViewModelProtocol.swift */; };
 		2952C4A3288A14600031BE48 /* Deeplink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2952C4A2288A14600031BE48 /* Deeplink.swift */; };
-		2952C4A8288A227B0031BE48 /* DeeplinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2952C4A7288A227B0031BE48 /* DeeplinkManager.swift */; };
+		2952C4A8288A227B0031BE48 /* DeeplinkTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2952C4A7288A227B0031BE48 /* DeeplinkTarget.swift */; };
 		2954505D283FB79300790C2D /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2954505C283FB79300790C2D /* FirebaseClient.swift */; };
 		29545063283FD35100790C2D /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29545062283FD35100790C2D /* APIClient.swift */; };
 		297BD081287E335100C2A8A7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297BD080287E335100C2A8A7 /* LoginView.swift */; };
@@ -61,7 +62,7 @@
 		299653E8286F612800EA4799 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653E7286F612800EA4799 /* ViewExtension.swift */; };
 		299653EB286F6C0000EA4799 /* ListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653EA286F6C0000EA4799 /* ListRow.swift */; };
 		299653EE286F6C3000EA4799 /* ListIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653ED286F6C3000EA4799 /* ListIcon.swift */; };
-		299653F2286F725800EA4799 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653F1286F725800EA4799 /* EmptyView.swift */; };
+		299653F2286F725800EA4799 /* EmptyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653F1286F725800EA4799 /* EmptyListView.swift */; };
 		299653F6286F72DC00EA4799 /* ListItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653F5286F72DC00EA4799 /* ListItemsView.swift */; };
 		299653F8286F72E400EA4799 /* ListItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653F7286F72E400EA4799 /* ListItemsViewModel.swift */; };
 		299653FC286F78E700EA4799 /* Stepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653FB286F78E700EA4799 /* Stepper.swift */; };
@@ -100,6 +101,7 @@
 
 /* Begin PBXFileReference section */
 		2908E441288B12F9001603A3 /* Scanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
+		2908E443288F1265001603A3 /* ScanResultExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanResultExtension.swift; sourceTree = "<group>"; };
 		291C15892818722E00A89846 /* stockProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = stockProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		291C158C2818722E00A89846 /* stockProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stockProjectApp.swift; sourceTree = "<group>"; };
 		291C158E2818722E00A89846 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -121,7 +123,7 @@
 		2952C4982889C5EF0031BE48 /* ShareListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareListViewModel.swift; sourceTree = "<group>"; };
 		2952C49A2889E0990031BE48 /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
 		2952C4A2288A14600031BE48 /* Deeplink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplink.swift; sourceTree = "<group>"; };
-		2952C4A7288A227B0031BE48 /* DeeplinkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkManager.swift; sourceTree = "<group>"; };
+		2952C4A7288A227B0031BE48 /* DeeplinkTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkTarget.swift; sourceTree = "<group>"; };
 		2954505C283FB79300790C2D /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
 		29545062283FD35100790C2D /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		297BD080287E335100C2A8A7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -152,7 +154,7 @@
 		299653E7286F612800EA4799 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		299653EA286F6C0000EA4799 /* ListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRow.swift; sourceTree = "<group>"; };
 		299653ED286F6C3000EA4799 /* ListIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListIcon.swift; sourceTree = "<group>"; };
-		299653F1286F725800EA4799 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		299653F1286F725800EA4799 /* EmptyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyListView.swift; sourceTree = "<group>"; };
 		299653F5286F72DC00EA4799 /* ListItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemsView.swift; sourceTree = "<group>"; };
 		299653F7286F72E400EA4799 /* ListItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemsViewModel.swift; sourceTree = "<group>"; };
 		299653FB286F78E700EA4799 /* Stepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stepper.swift; sourceTree = "<group>"; };
@@ -290,7 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				2952C4A2288A14600031BE48 /* Deeplink.swift */,
-				2952C4A7288A227B0031BE48 /* DeeplinkManager.swift */,
+				2952C4A7288A227B0031BE48 /* DeeplinkTarget.swift */,
 			);
 			path = Deeplink;
 			sourceTree = "<group>";
@@ -457,7 +459,7 @@
 		299653F9286F78CC00EA4799 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				299653F1286F725800EA4799 /* EmptyView.swift */,
+				299653F1286F725800EA4799 /* EmptyListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -503,6 +505,7 @@
 				298B8AB728845008004295C8 /* ColorExtension.swift */,
 				298B8AB12883029E004295C8 /* UITabBarExtension.swift */,
 				298B8AB528844477004295C8 /* UIApplicationExtension.swift */,
+				2908E443288F1265001603A3 /* ScanResultExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -700,7 +703,8 @@
 				2952C4A3288A14600031BE48 /* Deeplink.swift in Sources */,
 				2993630E28808D2700BCA7F3 /* AuthManager.swift in Sources */,
 				298B8AB22883029E004295C8 /* UITabBarExtension.swift in Sources */,
-				299653F2286F725800EA4799 /* EmptyView.swift in Sources */,
+				2908E444288F1265001603A3 /* ScanResultExtension.swift in Sources */,
+				299653F2286F725800EA4799 /* EmptyListView.swift in Sources */,
 				299653F8286F72E400EA4799 /* ListItemsViewModel.swift in Sources */,
 				297BD08D287E444F00C2A8A7 /* ButtonExtension.swift in Sources */,
 				299653DB286F343200EA4799 /* ModelProtocol.swift in Sources */,
@@ -728,7 +732,7 @@
 				29F0EB502874B69600CA857D /* TextfieldExtension.swift in Sources */,
 				292BBF9F2879D63100C7F4BF /* Checkmark.swift in Sources */,
 				292BBFA12879DF1C00C7F4BF /* CheckmarkLabel.swift in Sources */,
-				2952C4A8288A227B0031BE48 /* DeeplinkManager.swift in Sources */,
+				2952C4A8288A227B0031BE48 /* DeeplinkTarget.swift in Sources */,
 				2952C49B2889E0990031BE48 /* ViewModelProtocol.swift in Sources */,
 				299653EE286F6C3000EA4799 /* ListIcon.swift in Sources */,
 				29F0EB4B2874B1AB00CA857D /* EditItemView.swift in Sources */,

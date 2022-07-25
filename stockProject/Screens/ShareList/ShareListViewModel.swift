@@ -9,8 +9,10 @@ import Foundation
 
 class ShareListViewModel: ObservableObject {
     let deeplink: Deeplink
+    let listName: String
     
-    init(listId: String) {
-        self.deeplink = Deeplink(path: .shareList, params: ["listId": listId])
+    init(listId: String, listName: String) {
+        self.listName = listName
+        self.deeplink = Deeplink(path: .invite, params: ["listId": listId])
     }
 }
