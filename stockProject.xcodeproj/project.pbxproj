@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2908E43E288B0EA4001603A3 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 2908E43D288B0EA4001603A3 /* CodeScanner */; };
+		2908E442288B12F9001603A3 /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2908E441288B12F9001603A3 /* Scanner.swift */; };
+		2908E444288F1265001603A3 /* ScanResultExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2908E443288F1265001603A3 /* ScanResultExtension.swift */; };
 		291C158D2818722E00A89846 /* stockProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291C158C2818722E00A89846 /* stockProjectApp.swift */; };
 		291C158F2818722E00A89846 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291C158E2818722E00A89846 /* ContentView.swift */; };
 		291C15912818723000A89846 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 291C15902818723000A89846 /* Assets.xcassets */; };
@@ -27,6 +30,8 @@
 		2952C4972889C5E10031BE48 /* ShareListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2952C4962889C5E10031BE48 /* ShareListView.swift */; };
 		2952C4992889C5EF0031BE48 /* ShareListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2952C4982889C5EF0031BE48 /* ShareListViewModel.swift */; };
 		2952C49B2889E0990031BE48 /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2952C49A2889E0990031BE48 /* ViewModelProtocol.swift */; };
+		2952C4A3288A14600031BE48 /* Deeplink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2952C4A2288A14600031BE48 /* Deeplink.swift */; };
+		2952C4A8288A227B0031BE48 /* DeeplinkTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2952C4A7288A227B0031BE48 /* DeeplinkTarget.swift */; };
 		2954505D283FB79300790C2D /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2954505C283FB79300790C2D /* FirebaseClient.swift */; };
 		29545063283FD35100790C2D /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29545062283FD35100790C2D /* APIClient.swift */; };
 		297BD081287E335100C2A8A7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297BD080287E335100C2A8A7 /* LoginView.swift */; };
@@ -57,13 +62,15 @@
 		299653E8286F612800EA4799 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653E7286F612800EA4799 /* ViewExtension.swift */; };
 		299653EB286F6C0000EA4799 /* ListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653EA286F6C0000EA4799 /* ListRow.swift */; };
 		299653EE286F6C3000EA4799 /* ListIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653ED286F6C3000EA4799 /* ListIcon.swift */; };
-		299653F2286F725800EA4799 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653F1286F725800EA4799 /* EmptyView.swift */; };
+		299653F2286F725800EA4799 /* EmptyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653F1286F725800EA4799 /* EmptyListView.swift */; };
 		299653F6286F72DC00EA4799 /* ListItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653F5286F72DC00EA4799 /* ListItemsView.swift */; };
 		299653F8286F72E400EA4799 /* ListItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653F7286F72E400EA4799 /* ListItemsViewModel.swift */; };
 		299653FC286F78E700EA4799 /* Stepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299653FB286F78E700EA4799 /* Stepper.swift */; };
 		29C9A1D9287719D5000FDEF8 /* ToastModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C9A1D8287719D5000FDEF8 /* ToastModifier.swift */; };
 		29C9A1DD28771D0D000FDEF8 /* CustomFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C9A1DC28771D0D000FDEF8 /* CustomFunctions.swift */; };
 		29C9A1E3287856E8000FDEF8 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C9A1E2287856E8000FDEF8 /* Selection.swift */; };
+		29CB48A92890396B0028D550 /* BindingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CB48A82890396B0028D550 /* BindingExtension.swift */; };
+		29CB48AB28905E490028D550 /* UIScreenExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CB48AA28905E490028D550 /* UIScreenExtension.swift */; };
 		29CD682D2885894C00B8D590 /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CD682C2885894C00B8D590 /* LocalizedStrings.swift */; };
 		29CD68302885ABC500B8D590 /* FormViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CD682F2885ABC500B8D590 /* FormViewModelProtocol.swift */; };
 		29E08A6528874C2F0071016D /* PasswordRecoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E08A6428874C2F0071016D /* PasswordRecoverView.swift */; };
@@ -95,6 +102,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2908E441288B12F9001603A3 /* Scanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
+		2908E443288F1265001603A3 /* ScanResultExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanResultExtension.swift; sourceTree = "<group>"; };
 		291C15892818722E00A89846 /* stockProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = stockProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		291C158C2818722E00A89846 /* stockProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stockProjectApp.swift; sourceTree = "<group>"; };
 		291C158E2818722E00A89846 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -115,6 +124,8 @@
 		2952C4962889C5E10031BE48 /* ShareListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareListView.swift; sourceTree = "<group>"; };
 		2952C4982889C5EF0031BE48 /* ShareListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareListViewModel.swift; sourceTree = "<group>"; };
 		2952C49A2889E0990031BE48 /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
+		2952C4A2288A14600031BE48 /* Deeplink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplink.swift; sourceTree = "<group>"; };
+		2952C4A7288A227B0031BE48 /* DeeplinkTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkTarget.swift; sourceTree = "<group>"; };
 		2954505C283FB79300790C2D /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
 		29545062283FD35100790C2D /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		297BD080287E335100C2A8A7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -145,13 +156,15 @@
 		299653E7286F612800EA4799 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		299653EA286F6C0000EA4799 /* ListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRow.swift; sourceTree = "<group>"; };
 		299653ED286F6C3000EA4799 /* ListIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListIcon.swift; sourceTree = "<group>"; };
-		299653F1286F725800EA4799 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		299653F1286F725800EA4799 /* EmptyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyListView.swift; sourceTree = "<group>"; };
 		299653F5286F72DC00EA4799 /* ListItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemsView.swift; sourceTree = "<group>"; };
 		299653F7286F72E400EA4799 /* ListItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemsViewModel.swift; sourceTree = "<group>"; };
 		299653FB286F78E700EA4799 /* Stepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stepper.swift; sourceTree = "<group>"; };
 		29C9A1D8287719D5000FDEF8 /* ToastModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastModifier.swift; sourceTree = "<group>"; };
 		29C9A1DC28771D0D000FDEF8 /* CustomFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFunctions.swift; sourceTree = "<group>"; };
 		29C9A1E2287856E8000FDEF8 /* Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selection.swift; sourceTree = "<group>"; };
+		29CB48A82890396B0028D550 /* BindingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingExtension.swift; sourceTree = "<group>"; };
+		29CB48AA28905E490028D550 /* UIScreenExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreenExtension.swift; sourceTree = "<group>"; };
 		29CD682C2885894C00B8D590 /* LocalizedStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
 		29CD682F2885ABC500B8D590 /* FormViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewModelProtocol.swift; sourceTree = "<group>"; };
 		29E08A6428874C2F0071016D /* PasswordRecoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoverView.swift; sourceTree = "<group>"; };
@@ -174,6 +187,7 @@
 				2922965D283FA2AC00C5E888 /* FirebaseAuth in Frameworks */,
 				2922965F283FA2AC00C5E888 /* FirebaseFirestore in Frameworks */,
 				29229661283FA2AC00C5E888 /* FirebaseFirestoreSwift in Frameworks */,
+				2908E43E288B0EA4001603A3 /* CodeScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +290,15 @@
 				2952C4982889C5EF0031BE48 /* ShareListViewModel.swift */,
 			);
 			path = ShareList;
+			sourceTree = "<group>";
+		};
+		2952C4A4288A22150031BE48 /* Deeplink */ = {
+			isa = PBXGroup;
+			children = (
+				2952C4A2288A14600031BE48 /* Deeplink.swift */,
+				2952C4A7288A227B0031BE48 /* DeeplinkTarget.swift */,
+			);
+			path = Deeplink;
 			sourceTree = "<group>";
 		};
 		297BD07F287E334100C2A8A7 /* Login */ = {
@@ -381,6 +404,7 @@
 		299653E3286F42DE00EA4799 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				2952C4A4288A22150031BE48 /* Deeplink */,
 				298B8AA72881B98F004295C8 /* Validations */,
 				29C9A1E1287856C3000FDEF8 /* Extensions */,
 				29C9A1E0287856BB000FDEF8 /* Selection */,
@@ -439,7 +463,7 @@
 		299653F9286F78CC00EA4799 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				299653F1286F725800EA4799 /* EmptyView.swift */,
+				299653F1286F725800EA4799 /* EmptyListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -454,6 +478,7 @@
 				297BD084287E351D00C2A8A7 /* CustomButton.swift */,
 				298B8AB328832C98004295C8 /* BottomToolbar.swift */,
 				2952C4932889C4340031BE48 /* QRCode.swift */,
+				2908E441288B12F9001603A3 /* Scanner.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -484,6 +509,9 @@
 				298B8AB728845008004295C8 /* ColorExtension.swift */,
 				298B8AB12883029E004295C8 /* UITabBarExtension.swift */,
 				298B8AB528844477004295C8 /* UIApplicationExtension.swift */,
+				2908E443288F1265001603A3 /* ScanResultExtension.swift */,
+				29CB48A82890396B0028D550 /* BindingExtension.swift */,
+				29CB48AA28905E490028D550 /* UIScreenExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -545,6 +573,7 @@
 				2922965E283FA2AC00C5E888 /* FirebaseFirestore */,
 				29229660283FA2AC00C5E888 /* FirebaseFirestoreSwift */,
 				29229662283FA2AC00C5E888 /* FirebaseMessaging */,
+				2908E43D288B0EA4001603A3 /* CodeScanner */,
 			);
 			productName = stockProject;
 			productReference = 291C15892818722E00A89846 /* stockProject.app */;
@@ -620,6 +649,7 @@
 			mainGroup = 291C15802818722E00A89846;
 			packageReferences = (
 				2922965B283FA2AC00C5E888 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				2908E43C288B0EA4001603A3 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 			);
 			productRefGroup = 291C158A2818722E00A89846 /* Products */;
 			projectDirPath = "";
@@ -676,9 +706,11 @@
 				299653E2286F422900EA4799 /* ListsViewModel.swift in Sources */,
 				299653D9286F332F00EA4799 /* ItemModel.swift in Sources */,
 				2954505D283FB79300790C2D /* FirebaseClient.swift in Sources */,
+				2952C4A3288A14600031BE48 /* Deeplink.swift in Sources */,
 				2993630E28808D2700BCA7F3 /* AuthManager.swift in Sources */,
 				298B8AB22883029E004295C8 /* UITabBarExtension.swift in Sources */,
-				299653F2286F725800EA4799 /* EmptyView.swift in Sources */,
+				2908E444288F1265001603A3 /* ScanResultExtension.swift in Sources */,
+				299653F2286F725800EA4799 /* EmptyListView.swift in Sources */,
 				299653F8286F72E400EA4799 /* ListItemsViewModel.swift in Sources */,
 				297BD08D287E444F00C2A8A7 /* ButtonExtension.swift in Sources */,
 				299653DB286F343200EA4799 /* ModelProtocol.swift in Sources */,
@@ -691,6 +723,7 @@
 				29CD682D2885894C00B8D590 /* LocalizedStrings.swift in Sources */,
 				298B8AB428832C98004295C8 /* BottomToolbar.swift in Sources */,
 				29F0EB582876267000CA857D /* ShoppingListViewModel.swift in Sources */,
+				29CB48AB28905E490028D550 /* UIScreenExtension.swift in Sources */,
 				299653DD286F363400EA4799 /* ShoppingItemModel.swift in Sources */,
 				291C158F2818722E00A89846 /* ContentView.swift in Sources */,
 				29F43C32287477E100276EE2 /* EditListView.swift in Sources */,
@@ -706,6 +739,7 @@
 				29F0EB502874B69600CA857D /* TextfieldExtension.swift in Sources */,
 				292BBF9F2879D63100C7F4BF /* Checkmark.swift in Sources */,
 				292BBFA12879DF1C00C7F4BF /* CheckmarkLabel.swift in Sources */,
+				2952C4A8288A227B0031BE48 /* DeeplinkTarget.swift in Sources */,
 				2952C49B2889E0990031BE48 /* ViewModelProtocol.swift in Sources */,
 				299653EE286F6C3000EA4799 /* ListIcon.swift in Sources */,
 				29F0EB4B2874B1AB00CA857D /* EditItemView.swift in Sources */,
@@ -715,12 +749,14 @@
 				29C9A1DD28771D0D000FDEF8 /* CustomFunctions.swift in Sources */,
 				29E08A6528874C2F0071016D /* PasswordRecoverView.swift in Sources */,
 				299653EB286F6C0000EA4799 /* ListRow.swift in Sources */,
+				29CB48A92890396B0028D550 /* BindingExtension.swift in Sources */,
 				299653F6286F72DC00EA4799 /* ListItemsView.swift in Sources */,
 				2952C4942889C4340031BE48 /* QRCode.swift in Sources */,
 				298B8AA428819684004295C8 /* HomeView.swift in Sources */,
 				299653FC286F78E700EA4799 /* Stepper.swift in Sources */,
 				297BD081287E335100C2A8A7 /* LoginView.swift in Sources */,
 				299653E8286F612800EA4799 /* ViewExtension.swift in Sources */,
+				2908E442288B12F9001603A3 /* Scanner.swift in Sources */,
 				29C9A1E3287856E8000FDEF8 /* Selection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -884,6 +920,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = stockProject/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Used to scan QRCodes";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -916,6 +953,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = stockProject/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Used to scan QRCodes";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1054,6 +1092,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2908E43C288B0EA4001603A3 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		2922965B283FA2AC00C5E888 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -1065,6 +1111,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2908E43D288B0EA4001603A3 /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2908E43C288B0EA4001603A3 /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
+		};
 		2922965C283FA2AC00C5E888 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2922965B283FA2AC00C5E888 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

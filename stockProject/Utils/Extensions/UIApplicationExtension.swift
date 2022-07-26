@@ -9,9 +9,16 @@ import UIKit
 import LinkPresentation
 import CoreImage.CIFilterBuiltins
 import CoreImage.CIImage
+import AVFoundation
 
 extension UIApplication {
-    func getKeyWindow() -> UIWindow? {
+    /// Checks if the camera access is authorized.
+    var isCameraAuthorized: Bool {
+        AVCaptureDevice.authorizationStatus(for: .video) == .authorized
+    }
+    
+    /// Gets the active window
+    private func getKeyWindow() -> UIWindow? {
         UIApplication
             .shared
             .connectedScenes
@@ -20,11 +27,14 @@ extension UIApplication {
             .first { $0.isKeyWindow }
     }
     
+    /// Dismisses the opened keyboard
     func dismissKeyboard() {
         let resign = #selector(UIResponder.resignFirstResponder)
         self.sendAction(resign, to: nil, from: nil, for: nil)
     }
     
+    /// Opens the Share Sheet
+    /// - parameter items: Itens of the sheet
     func openShareSheet(with items: [Any]) {
         guard let keyWindow = getKeyWindow() else { return }
         
@@ -32,6 +42,7 @@ extension UIApplication {
         keyWindow.rootViewController?.present(activityViewController, animated: true)
     }
     
+    // TODO: Remove from this file
     func generateQRCode(from string: String) -> UIImage {
         let filter = CIFilter.qrCodeGenerator()
         let maskToAlpha = CIFilter.maskToAlpha()

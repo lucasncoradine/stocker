@@ -10,6 +10,7 @@ import SwiftUI
 struct ListItemsView: View {
     private let listName: String
     
+    @Environment(\.dismiss) var dismiss
     @StateObject var viewModel: ListItemsViewModel
     @FocusState var counterFocused: Bool
     
@@ -134,20 +135,22 @@ struct ListItemsView: View {
                 }
             }
         }
-        .showEmptyView(viewModel.items.isEmpty, emptyText: Strings.listItemsEmpty)
-        .showLoading(viewModel.isLoading)
-        .toast(isShowing: $viewModel.showAddedToast, message: Strings.listItemsAddedToast)
         .bottomToolbar(visible: viewModel.showBottomToolbar) {
             HStack {
                 BottomToolbarItem(action: viewModel.addSelectedToShoppingList) {
                     Label(Strings.addToShopping, systemImage: "cart.badge.plus")
                 }
+                .disabled(viewModel.selection.isEmpty)
                 
-                BottomToolbarItem(action: { viewModel.openShare.toggle() }) {
+                BottomToolbarItem(action: { viewModel.showDeleteConfirmation.toggle() }) {
                     Label(Strings.remove, systemImage: "trash")
                 }
+                .disabled(viewModel.selection.isEmpty)
             }
         }
+        .showEmptyView(viewModel.items.isEmpty, emptyText: Strings.listItemsEmpty)
+        .showLoading(viewModel.isLoading)
+        .toast(isShowing: $viewModel.showAddedToast, message: Strings.listItemsAddedToast)
         .navigationTitle(navigationTitle())
         .navigationBarBackButtonHidden(viewModel.isEditing)
         .toolbar {
@@ -164,7 +167,7 @@ struct ListItemsView: View {
                             }
                             
                             Button(action: { viewModel.openShare.toggle() }) {
-                                Label(Strings.share, systemImage: "square.and.arrow.up")
+                                Label(Strings.share, systemImage: "person.crop.circle.badge.plus")
                             }
                         } label: {
                             Image(systemName: "ellipsis.circle")

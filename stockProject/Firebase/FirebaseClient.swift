@@ -18,23 +18,18 @@ enum VoidResult {
 
 // MARK: - FirebaseCollection
 enum FirebaseCollection {
-    case users
     case lists
     case items(listId: String)
     case shoppingList(listId: String)
     
     var path: String {
-        let userId = AuthManager.shared.user?.uid ?? "nil"
-        
         switch self {
-        case .users:
-            return "users"
         case .lists:
-            return "users/\(userId)/lists"
+            return "lists"
         case .items(let listId):
-            return "users/\(userId)/lists/\(listId)/items"
+            return "lists/\(listId)/items"
         case .shoppingList(let listId):
-            return "users/\(userId)/lists/\(listId)/shoppingList"
+            return "lists/\(listId)/shoppingList"
         }
     }
 }
@@ -277,6 +272,56 @@ class FirebaseClient {
         }
     }
     
+    /// Adds the new values to the array field.
+    /// - parameter of documentId: The ID of the document to update
+    /// - parameter at collection: The collection of the document
+    /// - parameter field: The Field to update
+    /// - parameter with values: The values to append
+    /// - parameter completion: A closure to handle the result of the request
+    func addValuesToArrayField(of documentId: String,
+                               at collection: FirebaseCollection,
+                               field: String,
+                               with values: [Any],
+                               completion: @escaping (_ result: VoidResult) -> Void) {
+        database
+            .collection(collection.path)
+            .document(documentId)
+            .updateData([field: FieldValue.arrayUnion(values)]) { error in
+                guard let error = error
+                else {
+                    completion(.success)
+                    return
+                }
+                
+                completion(.failure(error))
+            }
+    }
+    
+    /// Remove values from the array field.
+    /// - parameter of documentId: The ID of the document to update
+    /// - parameter at collection: The collection of the document
+    /// - parameter field: The Field to update
+    /// - parameter with values: The values to append
+    /// - parameter completion: A closure to handle the result of the request
+    func removeValuesFromArrayField(of documentId: String,
+                                    at collection: FirebaseCollection,
+                                    field: String,
+                                    with values: [Any],
+                                    completion: @escaping (_ result: VoidResult) -> Void) {
+        database
+            .collection(collection.path)
+            .document(documentId)
+            .updateData([field: FieldValue.arrayRemove(values)]) { error in
+                guard let error = error
+                else {
+                    completion(.success)
+                    return
+                }
+                
+                completion(.failure(error))
+            }
+    }
+    
     // MARK: - Helper functions
     /// Handles the error and returns its description
     /// - parameter error: The error to handle
@@ -349,6 +394,7 @@ class FirebaseClient {
 
 enum FirebaseQueryType {
     case isEqual(field: String, to: Any)
+    case contains(field: String, value: Any)
 }
 
 extension CollectionReference {
@@ -357,6 +403,8 @@ extension CollectionReference {
             switch type {
             case .isEqual(let field, let value):
                 return self.whereField(field, isEqualTo: value)
+            case .contains(let field, let value):
+                return self.whereField(field, arrayContains: value)
             }
         }
         

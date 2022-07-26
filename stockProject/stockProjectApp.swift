@@ -17,13 +17,22 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
 }
 
+class AppParameters: ObservableObject {    
+    @Published var url: URL? = nil
+}
+
 @main
 struct stockProjectApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @StateObject var parameters = AppParameters()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(parameters)
+                .onOpenURL { url in
+                    self.parameters.url = url
+                }
         }
     }
 }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EmptyView: View {
+struct EmptyListView: View {
     let text: String
     
     var body: some View {
@@ -17,8 +17,8 @@ struct EmptyView: View {
     }
 }
 
-struct EmptyView_Previews: PreviewProvider {
+struct EmptyListView_Previews: PreviewProvider {
     static var previews: some View {
-        EmptyView(text: "Empty view")
+        EmptyListView(text: "Empty view")
     }
 }

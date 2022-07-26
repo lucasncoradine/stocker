@@ -6,47 +6,90 @@
 //
 
 import SwiftUI
+import CodeScanner
 
 struct ListsView: View {
+    @EnvironmentObject var appParameters: AppParameters
     @StateObject var viewModel: ListsViewModel = .init()
-    
+        
     var body: some View {
         NavigationView {
-            List(viewModel.lists) { list in
-                NavigationLink(
-                    destination: ListItemsView(listId: list.id ?? "", listName: list.name)
-                ) {
-                    ListRow(label: list.name)
-                        .contextMenu {
-                            Button(action: { viewModel.editList(list) }) {
-                                Label(Strings.edit, systemImage: "square.and.pencil")
-                            }
-                            
-                            Button(action: { viewModel.shareList(list) }) {
-                                Label(Strings.share, systemImage: "square.and.arrow.up")
-                            }
-                            
-                            Button(role: .destructive, action: { viewModel.deleteList(id: list.id) }) {
+            List() {
+                // MARK: - Owned Lists
+                Section {
+                    ForEach(viewModel.lists.owned) { list in
+                        NavigationLink(
+                            destination: ListItemsView(listId: list.id ?? "", listName: list.name)
+                        ) {
+                            ListRow(label: list.name)
+                                .contextMenu {
+                                    Button(action: { viewModel.editList(list) }) {
+                                        Label(Strings.edit, systemImage: "square.and.pencil")
+                                    }
+                                    
+                                    Button(action: { viewModel.shareList(list) }) {
+                                        Label(Strings.share, systemImage: "person.crop.circle.badge.plus")
+                                    }
+                                    
+                                    Button(role: .destructive, action: { viewModel.deleteList(id: list.id) }) {
+                                        Label(Strings.remove, systemImage: "trash")
+                                    }
+                                }
+                        }
+                        .swipeActions {
+                            Button(role: .destructive, action: { viewModel.deleteList(id: list.id) } ) {
                                 Label(Strings.remove, systemImage: "trash")
                             }
                         }
+                    }
+                } header: {
+                    Text(Strings.listsMyLists)
                 }
-                .swipeActions {
-                    Button(role: .destructive, action: { viewModel.deleteList(id: list.id) } ) {
-                        Label(Strings.remove, systemImage: "trash")
+                
+                // MARK: - Shared Lists
+                if !viewModel.lists.shared.isEmpty {
+                    Section {
+                        ForEach(viewModel.lists.shared) { list in
+                            if let listId = list.id {
+                                NavigationLink(
+                                    destination: ListItemsView(listId: listId, listName: list.name),
+                                    tag: listId,
+                                    selection: $viewModel.selectedSharedList
+                                ) {
+                                    ListRow(label: list.name)
+                                        .contextMenu {
+                                            // TODO: Quit from shared list
+                                        }
+                                }
+                                .swipeActions {
+                                    // TODO: Quit from shared list
+                                }
+                            }
+                        }
+                    } header: {
+                        Text(Strings.listsSharedSection)
                     }
                 }
             }
-            .showEmptyView(viewModel.lists.isEmpty, emptyText: Strings.listsEmpty)
+            .showEmptyView(viewModel.listsAreEmpty, emptyText: Strings.listsEmpty)
             .showLoading(viewModel.isLoading)
             .errorAlert(visible: $viewModel.showError,
                         message: viewModel.errorMessage,
                         action: viewModel.reloadList)
             .navigationTitle(Strings.listsTitle)
-            .toolbar {                
+            .toolbar {
                 ToolbarItemGroup {
-                    Button(action: viewModel.createList) {
-                        Label(Strings.listsNew, systemImage: "plus")
+                    HStack {
+                        Button(action: viewModel.createList) {
+                            Label(Strings.listsNew, systemImage: "plus")
+                        }
+                    }
+                }
+                
+                ToolbarItemGroup(placement: .navigationBarLeading) {
+                    NavigationLink(destination: Scanner(completion: viewModel.handleQrCodeScan,
+                                                        failure: viewModel.requestFailed)) {
+                        Label(Strings.listMenuScanQrCode, systemImage: "qrcode.viewfinder")
                     }
                 }
             }
@@ -58,7 +101,10 @@ struct ListsView: View {
                     ShareListView(listId: id, listName: selected.name)
                 }
             }
-            .onAppear(perform: viewModel.fetchLists)    
+            .onChange(of: appParameters.url, perform: { url in
+                viewModel.handleUrl(url)
+            })
+            .onAppear { viewModel.fetchLists() }
         }
     }
 }
@@ -66,6 +112,6 @@ struct ListsView: View {
 struct ListsView_Previews: PreviewProvider {
     static var previews: some View {
         ListsView()
-            .preferredColorScheme(.dark)
+            .preferredColorScheme(.light)
     }
 }

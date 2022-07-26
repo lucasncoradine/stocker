@@ -44,7 +44,7 @@ extension View {
     /// Show the empty view if the condition is satisfied
     @ViewBuilder func showEmptyView(_ condition: Bool, emptyText: String) -> some View {
         if condition {
-            EmptyView(text: emptyText)
+            EmptyListView(text: emptyText)
         } else {
             self
         }

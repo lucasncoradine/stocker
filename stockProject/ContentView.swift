@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    private let client: AuthManager = .init()
-        
     var body: some View {
         HomeView()
     }

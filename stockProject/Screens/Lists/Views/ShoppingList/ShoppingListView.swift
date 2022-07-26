@@ -24,29 +24,30 @@ struct ShoppingListView: View {
             }
             .swipeActions {
                 Button(role: .destructive, action: { viewModel.remove(id: shoppingItem.id) }) {
-                    Label("Remover", systemImage: "cart.badge.minus")
+                    Label(Strings.remove, systemImage: "cart.badge.minus")
                 }
             }
         }
-        .showEmptyView(viewModel.shoppingItems.isEmpty, emptyText: "Lista de compras vazia")
+        .listStyle(.plain)
+        .showEmptyView(viewModel.shoppingItems.isEmpty, emptyText: Strings.shoppingListEmpty)
         .showLoading(viewModel.isLoading)
         .errorAlert(visible: $viewModel.showError,
                     message: viewModel.errorMessage,
                     action: viewModel.reload)
-        .alert("Tem certeza que deseja limpar a lista de compras?", isPresented: $viewModel.showClearConfirmation, actions: {
+        .alert(Strings.shoppingListConfirmClearMessage, isPresented: $viewModel.showClearConfirmation, actions: {
             Button(role: .cancel , action: {}) {
-                Text("Cancelar")
+                Text(Strings.cancel)
             }
             
             Button(role: .destructive, action: viewModel.clearList) {
-                Text("Limpar")
+                Text(Strings.shoppingListConfirmClearButton)
             }
         })
-        .navigationTitle("Compras")
+        .navigationTitle(Strings.shoppingListTitle)
         .toolbar {
             ToolbarItemGroup() {
                 Button(action: { viewModel.showClearConfirmation.toggle() }) {
-                    Label("Limpar lista", systemImage: "trash")
+                    Label(Strings.shoppingListClear, systemImage: "trash")
                 }
             }
         }

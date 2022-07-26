@@ -12,8 +12,10 @@ struct SignupView: View {
     
     var body: some View {
         VStack(spacing: 14) {
-            ProgressView(value: Float(viewModel.currentStep), total: Float(viewModel.steps.count))
-                .progressViewStyle(.linear)
+            if viewModel.currentStep == viewModel.steps.count {
+                ProgressView(value: Float(viewModel.currentStep), total: Float(viewModel.steps.count))
+                    .progressViewStyle(.linear)
+            }
             
             // Fields
             ZStack {
