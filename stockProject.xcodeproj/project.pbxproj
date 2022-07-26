@@ -70,6 +70,7 @@
 		29C9A1DD28771D0D000FDEF8 /* CustomFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C9A1DC28771D0D000FDEF8 /* CustomFunctions.swift */; };
 		29C9A1E3287856E8000FDEF8 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C9A1E2287856E8000FDEF8 /* Selection.swift */; };
 		29CB48A92890396B0028D550 /* BindingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CB48A82890396B0028D550 /* BindingExtension.swift */; };
+		29CB48AB28905E490028D550 /* UIScreenExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CB48AA28905E490028D550 /* UIScreenExtension.swift */; };
 		29CD682D2885894C00B8D590 /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CD682C2885894C00B8D590 /* LocalizedStrings.swift */; };
 		29CD68302885ABC500B8D590 /* FormViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CD682F2885ABC500B8D590 /* FormViewModelProtocol.swift */; };
 		29E08A6528874C2F0071016D /* PasswordRecoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E08A6428874C2F0071016D /* PasswordRecoverView.swift */; };
@@ -163,6 +164,7 @@
 		29C9A1DC28771D0D000FDEF8 /* CustomFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFunctions.swift; sourceTree = "<group>"; };
 		29C9A1E2287856E8000FDEF8 /* Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selection.swift; sourceTree = "<group>"; };
 		29CB48A82890396B0028D550 /* BindingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingExtension.swift; sourceTree = "<group>"; };
+		29CB48AA28905E490028D550 /* UIScreenExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreenExtension.swift; sourceTree = "<group>"; };
 		29CD682C2885894C00B8D590 /* LocalizedStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
 		29CD682F2885ABC500B8D590 /* FormViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewModelProtocol.swift; sourceTree = "<group>"; };
 		29E08A6428874C2F0071016D /* PasswordRecoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoverView.swift; sourceTree = "<group>"; };
@@ -509,6 +511,7 @@
 				298B8AB528844477004295C8 /* UIApplicationExtension.swift */,
 				2908E443288F1265001603A3 /* ScanResultExtension.swift */,
 				29CB48A82890396B0028D550 /* BindingExtension.swift */,
+				29CB48AA28905E490028D550 /* UIScreenExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -720,6 +723,7 @@
 				29CD682D2885894C00B8D590 /* LocalizedStrings.swift in Sources */,
 				298B8AB428832C98004295C8 /* BottomToolbar.swift in Sources */,
 				29F0EB582876267000CA857D /* ShoppingListViewModel.swift in Sources */,
+				29CB48AB28905E490028D550 /* UIScreenExtension.swift in Sources */,
 				299653DD286F363400EA4799 /* ShoppingItemModel.swift in Sources */,
 				291C158F2818722E00A89846 /* ContentView.swift in Sources */,
 				29F43C32287477E100276EE2 /* EditListView.swift in Sources */,

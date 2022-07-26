@@ -15,6 +15,7 @@ struct UserLists {
 }
 
 class ListsViewModel: ViewModel {
+    var homeViewModel: HomeViewModel? = nil
     private let client: APIClient<ListModel> = .init(collection: .lists)
     
     @Published var isLoading: Bool = false
@@ -82,30 +83,40 @@ class ListsViewModel: ViewModel {
         client.delete(id: id, failure: requestFailed)
     }
     
-    func handleQrCodeScan(_ result: ScanResult) {
-        let message = Strings.scannerInvalidQrCode
-        
-        guard let url = result.url(),
+    func handleUrl(_ url: URL?) {
+        guard let url = url,
               let target = DeeplinkTarget.getFromUrl(url)
-        else {
-            requestFailed(message)
-            return
-        }
+        else { return }
         
+        handleDeeplink(target: target)
+    }
+    
+    func handleDeeplink(target: DeeplinkTarget) {
         if target.path == .invite {
             guard let listId = target.params["listId"],
                   let userId = AuthManager.shared.user?.uid
             else {
-                requestFailed(message)
+                requestFailed(Strings.scannerInvalidQrCode)
                 return
             }
             
             client.addValuesToArrayField(id: listId,
-                                          field: ListModel.CodingKeys.sharedWith.stringValue,
-                                          values: [userId],
-                                          failure: requestFailed)
+                                         field: ListModel.CodingKeys.sharedWith.stringValue,
+                                         values: [userId],
+                                         failure: requestFailed)
             
             self.selectedSharedList = listId
         }
+    }
+    
+    func handleQrCodeScan(_ result: ScanResult) {
+        guard let url = result.url(),
+              let target = DeeplinkTarget.getFromUrl(url)
+        else {
+            requestFailed(Strings.scannerInvalidQrCode)
+            return
+        }
+        
+        handleDeeplink(target: target)
     }
 }

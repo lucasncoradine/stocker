@@ -29,7 +29,8 @@ struct Scanner: View {
     @Environment(\.dismiss) var dismiss
     @State var showError: Bool = false
     @State var errorMessage: String = ""
-    @State var accessGranted: Bool
+    @State var accessGranted: Bool = false
+    @State var isFlashlightOn: Bool = false
     
     init(completion: @escaping (_ result: ScanResult) -> Void,
          failure: @escaping FailureClosure,
@@ -55,7 +56,8 @@ struct Scanner: View {
             if accessGranted {
                 ZStack {
                     CodeScannerView(codeTypes: [.qr],
-                                    scanMode: .oncePerCode) { result in
+                                    scanMode: .oncePerCode,
+                                    isTorchOn: isFlashlightOn) { result in
                         switch result {
                         case .success(let result):
                             completion(result)
@@ -73,28 +75,41 @@ struct Scanner: View {
                         .mask {
                             QRCodeFrame().fill(style: FillStyle(eoFill: true))
                         }
+                    
+                    VStack {
+                        Text(Strings.scannerText)
+                            .foregroundColor(.white)
+                            .bold()
+                    }
+                    .position(x: UIScreen.main.centerX, y: UIScreen.main.centerY - 150)
                 }
                 .edgesIgnoringSafeArea(.all)
                 
-                VStack {
+                VStack(spacing: 60) {
                     Spacer()
                     
-                    Text(Strings.scannerText)
-                        .foregroundColor(.white)
-                        .bold()
-                        .padding(.bottom, 60)
+                    Button(action: { isFlashlightOn.toggle() } ) {
+                        let onString = isFlashlightOn ? "on" : "off"
+                        
+                        Image(systemName: "flashlight.\(onString).fill")
+                            .foregroundColor(isFlashlightOn ? .blue : .white)
+                    }
+                    .font(.system(size: 28))
+                    .padding(20)
+                    .background(isFlashlightOn ? .thinMaterial : .ultraThinMaterial, in: Circle())
                 }
+                .padding(.bottom, 40)
             } else {
                 VStack(spacing: 30) {
                     Image(systemName: "video.slash")
                         .font(.system(size: 32))
                     
-                    Text("O aplicativo não possui permissão de acesso à câmera!")
+                    Text(Strings.scannerPermissionDeniedMessage)
                         .font(.headline)
                         .multilineTextAlignment(.center)
                     
                     Button(action: openSettings) {
-                        Text("Permitir acesso")
+                        Text(Strings.scannerOpenSettingsButton)
                     }
                 }
             }

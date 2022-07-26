@@ -93,4 +93,6 @@ final class LocalizedStrings {
     // MARK: - Scanner
     static let scannerText = "Escaneie o QR Code"
     static let scannerInvalidQrCode = "QR Code inválido"
+    static let scannerPermissionDeniedMessage = "O aplicativo não possui permissão para acessar a câmera!"
+    static let scannerOpenSettingsButton = "Permitir acesso"
 }

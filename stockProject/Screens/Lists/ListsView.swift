@@ -9,8 +9,9 @@ import SwiftUI
 import CodeScanner
 
 struct ListsView: View {
+    @EnvironmentObject var appParameters: AppParameters
     @StateObject var viewModel: ListsViewModel = .init()
-    
+        
     var body: some View {
         NavigationView {
             List() {
@@ -100,7 +101,10 @@ struct ListsView: View {
                     ShareListView(listId: id, listName: selected.name)
                 }
             }
-            .onAppear(perform: viewModel.fetchLists)
+            .onChange(of: appParameters.url, perform: { url in
+                viewModel.handleUrl(url)
+            })
+            .onAppear { viewModel.fetchLists() }
         }
     }
 }

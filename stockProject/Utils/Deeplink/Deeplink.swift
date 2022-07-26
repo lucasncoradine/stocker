@@ -9,6 +9,7 @@ import Foundation
 
 enum DeeplinkPath: String {
     case invite = "invite"
+    case none = ""
 }
 
 struct Deeplink {
