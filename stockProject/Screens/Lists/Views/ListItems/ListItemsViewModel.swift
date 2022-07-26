@@ -120,7 +120,7 @@ class ListItemsViewModel: ObservableObject {
     
     func toggleSelection() {
         withAnimation {
-            UITabBar.toggleTabBarVisibility()
+            UITabBar.toggleTabBarVisibility(animated: false)
             isEditing.toggle()
             showBottomToolbar.toggle()
         }

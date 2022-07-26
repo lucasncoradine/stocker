@@ -49,25 +49,23 @@ extension View {
         ZStack {
             self
             
-            GeometryReader { geometry in
-                if visible {
-                    VStack(spacing: 0) {
-                        Spacer()
-                        Divider()
-                        
-                        Group {
-                            content().padding([.top, .horizontal])
-                        }
-                        .frame(maxWidth: .infinity,
-                               maxHeight: geometry.safeAreaInsets.bottom,
-                               alignment: .top)
-                        .background(.ultraThinMaterial, in: Rectangle())
+            if visible {
+                VStack(spacing: 0) {
+                    Spacer()
+                    Divider()
+                    
+                    VStack {
+                        content().padding([.top, .horizontal])
                     }
+                    .frame(maxWidth: .infinity,
+                           maxHeight: 85,
+                           alignment: .top)
+                    .background(.ultraThinMaterial, in: Rectangle())
                 }
+                .transition(.move(edge: .bottom))
             }
-            .transition(.move(edge: .bottom))
-            .edgesIgnoringSafeArea(.bottom)
-            .animation(.easeOut(duration: 0.6), value: visible)
         }
+        .animation(.easeInOut(duration: 0.3), value: visible)
+        .edgesIgnoringSafeArea(.bottom)
     }
 }
