@@ -19,7 +19,7 @@ struct ListsView: View {
                 Section {
                     ForEach(viewModel.lists.owned) { list in
                         NavigationLink(
-                            destination: ListItemsView(listId: list.id ?? "", listName: list.name)
+                            destination: ListItemsView(list: list)
                         ) {
                             ListRow(label: list.name)
                                 .contextMenu {
@@ -52,7 +52,7 @@ struct ListsView: View {
                         ForEach(viewModel.lists.shared) { list in
                             if let listId = list.id {
                                 NavigationLink(
-                                    destination: ListItemsView(listId: listId, listName: list.name),
+                                    destination: ListItemsView(list: list),
                                     tag: listId,
                                     selection: $viewModel.selectedSharedList
                                 ) {

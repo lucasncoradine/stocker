@@ -8,14 +8,16 @@
 import Foundation
 import SwiftUI
 
-class ListItemsViewModel: ObservableObject {
+class ListItemsViewModel: ViewModel {
     private let client: APIClient<ItemModel>
     private let shoppingClient: APIClient<ShoppingItemModel>
-    let listId: String
+    private let listId: String
     
+    @Published var list: ListModel
     @Published var items: [ItemModel] = []
     @Published var isLoading: Bool = true
     @Published var errorMessage: String = ""
+    @Published var showError: Bool = false
     @Published var selectedItem: ItemModel? = nil
     @Published var selection: Selection<String?> = .init()
     @Published var openEdit: Bool = false
@@ -24,23 +26,19 @@ class ListItemsViewModel: ObservableObject {
     @Published var showDeleteConfirmation: Bool = false
     @Published var showBottomToolbar: Bool = false
     @Published var openShare: Bool = false
+    @Published var showEditList: Bool = false
     
     // MARK: Lifecycle
-    init(listId: String) {
+    init(list: ListModel) {
+        let listId = list.id!
+        
         client = APIClient(collection: .items(listId: listId))
         shoppingClient = APIClient(collection: .shoppingList(listId: listId))
         self.listId = listId
+        self.list = list
     }
     
-    // MARK: - Private Methods
-    private func requestFailed(message: String) {
-        DispatchQueue.main.async {
-            self.isLoading = false
-            self.errorMessage = message
-            print(message) // TODO: Remove print
-        }
-    }
-    
+    // MARK: - Private Methods    
     private func toggleToast() {
         // Closes current toast if exists
         if showAddedToast {

@@ -15,9 +15,9 @@ struct ListItemsView: View {
     @FocusState var counterFocused: Bool
     
     // MARK: - Lifecycle
-    init(listId: String, listName: String) {
-        self._viewModel = StateObject(wrappedValue: .init(listId: listId))
-        self.listName = listName
+    init(list: ListModel) {
+        self._viewModel = StateObject(wrappedValue: .init(list: list))
+        self.listName = list.name
     }
     
     // MARK: - Private variables and functions
@@ -137,11 +137,13 @@ struct ListItemsView: View {
         }
         .bottomToolbar(visible: viewModel.showBottomToolbar) {
             HStack {
+                // Add to shopping list
                 BottomToolbarItem(action: viewModel.addSelectedToShoppingList) {
                     Label(Strings.addToShopping, systemImage: "cart.badge.plus")
                 }
                 .disabled(viewModel.selection.isEmpty)
                 
+                // Remove from list
                 BottomToolbarItem(action: { viewModel.showDeleteConfirmation.toggle() }) {
                     Label(Strings.remove, systemImage: "trash")
                 }
@@ -154,18 +156,28 @@ struct ListItemsView: View {
         .navigationTitle(navigationTitle())
         .navigationBarBackButtonHidden(viewModel.isEditing)
         .toolbar {
+            // MARK: - Main Toolbar
             ToolbarItemGroup() {
                 if !viewModel.isEditing {
                     HStack {
+                        // Create Item
                         Button(action: viewModel.createItem) {
                             Label(Strings.editItemNavigationTitle, systemImage: "plus")
                         }
                         
+                        // "More Options" menu
                         Menu {
+                            // Select items
                             Button(action: viewModel.toggleSelection) {
                                 Label(Strings.select, systemImage: "checkmark.circle")
                             }
                             
+                            // Edit list
+                            Button(action: { viewModel.showEditList.toggle() }) {
+                                Label(Strings.edit, systemImage: "square.and.pencil")
+                            }
+                            
+                            // Share list
                             Button(action: { viewModel.openShare.toggle() }) {
                                 Label(Strings.share, systemImage: "person.crop.circle.badge.plus")
                             }
@@ -204,9 +216,15 @@ struct ListItemsView: View {
                 .foregroundColor(.blue)
             }
         }
+        // Edit list
+        .sheet(isPresented: $viewModel.showEditList) {
+            EditListView(list: viewModel.list)
+        }
+        // Edit item
         .sheet(isPresented: $viewModel.openEdit) {
             EditItemView(listId: viewModel.listId, item: viewModel.selectedItem)
         }
+        // Share list
         .sheet(isPresented: $viewModel.openShare) {
             ShareListView(listId: viewModel.listId, listName: listName)
         }
@@ -217,7 +235,7 @@ struct ListItemsView: View {
 struct ListItemsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ListItemsView(listId: "SF6jqiRauIkLSTurDy15", listName: "Estoque")
+            ListItemsView(list: .init(name: "Lista"))
         }
         .previewInterfaceOrientation(.portrait)
     }
