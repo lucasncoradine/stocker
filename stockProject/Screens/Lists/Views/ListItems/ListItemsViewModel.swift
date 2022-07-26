@@ -11,7 +11,7 @@ import SwiftUI
 class ListItemsViewModel: ViewModel {
     private let client: APIClient<ItemModel>
     private let shoppingClient: APIClient<ShoppingItemModel>
-    private let listId: String
+    let listId: String
     
     @Published var list: ListModel
     @Published var items: [ItemModel] = []
@@ -96,11 +96,13 @@ class ListItemsViewModel: ViewModel {
     func deleteItem(id: String?) {
         guard let id = id else { return }
         client.delete(id: id, failure: requestFailed)
+        shoppingClient.delete(id: id, failure: requestFailed)
     }
     
     func deleteSelectedItems() {
         let idsToRemove: [String] = selection.asArray()
         client.delete(ids: idsToRemove, failure: requestFailed)
+        shoppingClient.delete(ids: idsToRemove, failure: requestFailed)
         showDeleteConfirmation = false
         toggleSelection()
     }
@@ -135,5 +137,14 @@ class ListItemsViewModel: ViewModel {
             
             selection.toggleMultiple(ids)
         }
+    }
+    
+    func handleEditedItem(_ item: ItemModel) {
+        guard let itemId = item.id else { return }
+        
+        shoppingClient.updateValue(id: itemId,
+                                   field: ItemModel.CodingKeys.name.stringValue,
+                                   value: item.name,
+                                   failure: self.requestFailed)
     }
 }

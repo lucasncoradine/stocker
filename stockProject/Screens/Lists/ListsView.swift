@@ -14,7 +14,7 @@ struct ListsView: View {
         
     var body: some View {
         NavigationView {
-            List() {
+            List {
                 // MARK: - Owned Lists
                 Section {
                     ForEach(viewModel.lists.owned) { list in

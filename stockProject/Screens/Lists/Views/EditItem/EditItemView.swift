@@ -9,15 +9,20 @@ import SwiftUI
 
 struct EditItemView: View {
     private let navigationTitle: String
+    private let completion: (_ item: ItemModel) -> Void
     
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel: EditItemViewModel
     
     // MARK: - Lifecycle
-    init(listId: String, item: ItemModel? = nil) {
+    init(listId: String,
+         item: ItemModel? = nil,
+         completion: @escaping (_ item: ItemModel) -> Void = { _ in }
+    ) {
         let itemModel = item ?? ItemModel(name: "", description: "", amount: 1)
         self._viewModel = StateObject(wrappedValue: EditItemViewModel(from: listId, with: itemModel))
         self.navigationTitle = item?.name ?? Strings.editItemNavigationTitle
+        self.completion = completion
     }
     
     //MARK: - View
@@ -60,6 +65,7 @@ struct EditItemView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         viewModel.saveItem {
+                            completion(viewModel.item)
                             dismiss()
                         }
                     }) {

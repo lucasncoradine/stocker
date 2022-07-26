@@ -222,7 +222,9 @@ struct ListItemsView: View {
         }
         // Edit item
         .sheet(isPresented: $viewModel.openEdit) {
-            EditItemView(listId: viewModel.listId, item: viewModel.selectedItem)
+            EditItemView(listId: viewModel.listId, item: viewModel.selectedItem) { item in
+                viewModel.handleEditedItem(item)
+            }
         }
         // Share list
         .sheet(isPresented: $viewModel.openShare) {
