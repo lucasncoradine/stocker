@@ -38,7 +38,7 @@ class ListsViewModel: ViewModel {
         let createdByField: String = ListModel.CodingKeys.createdBy.stringValue
         
         client.fetch(query: .isEqual(field: createdByField, to: userId), failure: self.requestFailed) { data in
-            self.lists.owned = data
+            self.lists.owned = data.sorted(.alphabetically)
         }
     }
     
@@ -48,7 +48,7 @@ class ListsViewModel: ViewModel {
         let sharedWithField: String = ListModel.CodingKeys.sharedWith.stringValue
         
         client.fetch(query: .contains(field: sharedWithField, value: userId), failure: self.requestFailed) { data in
-            self.lists.shared = data
+            self.lists.shared = data.sorted(.alphabetically)
         }
     }
     

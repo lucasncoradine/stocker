@@ -11,19 +11,9 @@ import FirebaseAuth
 
 typealias FirebaseUser = User
 
-struct UserNameModel: Codable {
-    var first: String
-    var last: String
-    
-    enum CodingKeys: CodingKey {
-        case first
-        case last
-    }
-}
-
 struct UserModel: ModelProtocol {
     @DocumentID var id: String? = UUID().uuidString
-    var name: UserNameModel
+    var name: String
     
     enum CodingKeys: CodingKey {
         case id

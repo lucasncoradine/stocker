@@ -23,6 +23,7 @@ final class LocalizedStrings {
     static let done = "Feito"
     static let back = "Voltar"
     static let share = "Compartilhar"
+    static let new = "Novo"
     
     // MARK: - Fields
     static let name = "Nome"
@@ -75,6 +76,7 @@ final class LocalizedStrings {
     static let listItemsRemoveSelectedMessage = "Tem certeza que deseja remover os itens selecionados"
     static let listItemsEmpty = "Sem itens"
     static let listItemsAddedToast = "Adicionado à lista de compras"
+    static let listItemsNew = "Novo item"
     
     // MARK: - ShoppingListView
     static let shoppingListEmpty = "Lista de compras vazia"

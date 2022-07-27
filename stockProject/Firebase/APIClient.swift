@@ -63,8 +63,8 @@ class APIClient<T: Codable> {
     }
     
     func create(with data: T,
-                success: @escaping (_ data: T) -> Void,
-                failure: @escaping FailureClosure
+                failure: @escaping FailureClosure,
+                success: @escaping (_ data: T) -> Void
     ) {
         client.addDocument(data, to: collection) { result in
             self.client.handleResult(result, success: success, failure: failure)

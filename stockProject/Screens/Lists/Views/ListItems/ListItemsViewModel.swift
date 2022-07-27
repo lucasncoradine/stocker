@@ -53,7 +53,7 @@ class ListItemsViewModel: ViewModel {
     // MARK: - Methods
     func fetchItems() {
         client.fetch(failure: requestFailed) { data in
-            self.items = data
+            self.items = data.sorted(.alphabetically)
             self.isLoading = false
         }
     }

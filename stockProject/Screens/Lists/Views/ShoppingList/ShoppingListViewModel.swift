@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ShoppingListViewModel: ObservableObject {
+class ShoppingListViewModel: ViewModel {
     private let client: APIClient<ShoppingItemModel>
     private let listId: String
     
@@ -16,6 +16,8 @@ class ShoppingListViewModel: ObservableObject {
     @Published var errorMessage: String = ""
     @Published var showError: Bool = false
     @Published var showClearConfirmation: Bool = false
+    @Published var creatingNewItem: Bool = false
+    @Published var newItemName: String = ""
     
     // MARK: Lifecycle
     init(listId: String) {
@@ -23,19 +25,10 @@ class ShoppingListViewModel: ObservableObject {
         self.listId = listId
     }
     
-    // MARK: - Private Methods
-    func requestFailed(message: String) {
-        DispatchQueue.main.async {
-            self.isLoading = false
-            self.errorMessage = message
-            self.showError = true
-        }
-    }
-    
     // MARK: - Methods
     func fetchItems() {
         client.fetch(failure: requestFailed) { data in
-            self.shoppingItems = data
+            self.shoppingItems = data.sorted(.alphabetically)
             self.isLoading = false
         }
     }
@@ -59,6 +52,29 @@ class ShoppingListViewModel: ObservableObject {
             guard let id = item.id else { return }
             client.delete(id: id, failure: requestFailed)
         }
+    }
+    
+    func toggleNewItem() {
+        creatingNewItem.toggle()
+        newItemName = ""
+    }
+    
+    func create() {
+        guard newItemName.isEmpty == false else {
+            toggleNewItem()
+            return
+        }
+        
+        creatingNewItem = false
+        
+        let item = ShoppingItemModel(name: self.newItemName)
+        client.create(with: item) { message in
+            self.requestFailed(message)
+            self.creatingNewItem = true
+        } success: { _ in
+            self.newItemName = ""
+        }
+
     }
     
     func remove(id: String?) {
