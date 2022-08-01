@@ -24,6 +24,7 @@ final class LocalizedStrings {
     static let back = "Voltar"
     static let share = "Compartilhar"
     static let new = "Novo"
+    static let rename = "Renomear"
     
     // MARK: - Fields
     static let name = "Nome"
@@ -81,8 +82,9 @@ final class LocalizedStrings {
     // MARK: - ShoppingListView
     static let shoppingListEmpty = "Lista de compras vazia"
     static let shoppingListTitle = "Compras"
-    static let shoppingListClear = "Limpar lista"
-    static let shoppingListConfirmClearMessage = "Tem certeza que deseja limpar a lista de compras?"
+    static let shoppingListClear = "Apagar lista"
+    static let shoppingListComplete = "Concluir lista"
+    static let shoppingListConfirmClearMessage = "Tem certeza que deseja apagar a lista de compras?"
     static let shoppingListConfirmClearButton = "Limpar"
     
     // MARK: - PasswordRecoverView

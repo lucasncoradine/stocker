@@ -90,7 +90,7 @@ struct Stepper: View {
             HStack {
                 // Decrease button
                 Button(action: decrease) {
-                    Image(systemName: "chevron.down")
+                    Image(systemName: "minus")
                         .foregroundColor( decreaseDisabled ? .gray : .blue)
                         .padding(.leading, 8)
                 }
@@ -110,7 +110,7 @@ struct Stepper: View {
                 
                 // Increase button
                 Button(action: increase) {
-                    Image(systemName: "chevron.up")
+                    Image(systemName: "plus")
                         .foregroundColor( increaseDisabled ? .gray : .blue)
                         .padding(.trailing, 8)
                 }

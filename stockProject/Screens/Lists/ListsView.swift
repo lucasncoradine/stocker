@@ -16,34 +16,36 @@ struct ListsView: View {
         NavigationView {
             List {
                 // MARK: - Owned Lists
+                if !viewModel.lists.owned.isEmpty {
                 Section {
-                    ForEach(viewModel.lists.owned) { list in
-                        NavigationLink(
-                            destination: ListItemsView(list: list)
-                        ) {
-                            ListRow(label: list.name)
-                                .contextMenu {
-                                    Button(action: { viewModel.editList(list) }) {
-                                        Label(Strings.edit, systemImage: "square.and.pencil")
+                        ForEach(viewModel.lists.owned) { list in
+                            NavigationLink(
+                                destination: ListItemsView(list: list)
+                            ) {
+                                ListRow(label: list.name)
+                                    .contextMenu {
+                                        Button(action: { viewModel.editList(list) }) {
+                                            Label(Strings.edit, systemImage: "square.and.pencil")
+                                        }
+                                        
+                                        Button(action: { viewModel.shareList(list) }) {
+                                            Label(Strings.share, systemImage: "person.crop.circle.badge.plus")
+                                        }
+                                        
+                                        Button(role: .destructive, action: { viewModel.deleteList(id: list.id) }) {
+                                            Label(Strings.remove, systemImage: "trash")
+                                        }
                                     }
-                                    
-                                    Button(action: { viewModel.shareList(list) }) {
-                                        Label(Strings.share, systemImage: "person.crop.circle.badge.plus")
-                                    }
-                                    
-                                    Button(role: .destructive, action: { viewModel.deleteList(id: list.id) }) {
-                                        Label(Strings.remove, systemImage: "trash")
-                                    }
+                            }
+                            .swipeActions {
+                                Button(role: .destructive, action: { viewModel.deleteList(id: list.id) } ) {
+                                    Label(Strings.remove, systemImage: "trash")
                                 }
-                        }
-                        .swipeActions {
-                            Button(role: .destructive, action: { viewModel.deleteList(id: list.id) } ) {
-                                Label(Strings.remove, systemImage: "trash")
                             }
                         }
+                    } header: {
+                        Text(Strings.listsMyLists)
                     }
-                } header: {
-                    Text(Strings.listsMyLists)
                 }
                 
                 // MARK: - Shared Lists

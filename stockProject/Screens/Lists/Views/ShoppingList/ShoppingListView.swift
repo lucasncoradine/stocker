@@ -10,6 +10,8 @@ import SwiftUI
 struct ShoppingListView: View {
     @StateObject var viewModel: ShoppingListViewModel
     @FocusState var itemFieldFocused: Bool
+    @FocusState var editFieldFocused: String?
+    @FocusState var counterFocused: Bool
     
     // MARK: - Lifecycle
     init(listId: String) {
@@ -23,24 +25,47 @@ struct ShoppingListView: View {
     var body: some View {
         List {
             Section {
-                ForEach(viewModel.shoppingItems) { shoppingItem in
-                    Button {
-                        viewModel.checkItem(shoppingItem.id, checked: !shoppingItem.checked)
-                    } label: {
-                        CheckmarkLabel(label: shoppingItem.name, checked: shoppingItem.checked)
+                ForEach(Array(viewModel.shoppingItems.enumerated()), id: \.offset) { index, shoppingItem in
+                    HStack {
+                        if viewModel.editingItem == shoppingItem.id {
+                            CheckmarkLabel(checked: shoppingItem.checked) {
+                                TextField("", text: $viewModel.shoppingItems[index].name)
+                                    .focused($editFieldFocused, equals: shoppingItem.id)
+                                    .submitLabel(.done)
+                                    .onSubmit {
+                                        viewModel.save(id: shoppingItem.id)
+                                    }
+                            }
+                        } else {
+                            CheckmarkLabel(label: shoppingItem.name, checked: shoppingItem.checked)
+                                .onTapGesture {
+                                    viewModel.checkItem(shoppingItem.id, checked: !shoppingItem.checked)
+                                }
+                        }
+                        
+                        Stepper(label: "",
+                                amount: shoppingItem.amount,
+                                counterFocused: _counterFocused
+                        ) { value in
+                            viewModel.changeAmount(id: shoppingItem.id, newValue: value)
+                        }
                     }
+                    .buttonStyle(.plain)
                     .swipeActions {
                         Button(role: .destructive, action: { viewModel.remove(id: shoppingItem.id) }) {
                             Label(Strings.remove, systemImage: "cart.badge.minus")
+                        }
+                    }
+                    .contextMenu {
+                        Button(action: { viewModel.editingItem = shoppingItem.id }) {
+                            Label(Strings.rename, systemImage: "pencil")
                         }
                     }
                 }
                 
                 // New Item
                 if viewModel.creatingNewItem {
-                    HStack {
-                        Checkmark(selected: false)
-                        
+                    CheckmarkLabel(checked: false) {
                         TextField(Strings.listItemsNew, text: $viewModel.newItemName)
                             .focused($itemFieldFocused)
                             .submitLabel(.done)
@@ -69,12 +94,21 @@ struct ShoppingListView: View {
             // Main Toolbar
             ToolbarItemGroup() {
                 HStack {
-                    Button(action: viewModel.toggleNewItem) {
+                    Button(action: { viewModel.toggleNewItem() }) {
                         Label(Strings.new, systemImage: "plus")
                     }
                     
-                    Button(action: { viewModel.showClearConfirmation.toggle() }) {
-                        Label(Strings.shoppingListClear, systemImage: "trash")
+                    Menu {
+                        // TODO: Complete list
+//                        Button(action: {}) {
+//                            Label(Strings.shoppingListComplete, systemImage: "checkmark.circle")
+//                        }
+                        
+                        Button(action: { viewModel.showClearConfirmation.toggle() }) {
+                            Label(Strings.shoppingListClear, systemImage: "trash")
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis.circle")
                     }
                 }
             }
@@ -84,15 +118,18 @@ struct ShoppingListView: View {
                 HStack {
                     Spacer()
                     
-                    Button(action: viewModel.toggleNewItem) {
+                    Button(action: viewModel.dismissKeyboard) {
                         Text(Strings.cancel)
                     }
                 }
             }
         }
-        .onChange(of: viewModel.creatingNewItem, perform: { isCreating in
+        .onChange(of: viewModel.creatingNewItem) { isCreating in
             self.itemFieldFocused = isCreating
-        })
+        }
+        .onChange(of: viewModel.editingItem) { editingId in
+            self.editFieldFocused = editingId
+        }
         .onAppear(perform: viewModel.fetchItems )
     }
 }

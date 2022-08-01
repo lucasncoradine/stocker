@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class ShoppingListViewModel: ViewModel {
     private let client: APIClient<ShoppingItemModel>
@@ -18,6 +19,7 @@ class ShoppingListViewModel: ViewModel {
     @Published var showClearConfirmation: Bool = false
     @Published var creatingNewItem: Bool = false
     @Published var newItemName: String = ""
+    @Published var editingItem: String? = nil
     
     // MARK: Lifecycle
     init(listId: String) {
@@ -80,5 +82,28 @@ class ShoppingListViewModel: ViewModel {
     func remove(id: String?) {
         guard let id = id else { return }
         client.delete(id: id, failure: requestFailed)
+    }
+    
+    func save(id: String?) {
+        guard let id = id,
+              let item = shoppingItems.first(where: { $0.id == id })
+        else { return }
+        
+        client.save(id: id, with: item, failure: self.requestFailed)
+    }
+    
+    func changeAmount(id: String?, newValue: Int) {
+        guard let id = id else { return }
+        
+        client.updateValue(id: id,
+                           field: ShoppingItemModel.CodingKeys.amount.stringValue,
+                           value: newValue,
+                           failure: self.requestFailed)
+    }
+    
+    func dismissKeyboard() {
+        creatingNewItem = false
+        editingItem = nil
+        UIApplication.shared.dismissKeyboard()
     }
 }

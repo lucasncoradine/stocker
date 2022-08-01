@@ -12,6 +12,9 @@ struct Checkmark: View {
     
     var body: some View {
         Image(systemName: selected ? "checkmark.circle.fill" : "circle")
+            .resizable()
+            .scaledToFit()
+            .frame(height: 22)
             .foregroundColor(selected ? .blue : Color(.systemGray3))
     }
 }

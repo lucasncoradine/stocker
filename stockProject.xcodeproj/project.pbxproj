@@ -21,6 +21,8 @@
 		2922965F283FA2AC00C5E888 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 2922965E283FA2AC00C5E888 /* FirebaseFirestore */; };
 		29229661283FA2AC00C5E888 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 29229660283FA2AC00C5E888 /* FirebaseFirestoreSwift */; };
 		29229663283FA2AC00C5E888 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 29229662283FA2AC00C5E888 /* FirebaseMessaging */; };
+		29245338289853C200544EF6 /* EditShoppingItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29245337289853C200544EF6 /* EditShoppingItemViewModel.swift */; };
+		2924533A289853D400544EF6 /* EditShoppingItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29245339289853D400544EF6 /* EditShoppingItemView.swift */; };
 		292BBF9F2879D63100C7F4BF /* Checkmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292BBF9E2879D63100C7F4BF /* Checkmark.swift */; };
 		292BBFA12879DF1C00C7F4BF /* CheckmarkLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292BBFA02879DF1C00C7F4BF /* CheckmarkLabel.swift */; };
 		292BBFA32879DF5200C7F4BF /* TextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292BBFA22879DF5200C7F4BF /* TextExtension.swift */; };
@@ -114,6 +116,8 @@
 		291C15A32818723000A89846 /* stockProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = stockProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		291C15A72818723000A89846 /* stockProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stockProjectUITests.swift; sourceTree = "<group>"; };
 		291C15A92818723000A89846 /* stockProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stockProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		29245337289853C200544EF6 /* EditShoppingItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditShoppingItemViewModel.swift; sourceTree = "<group>"; };
+		29245339289853D400544EF6 /* EditShoppingItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditShoppingItemView.swift; sourceTree = "<group>"; };
 		292BBF9E2879D63100C7F4BF /* Checkmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkmark.swift; sourceTree = "<group>"; };
 		292BBFA02879DF1C00C7F4BF /* CheckmarkLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkLabel.swift; sourceTree = "<group>"; };
 		292BBFA22879DF5200C7F4BF /* TextExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextExtension.swift; sourceTree = "<group>"; };
@@ -281,6 +285,15 @@
 				2993630D28808D2700BCA7F3 /* AuthManager.swift */,
 			);
 			path = Firebase;
+			sourceTree = "<group>";
+		};
+		292453362898539F00544EF6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				29245337289853C200544EF6 /* EditShoppingItemViewModel.swift */,
+				29245339289853D400544EF6 /* EditShoppingItemView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		2952C4952889C5CB0031BE48 /* ShareList */ = {
@@ -539,6 +552,7 @@
 			children = (
 				29F0EB552876266800CA857D /* ShoppingListView.swift */,
 				29F0EB572876267000CA857D /* ShoppingListViewModel.swift */,
+				292453362898539F00544EF6 /* Views */,
 			);
 			path = ShoppingList;
 			sourceTree = "<group>";
@@ -730,6 +744,7 @@
 				299653D7286F32C400EA4799 /* ListModel.swift in Sources */,
 				292BBFA32879DF5200C7F4BF /* TextExtension.swift in Sources */,
 				298B8AB828845008004295C8 /* ColorExtension.swift in Sources */,
+				29245338289853C200544EF6 /* EditShoppingItemViewModel.swift in Sources */,
 				297BD093287E47BC00C2A8A7 /* SignupViewModel.swift in Sources */,
 				299653E0286F422100EA4799 /* ListsView.swift in Sources */,
 				299653D5286F2E7700EA4799 /* UserModel.swift in Sources */,
@@ -741,6 +756,7 @@
 				292BBFA12879DF1C00C7F4BF /* CheckmarkLabel.swift in Sources */,
 				2952C4A8288A227B0031BE48 /* DeeplinkTarget.swift in Sources */,
 				2952C49B2889E0990031BE48 /* ViewModelProtocol.swift in Sources */,
+				2924533A289853D400544EF6 /* EditShoppingItemView.swift in Sources */,
 				299653EE286F6C3000EA4799 /* ListIcon.swift in Sources */,
 				29F0EB4B2874B1AB00CA857D /* EditItemView.swift in Sources */,
 				297BD091287E47AF00C2A8A7 /* SignupView.swift in Sources */,
