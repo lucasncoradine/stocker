@@ -12,7 +12,7 @@ struct ShoppingItemModel: ModelProtocol {
     @DocumentID var id: String? = UUID().uuidString // Same ID as Item
     var name: String
     var checked: Bool = false
-    var amount: Int = 0
+    var amount: Int = 1
     
     enum CodingKeys: CodingKey {
         case id

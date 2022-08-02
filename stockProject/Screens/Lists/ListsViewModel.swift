@@ -9,7 +9,7 @@ import Foundation
 import CodeScanner
 import UIKit
 
-struct UserLists {
+struct UserLists: Equatable {
     var owned: [ListModel] = []
     var shared: [ListModel] = []
 }

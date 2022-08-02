@@ -32,9 +32,7 @@ struct ShoppingListView: View {
                                 TextField("", text: $viewModel.shoppingItems[index].name)
                                     .focused($editFieldFocused, equals: shoppingItem.id)
                                     .submitLabel(.done)
-                                    .onSubmit {
-                                        viewModel.save(id: shoppingItem.id)
-                                    }
+                                    .onSubmit { viewModel.rename() }
                             }
                         } else {
                             CheckmarkLabel(label: shoppingItem.name, checked: shoppingItem.checked)
@@ -68,12 +66,16 @@ struct ShoppingListView: View {
                     CheckmarkLabel(checked: false) {
                         TextField(Strings.listItemsNew, text: $viewModel.newItemName)
                             .focused($itemFieldFocused)
-                            .submitLabel(.done)
-                            .onSubmit(viewModel.create)
+                            .submitLabel(.next)
+                            .onSubmit {
+                                viewModel.create(keepCreating: true)
+                                self.itemFieldFocused = true
+                            }
                     }
                 }
             }
         }
+        .animation(.linear, value: viewModel.shoppingItems)
         .listStyle(.plain)
         .showEmptyView(showEmptyListView, emptyText: Strings.shoppingListEmpty)
         .showLoading(viewModel.isLoading)
@@ -93,39 +95,42 @@ struct ShoppingListView: View {
         .toolbar {
             // Main Toolbar
             ToolbarItemGroup() {
-                HStack {
-                    Button(action: { viewModel.toggleNewItem() }) {
-                        Label(Strings.new, systemImage: "plus")
-                    }
-                    
-                    Menu {
-                        // TODO: Complete list
-//                        Button(action: {}) {
-//                            Label(Strings.shoppingListComplete, systemImage: "checkmark.circle")
-//                        }
-                        
-                        Button(action: { viewModel.showClearConfirmation.toggle() }) {
-                            Label(Strings.shoppingListClear, systemImage: "trash")
+                if !viewModel.creatingNewItem && viewModel.editingItem == nil {
+                    HStack {
+                        Button(action: {
+                            viewModel.toggleNewItem()
+                            itemFieldFocused = true
+                        }) {
+                            Label(Strings.new, systemImage: "plus")
                         }
-                    } label: {
-                        Image(systemName: "ellipsis.circle")
+                        
+                        Menu {
+                            // TODO: Complete list
+    //                        Button(action: {}) {
+    //                            Label(Strings.shoppingListComplete, systemImage: "checkmark.circle")
+    //                        }
+                            
+                            Button(action: { viewModel.showClearConfirmation.toggle() }) {
+                                Label(Strings.shoppingListClear, systemImage: "trash")
+                            }
+                        } label: {
+                            Image(systemName: "ellipsis.circle")
+                        }
+                    }
+                }
+                
+                if viewModel.creatingNewItem {
+                    Button(action: { viewModel.create(keepCreating: false) }) {
+                        Text(Strings.done).bold()
+                    }
+                }
+                
+                if viewModel.editingItem != nil {
+                    Button(action: viewModel.rename) {
+                        Text(Strings.done).bold()
                     }
                 }
             }
-            
-            // Keyboard Toolbar
-            ToolbarItemGroup(placement: .keyboard) {
-                HStack {
-                    Spacer()
-                    
-                    Button(action: viewModel.dismissKeyboard) {
-                        Text(Strings.cancel)
-                    }
-                }
-            }
-        }
-        .onChange(of: viewModel.creatingNewItem) { isCreating in
-            self.itemFieldFocused = isCreating
         }
         .onChange(of: viewModel.editingItem) { editingId in
             self.editFieldFocused = editingId

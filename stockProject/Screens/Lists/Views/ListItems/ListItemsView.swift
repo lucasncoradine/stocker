@@ -115,6 +115,8 @@ struct ListItemsView: View {
                             }
                         }
                     }
+                } header: {
+                    Text(viewModel.items.isEmpty ? Strings.listItemsEmpty : Strings.items)
                 }
             }
             .alert(Strings.listItemsRemoveSelectedMessage, isPresented: $viewModel.showDeleteConfirmation, actions: {
@@ -128,6 +130,7 @@ struct ListItemsView: View {
                         .tint(.red)
                 }
             })
+            .animation(.linear, value: viewModel.items)
             .listStyle(.insetGrouped)
             .onChange(of: viewModel.isEditing) { value in
                 if value == false {
@@ -150,7 +153,6 @@ struct ListItemsView: View {
                 .disabled(viewModel.selection.isEmpty)
             }
         }
-        .showEmptyView(viewModel.items.isEmpty, emptyText: Strings.listItemsEmpty)
         .showLoading(viewModel.isLoading)
         .toast(isShowing: $viewModel.showAddedToast, message: Strings.listItemsAddedToast)
         .navigationTitle(navigationTitle())

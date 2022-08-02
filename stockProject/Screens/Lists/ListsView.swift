@@ -73,6 +73,7 @@ struct ListsView: View {
                     }
                 }
             }
+            .animation(.linear, value: viewModel.lists)
             .showEmptyView(viewModel.listsAreEmpty, emptyText: Strings.listsEmpty)
             .showLoading(viewModel.isLoading)
             .errorAlert(visible: $viewModel.showError,

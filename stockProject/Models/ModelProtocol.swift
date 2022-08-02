@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ModelProtocol: Codable, Identifiable {
+protocol ModelProtocol: Codable, Identifiable, Equatable {
     var id: String? { get set }
     var name: String { get set }
 }
@@ -21,7 +21,7 @@ extension Collection where Element: ModelProtocol {
     func sorted(_ type: SortType) -> [Self.Element] {
         switch type {
         case .alphabetically:
-            return self.sorted { $0.name.lowercased() < $1.name.lowercased() }
+            return self.sorted { $0.name.normalizedForSort() < $1.name.normalizedForSort() }
         }
     }
 }

@@ -36,6 +36,7 @@
 		2952C4A8288A227B0031BE48 /* DeeplinkTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2952C4A7288A227B0031BE48 /* DeeplinkTarget.swift */; };
 		2954505D283FB79300790C2D /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2954505C283FB79300790C2D /* FirebaseClient.swift */; };
 		29545063283FD35100790C2D /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29545062283FD35100790C2D /* APIClient.swift */; };
+		2974C3F128995DD900A0DA09 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2974C3F028995DD900A0DA09 /* StringExtension.swift */; };
 		297BD081287E335100C2A8A7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297BD080287E335100C2A8A7 /* LoginView.swift */; };
 		297BD083287E335900C2A8A7 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297BD082287E335900C2A8A7 /* LoginViewModel.swift */; };
 		297BD085287E351D00C2A8A7 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297BD084287E351D00C2A8A7 /* CustomButton.swift */; };
@@ -132,6 +133,7 @@
 		2952C4A7288A227B0031BE48 /* DeeplinkTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkTarget.swift; sourceTree = "<group>"; };
 		2954505C283FB79300790C2D /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
 		29545062283FD35100790C2D /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		2974C3F028995DD900A0DA09 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		297BD080287E335100C2A8A7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		297BD082287E335900C2A8A7 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		297BD084287E351D00C2A8A7 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -525,6 +527,7 @@
 				2908E443288F1265001603A3 /* ScanResultExtension.swift */,
 				29CB48A82890396B0028D550 /* BindingExtension.swift */,
 				29CB48AA28905E490028D550 /* UIScreenExtension.swift */,
+				2974C3F028995DD900A0DA09 /* StringExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -729,6 +732,7 @@
 				297BD08D287E444F00C2A8A7 /* ButtonExtension.swift in Sources */,
 				299653DB286F343200EA4799 /* ModelProtocol.swift in Sources */,
 				299653E6286F524300EA4799 /* DevelopmentVariables.swift in Sources */,
+				2974C3F128995DD900A0DA09 /* StringExtension.swift in Sources */,
 				298B8AA12880ADCD004295C8 /* ProfileView.swift in Sources */,
 				297BD083287E335900C2A8A7 /* LoginViewModel.swift in Sources */,
 				298B8A9F2880ADC4004295C8 /* ProfileViewModel.swift in Sources */,

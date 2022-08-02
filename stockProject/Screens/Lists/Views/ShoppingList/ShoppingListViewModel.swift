@@ -61,22 +61,23 @@ class ShoppingListViewModel: ViewModel {
         newItemName = ""
     }
     
-    func create() {
-        guard newItemName.isEmpty == false else {
-            toggleNewItem()
+    func create(keepCreating: Bool = false) {
+        guard !newItemName.isEmpty else {
+            creatingNewItem = false
             return
         }
         
-        creatingNewItem = false
-        
         let item = ShoppingItemModel(name: self.newItemName)
+        self.newItemName = ""
+        
+        if !keepCreating {
+            self.creatingNewItem = false
+        }
+        
         client.create(with: item) { message in
             self.requestFailed(message)
-            self.creatingNewItem = true
-        } success: { _ in
-            self.newItemName = ""
-        }
-
+            self.newItemName = item.name
+        } success: { _ in }
     }
     
     func remove(id: String?) {
@@ -92,6 +93,14 @@ class ShoppingListViewModel: ViewModel {
         client.save(id: id, with: item, failure: self.requestFailed)
     }
     
+    func rename() {
+        guard let editingItem = editingItem else { return }
+        
+        save(id: editingItem)
+        self.editingItem = nil
+        UIApplication.shared.dismissKeyboard()
+    }
+    
     func changeAmount(id: String?, newValue: Int) {
         guard let id = id else { return }
         
@@ -99,11 +108,5 @@ class ShoppingListViewModel: ViewModel {
                            field: ShoppingItemModel.CodingKeys.amount.stringValue,
                            value: newValue,
                            failure: self.requestFailed)
-    }
-    
-    func dismissKeyboard() {
-        creatingNewItem = false
-        editingItem = nil
-        UIApplication.shared.dismissKeyboard()
     }
 }

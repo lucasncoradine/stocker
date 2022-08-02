@@ -10,7 +10,6 @@ import SwiftUI
 extension Binding where Value == Bool {
     var not: Binding<Bool> {
         return !self
-//        return !(self.wrappedValue)
     }
 }
 

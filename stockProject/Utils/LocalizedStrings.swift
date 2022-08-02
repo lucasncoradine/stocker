@@ -78,6 +78,7 @@ final class LocalizedStrings {
     static let listItemsEmpty = "Sem itens"
     static let listItemsAddedToast = "Adicionado à lista de compras"
     static let listItemsNew = "Novo item"
+    static let items = "Itens"
     
     // MARK: - ShoppingListView
     static let shoppingListEmpty = "Lista de compras vazia"
@@ -85,7 +86,7 @@ final class LocalizedStrings {
     static let shoppingListClear = "Apagar lista"
     static let shoppingListComplete = "Concluir lista"
     static let shoppingListConfirmClearMessage = "Tem certeza que deseja apagar a lista de compras?"
-    static let shoppingListConfirmClearButton = "Limpar"
+    static let shoppingListConfirmClearButton = "Apagar"
     
     // MARK: - PasswordRecoverView
     static let passwordRecoverLabel = "Informe o email cadastrado"
