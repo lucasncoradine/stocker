@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>707197193417-9h8mcb71o0k52sqkjo02ipvjj5lqe7c2.apps.googleusercontent.com</string>
+	<string>241230276243-6g3bmpg9bcphim1g7gfh7lf0atf6899t.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.707197193417-9h8mcb71o0k52sqkjo02ipvjj5lqe7c2</string>
+	<string>com.googleusercontent.apps.241230276243-6g3bmpg9bcphim1g7gfh7lf0atf6899t</string>
 	<key>API_KEY</key>
-	<string>AIzaSyApuUBaNIWlO4IjxzLLv-44hATjJR_eL3w</string>
+	<string>AIzaSyCQOWii8pankyviTz-KUe6hA0i8AAgLj2A</string>
 	<key>GCM_SENDER_ID</key>
-	<string>707197193417</string>
+	<string>241230276243</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>startcode.stockProject</string>
 	<key>PROJECT_ID</key>
-	<string>stocker-dev-49d4d</string>
+	<string>stocker-d4d57</string>
 	<key>STORAGE_BUCKET</key>
-	<string>stocker-dev-49d4d.appspot.com</string>
+	<string>stocker-d4d57.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:707197193417:ios:4918f5086a9dbb7ce01118</string>
+	<string>1:241230276243:ios:53c39b41a1ca2da8e48f66</string>
+	<key>DATABASE_URL</key>
+	<string>https://stocker-d4d57-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>
