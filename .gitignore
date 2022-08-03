@@ -92,3 +92,6 @@ iOSInjectionProject/
 
 # Development
 stockProject/Utils/Development/*
+
+# Firebase Config
+GoogleService-Info.plist
