@@ -44,10 +44,14 @@ final class LocalizedStrings {
     // MARK: - ListsView
     static let listsEmpty = "Sem estoques"
     static let listsTitle = "Estoques"
-    static let listsNew = "Nova lista"
-    static let listsSharedSection = "Compartilhadas comigo"
-    static let listMenuScanQrCode = "Acessar estoque"
+    static let listsNew = "Novo estoque"
+    static let listsSharedSection = "Compartilhados comigo"
+    static let listMenuScanQrCode = "Ler QRCode"
     static let listsMyLists = "Meus estoques"
+    static let listsQuitShared = "Sair"
+    static let listsConfirmQuitTitle = "Deseja sair do estoque?"
+    static let listsConfirmQuitMessage = "Ao sair do estoque você não terá mais acesso a ele até que te convidem novamente."
+    static let listsConfirmQuitButton = "Sim, sair"
     
     // MARK: - LoginView
     static let forgotPassword = "Esqueci minha senha"

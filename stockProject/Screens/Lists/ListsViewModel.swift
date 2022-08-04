@@ -26,6 +26,7 @@ class ListsViewModel: ViewModel {
     @Published var selectedList: ListModel? = nil
     @Published var showShareSheet: Bool = false
     @Published var selectedSharedList: String? = nil
+    @Published var showQuitConfirmation: Bool = false
     
     var listsAreEmpty: Bool {
         return self.lists.owned.isEmpty && self.lists.shared.isEmpty
@@ -107,6 +108,18 @@ class ListsViewModel: ViewModel {
             
             self.selectedSharedList = listId
         }
+    }
+    
+    func quitSharedList() {
+        guard
+            let listId = selectedList?.id,
+            let userId = AuthManager.shared.user?.uid
+        else { return }
+        
+        client.removeValuesFromArrayField(id: listId,
+                                          field: ListModel.CodingKeys.sharedWith.stringValue,
+                                          values: [userId],
+                                          failure: requestFailed)
     }
     
     func handleQrCodeScan(_ result: ScanResult) {
