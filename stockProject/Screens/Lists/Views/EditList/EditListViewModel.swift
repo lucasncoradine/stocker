@@ -27,17 +27,16 @@ class EditListViewModel: FormViewModelProtocol {
     @Published var isLoading: Bool = false
     
     // MARK: - Private Methods
-    func requestFailed(_ message: String) {
-        DispatchQueue.main.async {
-            self.errorMessage = message
-            self.showError = true
+    private func validateListName(completion: @escaping () -> Void) {
+        client.valueExists(list.name,
+                           field: ListModel.CodingKeys.name.stringValue,
+                           failure: self.requestFailed) { exists in
+            if exists {
+                self.requestFailed(Strings.editItemNameExists)
+            } else {
+                completion()
+            }
         }
-    }
-    
-    func validateFields() -> Bool {
-        validations.requiredField(key: EditListField.listName.description, value: self.list.name)
-        
-        return validations.noErrors()
     }
     
     // MARK: - Lifecycle
@@ -46,7 +45,13 @@ class EditListViewModel: FormViewModelProtocol {
     }
     
     // MARK: - Methods
-    func saveList(_ completion: () -> Void) {
+    func validateFields() -> Bool {
+        validations.requiredField(key: EditListField.listName.description, value: self.list.name)
+        
+        return validations.noErrors()
+    }
+    
+    func saveList(_ completion: @escaping () -> Void) {
         guard
             validateFields(),
             let id = list.id
@@ -54,7 +59,9 @@ class EditListViewModel: FormViewModelProtocol {
             return
         }
         
-        client.save(id: id, with: list, failure: requestFailed)
-        completion()
+        validateListName {
+            self.client.save(id: id, with: self.list, failure: self.requestFailed)
+            completion()
+        }
     }
 }

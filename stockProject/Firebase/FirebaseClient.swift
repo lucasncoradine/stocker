@@ -169,6 +169,37 @@ class FirebaseClient {
         }
     }
     
+    /// Updated multiple documents
+    /// - parameter documents: A dictionary where the key is the ID of the document and the values is the data
+    /// - parameter from: The collection of the document
+    /// - parameter completion: A closure to handle the result of the request
+    func updateDocuments<T: Codable>(_ documents: [String: T],
+                                     from collection: FirebaseCollection,
+                                     completion: @escaping (_ result: VoidResult) -> Void
+    ) {
+        let batch = database.batch()
+        
+        documents.forEach { id, data in
+            let ref = database.collection(collection.path).document(id)
+            do {
+                try batch.setData(from: data, forDocument: ref)
+            } catch let error {
+                completion(.failure(error))
+                return
+            }
+        }
+        
+        batch.commit {
+            error in
+            guard let error = error else {
+                completion(.success)
+                return
+            }
+            
+            completion(.failure(error))
+        }
+    }
+    
     /// Delete a document from the  collection
     /// - parameter id: The ID of the document to delete
     /// - parameter collection: The colection which the document will be deleted from
@@ -270,6 +301,29 @@ class FirebaseClient {
             
             completion(.failure(error))
         }
+    }
+    
+    /// Checks if the value of a field exists in database
+    /// - parameter value: The value to check
+    /// - parameter of field: The field to check
+    /// - parameter collection: The collection of the field
+    /// - parameter completion: A closure to handle the result of the request
+    func valueExists(_ value: Any,
+                     of field: String,
+                     at collection: FirebaseCollection,
+                     completion: @escaping (_ result: Result<Bool, Error>) -> Void
+    ) { 
+        database.collection(collection.path)
+            .makeQuery(.isEqual(field: field, to: value))
+            .getDocuments { querySnapshot, error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                
+                let exists = querySnapshot?.isEmpty == false
+                completion(.success(exists))
+            }
     }
     
     /// Adds the new values to the array field.

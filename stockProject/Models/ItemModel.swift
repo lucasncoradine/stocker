@@ -36,7 +36,7 @@ enum ItemAlertType {
 struct ItemModel: ModelProtocol, Hashable {
     @DocumentID var id: String? = UUID().uuidString
     var name: String
-    var description: String
+    var description: String = ""
     var amount: Int
     var expirationDate: Date? = nil
     

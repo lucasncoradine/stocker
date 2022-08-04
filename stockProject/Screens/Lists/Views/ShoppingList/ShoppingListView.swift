@@ -42,7 +42,7 @@ struct ShoppingListView: View {
                         }
                         
                         Stepper(label: "",
-                                amount: shoppingItem.amount,
+                                amount: $viewModel.shoppingItems[index].amount,
                                 counterFocused: _counterFocused
                         ) { value in
                             viewModel.changeAmount(id: shoppingItem.id, newValue: value)
@@ -105,10 +105,9 @@ struct ShoppingListView: View {
                         }
                         
                         Menu {
-                            // TODO: Complete list
-    //                        Button(action: {}) {
-    //                            Label(Strings.shoppingListComplete, systemImage: "checkmark.circle")
-    //                        }
+                            Button(action: viewModel.completeShoppingList) {
+                                Label(Strings.shoppingListComplete, systemImage: "checkmark.circle")
+                            }
                             
                             Button(action: { viewModel.showClearConfirmation.toggle() }) {
                                 Label(Strings.shoppingListClear, systemImage: "trash")

@@ -53,8 +53,19 @@ class EditItemViewModel: FormViewModelProtocol {
         self.expirationDate = model.expirationDate ?? Date()
     }
     
+    // MARK: - Private Methods
+    private func validateItemName(completion: @escaping () -> Void) {
+        client.valueExists(item.name, field: ItemModel.CodingKeys.name.stringValue, failure: requestFailed) { exists in
+            if exists {
+                self.requestFailed(Strings.editItemNameExists)
+            } else {
+                completion()
+            }
+        }
+    }
+    
     // MARK: - Methods
-    func saveItem(_ completion: () -> Void) {
+    func saveItem(_ completion: @escaping () -> Void) {
         guard
             validateFields(),
             let id = item.id
@@ -62,9 +73,11 @@ class EditItemViewModel: FormViewModelProtocol {
             return
         }
         
-        item.expirationDate = hasExpirationDate ? expirationDate : nil
-        
-        client.save(id: id, with: item, failure: requestFailed)
-        completion()
+        validateItemName {
+            self.item.expirationDate = self.hasExpirationDate ? self.expirationDate : nil
+            
+            self.client.save(id: id, with: self.item, failure: self.requestFailed)
+            completion()
+        }
     }
 }

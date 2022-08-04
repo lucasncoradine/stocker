@@ -10,6 +10,7 @@ import UIKit
 
 class ShoppingListViewModel: ViewModel {
     private let client: APIClient<ShoppingItemModel>
+    private let itemsClient: APIClient<ItemModel>
     private let listId: String
     
     @Published var shoppingItems: [ShoppingItemModel] = []
@@ -24,7 +25,28 @@ class ShoppingListViewModel: ViewModel {
     // MARK: Lifecycle
     init(listId: String) {
         client = APIClient(collection: .shoppingList(listId: listId))
+        itemsClient = APIClient(collection: .items(listId: listId))
         self.listId = listId
+    }
+    
+    private func validateNewItem(name: String, completion: @escaping () -> Void) {
+        let alreadyCreated: Bool = shoppingItems.contains(where: { $0.name == name })
+        
+        if alreadyCreated {
+            self.requestFailed(Strings.shoppingListItemNameExists)
+            return
+        }
+        
+        // Checks if there is any item with the same name
+        itemsClient.valueExists(name,
+                           field: ShoppingItemModel.CodingKeys.name.stringValue,
+                           failure: requestFailed) { exists in
+            if exists {
+                self.requestFailed(Strings.shoppingListItemNameExistsStock)
+            } else {
+                completion()
+            }
+        }
     }
     
     // MARK: - Methods
@@ -62,22 +84,24 @@ class ShoppingListViewModel: ViewModel {
     }
     
     func create(keepCreating: Bool = false) {
-        guard !newItemName.isEmpty else {
+        guard newItemName.isEmpty == false else {
             creatingNewItem = false
             return
         }
         
-        let item = ShoppingItemModel(name: self.newItemName)
-        self.newItemName = ""
-        
-        if !keepCreating {
-            self.creatingNewItem = false
+        validateNewItem(name: newItemName) {
+            let item = ShoppingItemModel(name: self.newItemName)
+            self.newItemName = ""
+            
+            if !keepCreating {
+                self.creatingNewItem = false
+            }
+            
+            self.client.create(with: item) { message in
+                self.requestFailed(message)
+                self.newItemName = item.name
+            } success: { _ in }
         }
-        
-        client.create(with: item) { message in
-            self.requestFailed(message)
-            self.newItemName = item.name
-        } success: { _ in }
     }
     
     func remove(id: String?) {
@@ -108,5 +132,19 @@ class ShoppingListViewModel: ViewModel {
                            field: ShoppingItemModel.CodingKeys.amount.stringValue,
                            value: newValue,
                            failure: self.requestFailed)
+    }
+    
+    func completeShoppingList() {
+        var checkedItems: [String: ItemModel] = [:]
+        var checkedIds: [String] = []
+        
+        shoppingItems.forEach { item in
+            guard item.checked, let id = item.id else { return }
+            checkedItems[id] = ItemModel(id: id, name: item.name, amount: item.amount)
+            checkedIds.append(id)
+        }
+        
+        itemsClient.save(all: checkedItems, failure: requestFailed)
+        client.delete(ids: checkedIds, failure: requestFailed)
     }
 }
