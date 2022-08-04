@@ -42,12 +42,16 @@ final class LocalizedStrings {
     static let requiredField = "Campo obrigatório"
     
     // MARK: - ListsView
-    static let listsEmpty = "Sem listas"
-    static let listsTitle = "Listas"
-    static let listsNew = "Nova lista"
-    static let listsSharedSection = "Compartilhadas comigo"
-    static let listMenuScanQrCode = "Acessar lista"
-    static let listsMyLists = "Minhas listas"
+    static let listsEmpty = "Sem estoques"
+    static let listsTitle = "Estoques"
+    static let listsNew = "Novo estoque"
+    static let listsSharedSection = "Compartilhados comigo"
+    static let listMenuScanQrCode = "Ler QRCode"
+    static let listsMyLists = "Meus estoques"
+    static let listsQuitShared = "Sair"
+    static let listsConfirmQuitTitle = "Deseja sair do estoque?"
+    static let listsConfirmQuitMessage = "Ao sair do estoque você não terá mais acesso a ele até que te convidem novamente."
+    static let listsConfirmQuitButton = "Sim, sair"
     
     // MARK: - LoginView
     static let forgotPassword = "Esqueci minha senha"
@@ -65,11 +69,12 @@ final class LocalizedStrings {
     static let signupAccessButton = "Acessar o App"
     
     // MARK: - EditListView
-    static let editListNavigationTitle = "Nova lista"
-    static let editListFieldName = "Nome da lista"
+    static let editListNavigationTitle = "Novo estoque"
+    static let editListFieldName = "Nome do estoque"
     
     // MARK: - EditItemView
     static let editItemNavigationTitle = "Novo item"
+    static let editItemNameExists = "Um item com esse nome já existe"
     
     // MARK: - ListItemsView
     static let selectedItemsText = "Selecionado"
@@ -83,10 +88,12 @@ final class LocalizedStrings {
     // MARK: - ShoppingListView
     static let shoppingListEmpty = "Lista de compras vazia"
     static let shoppingListTitle = "Compras"
-    static let shoppingListClear = "Apagar lista"
-    static let shoppingListComplete = "Concluir lista"
-    static let shoppingListConfirmClearMessage = "Tem certeza que deseja apagar a lista de compras?"
-    static let shoppingListConfirmClearButton = "Apagar"
+    static let shoppingListClear = "Limpar"
+    static let shoppingListComplete = "Concluir compra"
+    static let shoppingListConfirmClearMessage = "Tem certeza que deseja limpar a lista de compras?"
+    static let shoppingListConfirmClearButton = "Limpar"
+    static let shoppingListItemNameExistsStock = "Um item com esse nome já existe no seu estoque."
+    static let shoppingListItemNameExists = "Um item com esse nome já existe na lista de compras."
     
     // MARK: - PasswordRecoverView
     static let passwordRecoverLabel = "Informe o email cadastrado"

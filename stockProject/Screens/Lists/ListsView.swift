@@ -11,13 +11,13 @@ import CodeScanner
 struct ListsView: View {
     @EnvironmentObject var appParameters: AppParameters
     @StateObject var viewModel: ListsViewModel = .init()
-        
+    
     var body: some View {
         NavigationView {
             List {
                 // MARK: - Owned Lists
                 if !viewModel.lists.owned.isEmpty {
-                Section {
+                    Section {
                         ForEach(viewModel.lists.owned) { list in
                             NavigationLink(
                                 destination: ListItemsView(list: list)
@@ -60,11 +60,23 @@ struct ListsView: View {
                                 ) {
                                     ListRow(label: list.name)
                                         .contextMenu {
-                                            // TODO: Quit from shared list
+                                            Button(action: { viewModel.editList(list) }) {
+                                                Label(Strings.edit, systemImage: "square.and.pencil")
+                                            }
+                                            
+                                            Button(role: .destructive,
+                                                   action: { viewModel.showQuitConfirmation.toggle() }
+                                            ) {
+                                                Label(Strings.listsQuitShared,
+                                                      systemImage: "person.crop.circle.badge.minus")
+                                            }
                                         }
                                 }
                                 .swipeActions {
-                                    // TODO: Quit from shared list
+                                    Button(role: .destructive, action: { viewModel.showQuitConfirmation.toggle() }) {
+                                        Label(Strings.listsQuitShared,
+                                              systemImage: "person.crop.circle.badge.minus")
+                                    }
                                 }
                             }
                         }
@@ -79,6 +91,17 @@ struct ListsView: View {
             .errorAlert(visible: $viewModel.showError,
                         message: viewModel.errorMessage,
                         action: viewModel.reloadList)
+            .alert(Strings.listsConfirmQuitTitle, isPresented: $viewModel.showQuitConfirmation) {
+                Button(role: .cancel, action: { viewModel.showQuitConfirmation = false }) {
+                    Text(Strings.cancel)
+                }
+                
+                Button(role: .destructive, action: viewModel.quitSharedList) {
+                    Text(Strings.listsConfirmQuitButton)
+                }
+            } message: {
+                Text(Strings.listsConfirmQuitMessage)
+            }
             .navigationTitle(Strings.listsTitle)
             .toolbar {
                 ToolbarItemGroup {

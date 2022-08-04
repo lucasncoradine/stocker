@@ -59,7 +59,7 @@ struct ListItemsView: View {
                 }
                 
                 Section {
-                    ForEach(viewModel.items, id: \.id) { item in
+                    ForEach(Array(viewModel.items.enumerated()), id: \.offset) { index, item in
                         HStack {
                             // MARK: Checkmark icon
                             if viewModel.isEditing {
@@ -70,9 +70,9 @@ struct ListItemsView: View {
                                 Image(systemName: item.alertType.icon)
                                     .foregroundColor(item.alertType.color)
                             }
-                            
+                                                        
                             Stepper(label: item.name,
-                                    amount: item.amount,
+                                    amount: $viewModel.items[index].amount,
                                     description: item.description,
                                     counterFocused: _counterFocused
                             ) { value in
@@ -171,7 +171,7 @@ struct ListItemsView: View {
                         Menu {
                             // Select items
                             Button(action: viewModel.toggleSelection) {
-                                Label(Strings.select, systemImage: "checkmark.circle")
+                                Label(Strings.select, systemImage: "checklist")
                             }
                             
                             // Edit list

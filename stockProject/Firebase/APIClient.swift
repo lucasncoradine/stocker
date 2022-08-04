@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseFirestore
+import SwiftUI
 
 class APIClient<T: Codable> {
     private let client: FirebaseClient = .init()
@@ -62,6 +63,12 @@ class APIClient<T: Codable> {
         }
     }
     
+    func save(all data: [String: T], failure: @escaping FailureClosure) {
+        client.updateDocuments(data, from: collection) { result in
+            self.client.handleResult(result, failure: failure)
+        }
+    }
+    
     func create(with data: T,
                 failure: @escaping FailureClosure,
                 success: @escaping (_ data: T) -> Void
@@ -98,6 +105,16 @@ class APIClient<T: Codable> {
             client.updateFieldValue(of: id, at: collection, field: field, with: value) { result in
                 self.client.handleResult(result, failure: failure)
             }
+        }
+    }
+    
+    func valueExists(_ value: String,
+                     field: String,
+                     failure: @escaping FailureClosure,
+                     success: @escaping (_ exists: Bool) -> Void
+    ) {
+        client.valueExists(value, of: field, at: collection) { result in
+            self.client.handleResult(result, success: success, failure: failure)
         }
     }
     
